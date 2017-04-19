@@ -4266,3 +4266,20 @@ i.cv:hover {
 .c-social i.fa {
   color: white !important;
 }
+#type-error{
+	color:red;
+	margin-top: 2em;
+	font-size: 1.5em;
+	text-decoration: blink;
+	display:none;
+}
+
+#videoPoster{
+	width: 180px;
+}
+#video{
+	display: none;
+}
+#conteinerMusicGenre{
+	display: none;
+}

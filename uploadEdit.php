@@ -153,10 +153,10 @@
                         <div class="u-details">
                             <div class="row">
                                 <div class="col-lg-12 ud-caption">Upload Details</div>
-                                <div class="col-lg-2"><div class="imgplace"></div></div>
+                                <div class="col-lg-2"><img id='videoPoster' alt="" src="assets/images/<?= $videoPosterPath?>"></div>
                                 <div class="col-lg-10">
-                                    <div class="u-title">Rocket League Gameplay 03.08.2016 - 15.13.31.01</div>
-                                    <div class="u-size">102.6 MB . 2:13 MIN Remaining</div>
+                                    <div class="u-title"><?= $fileName ?></div>
+                                    <div class="u-size"><?= round( $fileSize, 2 ) . ' MB' ?></div>
                                     <div class="u-progress">
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%;">
@@ -180,19 +180,19 @@
         <div class="row">
             <div class="col-lg-12 ">
 
-
+			<form action="" method="post">
                 <div class="u-form">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="e1">Video Title</label>
-                                <input type="text" class="form-control" id="e1" placeholder="Rocket League Pro Championship Gameplay (36 characters remaining)">
+                                <input type="text" class="form-control" name='title' id="title" placeholder=<?php echo $fileName ?>>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="e2">About</label>
-                                <textarea class="form-control" name="e2" id="e2" rows="3">Description</textarea>
+                                <textarea class="form-control" name="description" id="description" rows="3">Description</textarea>
                             </div>
                         </div>
                     </div>
@@ -201,43 +201,40 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="e4">Privacy Settings</label>
-                                <select class="form-control" id="e4">
-                                    <option>Public</option>
-                                    <option>Private</option>
+                                <select class="form-control" id="privace" name="privace">
+                                    <option value='false'>Public</option>
+                                    <option value='true'>Private</option>
 
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5">
+                             </div>
+                         </div>
+                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="e7">Tags (13 Tags Remaining)</label>
-                                <input type="text" class="form-control" id="e7" placeholder="Gaming, PS4">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label for="e8">Cast (Optional)</label>
-                                <input type="text" class="form-control" id="e8" placeholder="Nathan Drake,">
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label for="e9">Language in Video (Optional)</label>
-                                <select class="form-control" id="e9">
-                                    <option>English</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <label for="e4">Gategory</label>
+                                <select class="form-control" id="category" name="category" onclick='showMusicGenre()'>
+                                    <option value='1'>Film & Animation</option>
+                                    <option value='2'>Cars & Vehicles</option>
+                                    <option value='3'>Music</option>
+                                    <option value='4'>Pets & Animals</option>
+                                    <option value='5'>Sport</option>
+                                    <option value='6'>Travel & Events</option>
+                                    <option value='7'>Gaming</option>
+                                    <option value='8'>People & Blogs</option>
+                                    <option value='9'>Comedy</option>
+                                    <option value='10'>Entertaiment</option>
+                                    <option value='11'>News & Politics</option>
+                                    <option value='12'>How-to & Style</option>
+                                    <option value='13'>Educations</option>
+                                    <option value='14'>Science & Technology</option>
+                                    <option value='9'>Non-profits $ Activism</option>
+                                </select>                               
                             </div>
                         </div>
                     </div>
 
+                    <div id='conteinerMusicGenre'>
                     <div class="row ">
-                        <div class="col-lg-12 u-category">Category ( you can select upto 6 categories )</div>
+                        <div class="col-lg-12 u-category"> Music genre</div>
                     </div>
 
                     <div class="row">
@@ -246,425 +243,188 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox"  name="musicGenre" onclick ='checked(1)'>
                                         <span class="arrow"></span>
-                                    </label> Abaft
+                                    </label> Asian Pop (J-Pop, K-pop)
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(2)'/>
                                         <span class="arrow"></span>
-                                    </label> Brick
+                                    </label> Blues
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(3)'/>
                                         <span class="arrow"></span>
-                                    </label> Purpose
+                                    </label> Children’s Music
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(4)'/>
                                         <span class="arrow"></span>
-                                    </label> Shallow
+                                    </label> Classical Music
                                 </label>
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Spray
-                                </label>
-                            </div>
-                            <div class="checkbox checked">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" checked name="#">
-                                        <span class="arrow"></span>
-                                    </label> Seashore
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Orange
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Dynamic
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Planes
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Comfortable
-                                </label>
-                            </div>
+                            
                         </div>
 
 
 
                         <!-- checkbox 2col -->
                         <div class="col-lg-2">
-                            <div class="checkbox">
+                        	<div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(5)'/>
                                         <span class="arrow"></span>
-                                    </label> Leg
+                                    </label> Country Music
+                                </label>
+                            </div>    
+                             <div class="checkbox">
+                                <label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(6)'/>
+                                        <span class="arrow"></span>
+                                    </label> Dance Music
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(7)'/>
                                         <span class="arrow"></span>
-                                    </label> Fall
+                                    </label> European Music (Folk/Pop)
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(8)'/>
                                         <span class="arrow"></span>
-                                    </label> Pin
+                                    </label> Hip Hop/Rap
                                 </label>
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Trouble
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Cemetery
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Sort
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Respect
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Rice
-                                </label>
-                            </div>
-                            <div class="checkbox checked">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" checked name="#">
-                                        <span class="arrow"></span>
-                                    </label> Disagreeable
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Minister
-                                </label>
-                            </div>
+                            
                         </div>
 
 
 
                         <!-- checkbox 3col -->
                         <div class="col-lg-2">
-                            <div class="checkbox">
+                        	<div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(9)'/>
                                         <span class="arrow"></span>
-                                    </label> Quiet
+                                    </label> Indie Pop
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(10)'/>
                                         <span class="arrow"></span>
-                                    </label> Rescue
-                                </label>
-                            </div>
-                            <div class="checkbox checked">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" checked name="#">
-                                        <span class="arrow"></span>
-                                    </label> Agonizing
+                                    </label> Inspirational (incl. Gospel)
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(11)'/>
                                         <span class="arrow"></span>
-                                    </label> Stitch
+                                    </label> Jazz
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(12)'/>
                                         <span class="arrow"></span>
-                                    </label> Scissors
+                                    </label> Latin Music
                                 </label>
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Spiffy
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Tin
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Rambunctious
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Sordid
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Wise
-                                </label>
-                            </div>
+                            
                         </div>
 
 
 
                         <!-- checkbox 4col -->
                         <div class="col-lg-2">
-                            <div class="checkbox">
+                        	<div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(13)'/>
                                         <span class="arrow"></span>
-                                    </label> Boy
+                                    </label> New Age
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(14)'/>
                                         <span class="arrow"></span>
-                                    </label> Fold
+                                    </label> Opera
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(15)'/>
                                         <span class="arrow"></span>
-                                    </label> Moan
+                                    </label> Pop (Popular music)
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(16)'/>
                                         <span class="arrow"></span>
-                                    </label> Overjoyed
+                                    </label> R&B/Soul
                                 </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Obsequious
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Heat
-                                </label>
-                            </div>
-                            <div class="checkbox checked">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" checked name="#">
-                                        <span class="arrow"></span>
-                                    </label> Incompetent
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Grin
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Fat
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Gate
-                                </label>
-                            </div>
+                            </div>                            
                         </div>
 
 
 
                         <!-- checkbox 5col -->
                         <div class="col-lg-2">
-                            <div class="checkbox">
+                        	<div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(17)'/>
                                         <span class="arrow"></span>
-                                    </label> Bells
+                                    </label> Reggae
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(18)'/>
                                         <span class="arrow"></span>
-                                    </label> Symptomatic
+                                    </label> Rock
+                                </label>
+                            </div>                            
+                            <div class="checkbox">
+                                <label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(19)'/>
+                                        <span class="arrow"></span>
+                                    </label> Singer/Songw
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(20)'/>
                                         <span class="arrow"></span>
-                                    </label> Rub
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Holiday
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Doubtful
-                                </label>
-                            </div>
-                            <div class="checkbox checked">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" checked name="#">
-                                        <span class="arrow"></span>
-                                    </label> Bored
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Hot
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Tasteful
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Plot
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Grotesque
+                                    </label> Singer/Songwriter (inc. Folk)
                                 </label>
                             </div>
                         </div>
@@ -676,60 +436,39 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(21)'/>
                                         <span class="arrow"></span>
-                                    </label> Water
+                                    </label> Soundtrack
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(22)'/>
                                         <span class="arrow"></span>
-                                    </label> Vessel
+                                    </label> Vocal
                                 </label>
-                            </div>
+                            </div>                            
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="#">
+                                        <input type="checkbox" name="musicGenre" onclick ='checked(23)'/>
                                         <span class="arrow"></span>
-                                    </label> Well-to-do
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Unequal
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Rhetorical
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="#">
-                                        <span class="arrow"></span>
-                                    </label> Limit
+                                    </label> World Music/Beats
                                 </label>
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
 
-                <div class="u-area">
-                    <form action="#" method="post">
-                        <button class="btn btn-primary u-btn">Save</button>
-                    </form>
-                </div>
+
+                    
+                    <div class="u-area">
+                        <a name='uploadVideo' class="btn btn-primary u-btn" id='uploadVideo' onclick = 'uploded()'>Save</a>
+                   	</div>
+                </form>
+                
                 <div class="u-terms">
                     <p>By submitting your videos to circle, you acknowledge that you agree to circle's <a href="#">Terms of Service</a> and <a href="#">Community Guidelines</a>.</p>
                     <p>Please be sure not to violate others' copyright or privacy rights. Learn more</p>

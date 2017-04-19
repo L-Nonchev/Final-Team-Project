@@ -49,6 +49,7 @@
 <script src="assets/js/country.js"></script>
 <script src="assets/js/singUpValidation.js"></script>
 <script src="assets/js/logInValidation.js"></script>
+<script src="assets/js/script.js"></script>
 
 </body>
 </html>

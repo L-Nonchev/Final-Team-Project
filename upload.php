@@ -1,5 +1,5 @@
 <?php 
-	require 'logInHeader.php';
+	require_once 'logInHeader.php';
 ?>
 
 <div class="content-wrapper">
@@ -8,14 +8,16 @@
             <div class="col-lg-12 upload-page">
 
                 <div class="u-area">
-                    <i class="cv cvicon-cv-upload-video"></i>
-
-                    <p class="u-text1">Select Video files to upload</p>
-                    <p class="u-text2">or drag and drop video files</p>
-
-                    <form action="uploadEdit.php" method="post">
-                        <button class="btn btn-primary u-btn">Upload Video</button>
-                    </form>
+	                <form id='formUpload' enctype='multipart/form-data' action="uploadController.php" method="post">
+	                   	<input name="video" id ='video' type="file" accept="video/*"  /><i class="cv cvicon-cv-upload-video" onclick ="javascript:document.getElementById('video').click();"></i>
+	                    <input type='hidden' id='MAX_FILE_SIZE'  name='MAX_FILE_SIZE' value='1000000000' />
+	                    
+	                    <p class="u-text1">Select Video files to upload</p>
+	                    <p class="u-text2">or drag and drop video files</p>
+	                    <p id='type-error'></p>
+	                    <input type='submit' id='UploadForm' name='uploadEdit' value='Upload Video' class="btn btn-primary u-btn" onfocus = 'checkMimeType()'>
+	                    
+	                </form>
                 </div>
 
                 <div class="u-terms">
@@ -28,5 +30,5 @@
 </div>
 
 <?php 
-	require 'footer.php';
+	require_once 'footer.php';
 ?>
