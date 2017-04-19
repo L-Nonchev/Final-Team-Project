@@ -4,6 +4,7 @@ class Video implements JsonSerializable {
 	private $videoTitle;
 	private $videoPath;
 	private $videoPoster;
+	private $duration;
 	private $videoDate;
 	private $videoText;
 	private $videoLike;
@@ -24,7 +25,7 @@ class Video implements JsonSerializable {
 		return get_object_vars($this);
 	}
 	
-	public function __construct($videoTitle, $videoPath, $videoPoster, $videoText, $privacy, $userId = null,
+	public function __construct($videoTitle, $videoPath, $videoPoster, $duration, $videoText, $privacy, $userId = null,
 			$categoryId = null, $musicGenre = null, $videoLike = 0, $videoDislike = 0, $videView = 0,
 			$videoId = null){
 	
@@ -33,6 +34,7 @@ class Video implements JsonSerializable {
 				$this->setVideoPoster($videoPoster);
 				$this->setVideoText($videoText);
 				$this->setPrivacy($privacy);
+				$this->setVideoDuration($duration);
 				$this->setCategoryId($categoryId);
 				$this->setMusicGenre($musicGenre);
 				$this->setVideoLike($videoLike);
@@ -53,9 +55,15 @@ class Video implements JsonSerializable {
 	}
 	
 	public function setVideoPath($videoPath){
-		if ($videoPath !== '' && strlen($videoPath) < 100){
+		if ($videoPath !== '' && strlen($videoPath) < 200){
 			$this->videoPath = $videoPath;
 		}else throw new Exception("Incorect video path!");
+	}
+	
+	public function setVideoDuration($duration){
+		if ($duration !== '' && strlen($duration) < 50){
+			$this->duration = $duration;
+		}else throw new Exception("Incorect video duration!");
 	}
 	
 	public function setVideoPoster($videoPoster){
@@ -102,13 +110,13 @@ class Video implements JsonSerializable {
 	}
 	
 	public function setPrivacy($privacy){
-		if (strlen($privacy) !== 0){
+		if ($privacy !== ''){
 			$this->privacy = $privacy;
 		}else throw new Exception("Incorect type of privace!");
 	}
 	
 	public function setMusicGenre($musicGenre){
-		if ($musicGenre !== '' && strlen($musicGenre) < 60){
+		if ($musicGenre !== ''){
 			$this->musicGenre = $musicGenre;
 		}else throw new Exception("Incorect music genre!");
 	}

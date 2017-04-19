@@ -4266,12 +4266,13 @@ i.cv:hover {
 .c-social i.fa {
   color: white !important;
 }
-#type-error{
+#type-error, #errorUploded, #sucssesUploded{
 	color:red;
 	margin-top: 2em;
 	font-size: 1.5em;
 	text-decoration: blink;
 	display:none;
+	text-align: center;
 }
 
 #videoPoster{
