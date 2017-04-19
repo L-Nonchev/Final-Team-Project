@@ -84,8 +84,8 @@
 										<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="true"> Log In / Sing Up <span class="caret"></span></button>
 										<ul class="dropdown-menu">
-											<li><a href="./login.php">Login</a></li>
-											<li><a href="./signup.php">Sign up</a></li>
+											<li><a href="./LogInController.php">Login</a></li>
+											<li><a href="./SingUpController.php">Sign up</a></li>
 										</ul>
 									</div>
 								</div>

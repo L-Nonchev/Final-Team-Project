@@ -46,5 +46,9 @@
 <script src="assets/js/vendor/player/johndyer-mediaelement-89793bc/build/mediaelement-and-player.min.js"></script>
 <script src="assets/js/custom.js"></script>
 
+<script src="assets/js/country.js"></script>
+<script src="assets/js/singUpValidation.js"></script>
+<script src="assets/js/logInValidation.js"></script>
+
 </body>
 </html>

@@ -78,7 +78,7 @@ a:focus {
 .form-control {
   border-radius: 3px;
   border: solid 1px #e0e1e2;
-  padding: 15px 18px;
+  padding: 10px 15px;
   height: 46px;
 }
 .form-group {
@@ -1433,7 +1433,7 @@ ul.menu {
   font-weight: normal;
 }
 .edit-page .u-form .form-control {
-  padding: 6px 12px;
+  padding: 6px 6px;
 }
 .edit-page .u-form .u-category {
   color: #2e2e2e;
@@ -1495,15 +1495,15 @@ ul.menu {
 }
 .login-wraper .login-window {
   position: absolute;
-  width: 570px;
+  width: 550px;
   top: 50%;
   left: 50%;
   margin-left: -2px;
-  margin-top: -360px;
+  margin-top: -380px;
 }
 .login-wraper .login-window .l-head {
   background-color: #ffffff;
-  padding: 40px;
+  padding: 3px;
   border-bottom: solid 1px #eceff0;
   font-weight: 500;
   font-size: 22px;
@@ -1511,12 +1511,18 @@ ul.menu {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
+.login-wraper .login-window .l-head  > p{
+	background-color: #ffffff;
+	color: red; 
+	font-weight: 500;
+	font-size: 0.8em";
+}
 .login-wraper .login-window .l-form {
   text-align: left;
   background-color: #fbfdfe;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  padding: 25px 70px 70px;
+  padding: 25px 70px 15px;
 }
 .login-wraper .login-window .l-form label {
   font-weight: 500;

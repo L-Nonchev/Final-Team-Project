@@ -1,6 +1,16 @@
 <!-- =-=-=-=-=-=-= HEADER  =-=-=-=-=-=-= -->
 <?php 
-	require 'header.php';
+	session_start();	
+	if (isset($_SESSION['user'])){
+		$user = json_decode($_SESSION['user']);
+		
+		$userPic = $user->profilPicName;
+		
+		include 'logInHeader.php';
+		
+	}else {
+		include 'header.php';
+	}
 ?>
 <!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
 

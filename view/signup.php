@@ -1,3 +1,5 @@
+<?php $errorMessage = isset($errorMessage) ? $errorMessage : ''; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,30 +91,36 @@
             </div>
             <div class="login-window">
                 <div class="l-head">
-                    Sign Up for Free
+                    <h3>Sign Up for Free</h3>
+                    <p><?= $errorMessage?></p>
                 </div>
                 <div class="l-form">
-                    <form action="./signup.php" method="post">
+                    <form action="./SingUpController.php" method="post">
                     	 <div class="form-group">
-                            <label for="exampleInputEmail1">User Name</label>
-                            <input name="username" type="text" class="form-control" id="exampleInputEmail1" placeholder="User Name" required>
+                            <label for="exampleInputUsername" id ="usernameLabel">Username</label>
+                            <input name="username" type="text" class="form-control" id="InputUsername" placeholder="Username" required maxlength="20">
+                        </div>
+                         <div class="form-group">
+                        	<label for="Countres">Country</label>
+                        	<select name="country" id="Countres" class="form-control" >
+                        	</select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="sample@gmail.com" required>
+                            <label for="exampleInputEmail1" id ="emailLabel">Email</label>
+                            <input name="email" type="email" class="form-control" id="InputEmail" placeholder="sample@gmail.com" required maxlength="40">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="**********" required>
+                            <label for="exampleInputPassword1" id ="password1Label">Password</label>
+                            <input name="password" type="password" class="form-control" id="InputPassword1" placeholder="**********" required maxlength="40">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword2">Re-type Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="**********" required>
+                            <label for="exampleInputPassword2" id ="password2Label">Re-type Password</label>
+                            <input name="re-password" type="password" class="form-control" id="InputPassword2" placeholder="**********" required maxlength="40">
                         </div>
                         <div class="row">
-                            <div class="col-lg-7"><button type="submit" class="btn btn-cv1">Sign Up</button></div>
+                            <div class="col-lg-7"><button type="submit" class="btn btn-cv1" name="sing-up-button" id="singUpButton">Sign Up</button></div>
                             <div class="col-lg-1 ortext">or</div>
-                            <div class="col-lg-4 signuptext"><a href="login.php">Log In</a></div>
+                            <div class="col-lg-4 signuptext"><a href="./LogInController.php">Log In</a></div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 forgottext">
@@ -130,4 +138,5 @@
 <!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
 <?php 
 	require './footer.php';
+	
 ?>

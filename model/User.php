@@ -1,6 +1,6 @@
 <?php
 
-class User {
+class User implements JsonSerializable {
 	private $userId ;
 	private $username;
 	private $email;
@@ -9,17 +9,39 @@ class User {
 	private $joinDate;
 	private $subscribers;
 	private $profilPicName;
+	private $description;
 	
 	
 	// auto get fields
 	public function __get($fieldName){
-		return $tihs->$fieldName;
+		return $this->$fieldName;
+	}
+	
+	//set user id
+	public function setUserId($userId){
+		if (isset($userId))
+		if (is_numeric($userId) && $userId >= 0) {
+			$this->userId = htmlentities($userId);
+		}else{
+			throw new Exception ( 'Problem with user id validation');
+		}
 	}
 	
 	//set username
 	public function setUserName($username){
+		if (isset($username))
 		if (!empty($username)) {
-			$this->username = htmlentities($username);
+			$name = $username;
+			if (strlen($username) <= 20){
+				if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+					throw new Exception ( 'Username ERROR: Only letters and white space allowed.');
+				}else {
+					$this->username = htmlentities($username);
+				}
+			}else{
+				throw new Exception ( 'Username ERROR: Please enter the length of the username no greater than 20 characters.');
+			}
+			
 		}else{
 			throw new Exception ( 'Empty username');
 		}
@@ -27,8 +49,19 @@ class User {
 	
 	//set email
 	public function setEmail($email){
+		if (isset($email))
 		if (!empty($email)) {
-			$this->email = htmlentities($email);
+			if (strlen($email) <= 40){
+				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+					throw new Exception ( 'Email ERROR: Invalid emailaddress format!');
+				}else {
+					$this->email = htmlentities($email);
+				}
+			}else{
+				throw new Exception ( 'Email ERROR: Please enter the length of the email no greater than 40 characters.');
+			}
+			
+			
 		}else{
 			throw new Exception ( 'Empty e-mail');
 		}
@@ -36,16 +69,22 @@ class User {
 	
 	//set password
 	public function setPassword($password){
-		if (strlen(trim($password)) > 0) {
-			$this->password = htmlentities($password);
+		if (isset($password))
+		if (strlen(trim($password)) > 7) {
+			if (strlen(trim($password)) <= 40){
+				$this->password = htmlentities($password);
+			}else{
+			throw new Exception ( 'You must enter no more than 40 characters for passwords');
+		}	
 		}else{
-			throw new Exception ( 'Empty password');
+			throw new Exception ( 'You must enter at last 8 characters for your password');
 		}
 	}
 	
 	//set country
 	public function setCountry($country){
-		if (!empty($country) > 0) {
+		if (isset($country))
+		if (!empty($country)) {
 			$this->country = htmlentities($country);
 		}else{
 			throw new Exception ( 'Empty country');
@@ -54,6 +93,7 @@ class User {
 	
 	//set profil picture name
 	public function setProfilPicName($profilPicName){
+		if (isset($profilPicName))
 		if (!empty($profilPicName)) {
 			$this->profilPicName = htmlentities($profilPicName);
 		}else{
@@ -61,17 +101,62 @@ class User {
 		}
 	}
 	
-	//set subscribers
-	public function setProfilPicName($subscribers){
-		if (!empty($subscribers)) {
-			$this->subscribers = htmlentities($subscribers);
+	//set description for profil
+	public function setDescription($description){
+		if (isset($description))
+		if (!empty($description)) {
+			if (strlen($description) <= 500){
+				$this->description = htmlentities($description);
+			}else{
+				throw new Exception ( 'You must enter no more than 40 characters for description');
+			}
+			
 		}else{
-			throw new Exception ( 'Empty subscribers');
+			throw new Exception ( 'Empty description');
 		}
 	}
 	
+	//set subscribers
+	public function setSubscribers($subscribers){
+		if (isset($subscribers))
+		if (is_numeric($subscribers) &&  $subscribers >= 0) {
+			$this->subscribers = htmlentities($subscribers);
+		}else{
+			throw new Exception ( ' Problem with subscribers validation');
+		}
+	}
 	
-	public function __construct($username, $email, $password, $country, $joinDate){
+	//set join date
+	public function setJoinDate($joinDate){
+		if (isset($joinDate))
+		if (!empty($joinDate)) {
+			$this->joinDate = htmlentities($joinDate);
+		}else{
+			throw new Exception ( ' Empty join date');
+		}
+	}
+	
+	// create object to json 
+	public function jsonSerialize() {
+		$result = get_object_vars($this);
+		unset($result['password']);
+		unset($result['email']);
+		return $result;
+	}
+	
+	//constructor
+	public function __construct($email = null, $password = null , $username = null,  $country = null, $joinDate = null,
+			$subscribers = 0, $profilPicName = null, $description = null, $userId = 0 ){
+		
+				 $this->setUserName($username);
+				 $this->setEmail($email);
+				 $this->setPassword($password);
+				 $this->setCountry($country);
+				 $this->setJoinDate($joinDate);
+				 $this->setSubscribers($subscribers);
+				 $this->setProfilPicName($profilPicName);
+				 $this->setDescription($description);
+				 $this->setUserId($userId);			 
 		
 	}
 	

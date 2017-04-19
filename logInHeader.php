@@ -76,7 +76,7 @@
 							<div class="visible-xs clearfix"></div>
 							<div class="col-lg-2 col-sm-4  col-xs-8">
 								<div class="avatar pull-left">
-		                            <img src="slaves1.jpg" alt="avatar"  	/>
+		                            <img src="./assets/images/user-pictures/<?= $userPic?>" alt="avatar"  	/>
 		                            <span class="status"></span>
 		                        </div>
 								<div class="selectuser pull-left">

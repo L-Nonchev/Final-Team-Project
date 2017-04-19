@@ -1,7 +1,7 @@
 <?php
 
-define ( 'DB_HOST', 'circle_tube' );
-define ( 'DB_NAME', 'yourdb' );
+define ( 'DB_HOST', 'localhost' );
+define ( 'DB_NAME', 'circle_tube' );
 define ( 'DB_USER', 'root' );
 define ( 'DB_PASS', '' );
 

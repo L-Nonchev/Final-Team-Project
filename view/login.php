@@ -1,3 +1,5 @@
+<?php $errorMessage = isset($errorMessage) ? $errorMessage : ''; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,17 +90,18 @@
             </div>
             <div class="login-window">
                 <div class="l-head">
-                    Log Into Your Circle Account
+                    <h3>Log Into Your Circle Account</h3>
+                    <p><?= $errorMessage?></p>
                 </div>
                 <div class="l-form">
-                    <form action="login.html">
+                    <form action="./LogInController.php" method="post">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="sample@gmail.com">
+                            <label for="exampleInputEmail1" id="emailLabel">Email</label>
+                            <input name="email" type="email" class="form-control" id="InputEmail-LogIN" placeholder="sample@gmail.com" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="**********">
+                            <label for="exampleInputPassword1" id="passwordLabel" >Password</label>
+                            <input name="password" type="password" class="form-control" id="InputPassword" placeholder="**********" required>
                         </div>
                         <div class="checkbox">
                             <label>
@@ -110,9 +113,9 @@
                             </label>
                         </div>
                         <div class="row">
-                            <div class="col-lg-7"><button type="submit" class="btn btn-cv1">Login</button></div>
+                            <div class="col-lg-7"><button type="submit" class="btn btn-cv1" name= "log-in-button" id="log-in-button">Login</button></div>
                             <div class="col-lg-1 ortext">or</div>
-                            <div class="col-lg-4 signuptext"><a href="signup.php">Sign Up</a></div>
+                            <div class="col-lg-4 signuptext"><a href="SingUpController.php">Sign Up</a></div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 forgottext">
