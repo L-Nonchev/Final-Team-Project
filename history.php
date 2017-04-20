@@ -1,5 +1,13 @@
-<?php 
-	require 'logInHeader.php';
+<?php
+session_start();
+if (isset($_SESSION['user'])){
+
+	include 'logInHeader.php';
+
+
+}else {
+	header('Location : index.php', true, 302);
+}
 ?>
 
 <div class="content-wrapper">

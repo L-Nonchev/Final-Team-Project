@@ -5,7 +5,7 @@
 		
 		//<!-- =-=-=-=-=-=-=  CONSTANTS  =-=-=-=-=-=-= -->\\
 		const INSERT_NEW_USER_SQL ="INSERT INTO users VALUES (
-								null, ?, sha1(?), sha1(?), ?, ?, ?, ?, ?);";
+								null, ?, sha1(?), sha1(?), ?, ?, ?, ?, ?, ?);";
 		
 		const SELECT_USER_NAME_SQL = "SELECT username FROM users WHERE username = ?;";
 		
@@ -13,7 +13,7 @@
 		
 		const SELECT_COUNTRY_NAME_SQL = "SELECT country_name FROM countries WHERE country_id = ?;";
 		
-		const SELECT_ALL_USER_DATA = "SELECT u.user_id, u.username, c.country_name, u.join_date, u.subscribers, u.description, u.pic_path
+		const SELECT_ALL_USER_DATA = "SELECT u.user_id, u.username, c.country_name, u.join_date, u.subscribers, u.description, u.pic_user , u.pic_banner
 									  FROM users u JOIN countries c ON ( u.country_id = c.country_id)
 									  WHERE u_email = sha1(?) AND u_password = sha1(?);";
 		
@@ -32,7 +32,7 @@
 				$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 				
 				if (count($result) === 0 ){
-					throw new Exception("This account does not exist!");
+					throw new Exception("Wrong email or password! Try again.");
 				}else{
 					$result = $result[0];
 					$user->setUserId($result['user_id']);
@@ -41,7 +41,8 @@
 					$user->setJoinDate($result['join_date']);
 					$user->setSubscribers($result['subscribers']);
 					$user->setDescription($result['description']);
-					$user->setProfilPicName($result['pic_path']);
+					$user->setProfilPicName($result['pic_user']);
+					$user->setProfilBanner($result['pic_banner']);
 					
 					return true;
 				}				
@@ -53,11 +54,12 @@
 			$user->setSubscribers(0);
 			$user->setDescription("Welcome to my chanel!");
 			$user->setProfilPicName("default-user.jpg");
+			$user->setProfilBanner("channel-banner.png");
 			
 			$pstmt = $this->db->prepare(self::INSERT_NEW_USER_SQL);
 			
 			if ($pstmt->execute(array($user->username, $user->email, $user->password, $user->country
-				,$user->joinDate,  $user->subscribers,  $user->description, $user->profilPicName))){
+				,$user->joinDate,  $user->subscribers,  $user->description, $user->profilPicName, $user->profilBanner))){
 					//get user_id
 					$user->setUserId($this->db->lastInsertId());
 					//get country name

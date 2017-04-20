@@ -2,9 +2,6 @@
 <?php 
 	session_start();	
 	if (isset($_SESSION['user'])){
-		$user = json_decode($_SESSION['user']);
-		
-		$userPic = $user->profilPicName;
 		
 		include 'logInHeader.php';
 		
@@ -18,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <!-- Featured Videos -->
+                <!-- New Videos -->
                 <div class="content-block head-div">
                     <div class="cb-header">
                         <div class="row">
@@ -170,9 +167,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- /Featured Videos -->
+                <!-- /New Videos -->
 
-                <!-- New Videos in India -->
+                <!-- Most Viewed -->
                 <div class="content-block head-div">
                     <div class="cb-header">
                         <div class="row">
@@ -324,7 +321,7 @@
 
                     </div>
                 </div>
-                <!-- /New Videos in India -->
+                <!-- /Most Viewed -->
 
                 <!-- Popular Playlists -->
                 <div class="content-block head-div">

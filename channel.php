@@ -1,19 +1,22 @@
 <?php 
-	require 'logInHeader.php';
+session_start();
+if (isset($_SESSION['user'])){
+
+	include 'logInHeader.php';
+	
+
+}else {
+	header('Location : index.php', true, 302);
+}
 ?>
+
 <!-- channel -->
 <div class="chanal">
-    <div class="row">
+    <div class="row2">
         <div class="img">
-            <img src="cover.jpg" alt="" class="c-banner" >
+            <img src="assets/images/user-banners/<?= $userBanner ?>" alt="" class="c-banner" >
             <div class="c-avatar">
-                <a href="#"><img src="slaves1.jpg" alt="" ></a>
-            </div>
-            <div class="c-social">
-                Social
-                <a href="#" class="fb"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="tw"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="gp"><i class="fa fa-google-plus"></i></a>
+                <a href="#"><img src="./assets/images/user-pictures/<?= $userPic?>" alt="" ></a>
             </div>
         </div>
     </div>
@@ -31,22 +34,22 @@
                         <div class="col-lg-10 col-lg-offset-2 col-xs-12">
                             <div class="c-details">
                                 <div class="c-name">
-                                    NaughtyDog
+                                    <?= $userName ?>
                                 </div>
                                 <div class="c-nav">
                                     <ul class="list-inline">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Playlist</a></li>
-                                        <li><a href="#">Channels</a></li>
-                                        <li><a href="#">Discussion</a></li>
+                                        <li><a href="channel.php">Videos</a></li>
+                                        <li><a href="channelPlaylist.php">Playlist</a></li>
+                                        <li><a href="channelLikedChannels.php">Channels</a></li>
+                                        <li><a href="channelDiscusion.php">Discussion</a></li>
                                         <li><a href="#">About</a></li>
                                     </ul>
                                 </div>
                                 <div class="c-sub pull-right">
                                     <div class="c-sub-wrap">
-                                    <button class="c-f"> Subscribe</button>
+                                    	<div class="c-f"> Subscribers</div>
                                         <div class="c-s">
-                                            22,548,145
+                                            <?= $subscribers ?>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -384,6 +387,38 @@
                                 </div>
                             </div>
 
+                            <div class=" col-lg-3 col-xs-6 videoitem">
+                                <div class="b-video last-row">
+                                    <div class="v-img">
+                                        <a href="singleVideo.php"><img src="assets/images/playlist-4.png" alt=""></a>
+                                        <div class="time">9:47</div>
+                                    </div>
+                                    <div class="v-desc">
+                                        <a href="singleVideo.php">Cornfield Chase - Outlast II Official Gameplay</a>
+                                    </div>
+                                    <div class="v-views">
+                                        202,513 views. <span class="v-percent"><span class="v-circle"></span> 84%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class=" col-lg-3 col-xs-6 videoitem">
+                                <div class="b-video last-row">
+                                    <div class="v-img">
+                                        <a href="singleVideo.php"><img src="assets/images/playlist-4.png" alt=""></a>
+                                        <div class="time">9:47</div>
+                                    </div>
+                                    <div class="v-desc">
+                                        <a href="singleVideo.php">Cornfield Chase - Outlast II Official Gameplay</a>
+                                    </div>
+                                    <div class="v-views">
+                                        202,513 views. <span class="v-percent"><span class="v-circle"></span> 84%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
                             <div class=" col-lg-3 col-xs-6 videoitem">
                                 <div class="b-video last-row">
                                     <div class="v-img">

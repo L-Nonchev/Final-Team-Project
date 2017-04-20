@@ -1,5 +1,12 @@
-<?php 
-	require './logInHeader.php';
+<?php
+session_start();
+if (isset($_SESSION['user'])){
+
+	include 'logInHeader.php';
+
+}else {
+	include 'header.php';
+}
 ?>
 
 <div class="content-wrapper">

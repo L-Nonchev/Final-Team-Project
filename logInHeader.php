@@ -1,3 +1,10 @@
+<?php 
+$user = json_decode($_SESSION['user']);
+$userPic = $user->profilPicName;
+$userName = $user->username;
+$userBanner = $user->profilBanner;
+$subscribers = $user->subscribers;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +62,7 @@
 								</ul>
 							</div>
 							<div class="visible-xs visible-sm clearfix"></div>
-							<div class="col-lg-6 col-sm-8 col-xs-12">
+							<div class="col-lg-5 col-sm-8 col-xs-12">
 								<form action="search.php" method="post">
 									<div class="topsearch">
 										<div class="input-group">
@@ -74,7 +81,7 @@
 								</form>
 							</div>
 							<div class="visible-xs clearfix"></div>
-							<div class="col-lg-2 col-sm-4  col-xs-8">
+							<div class="col-lg-3 col-sm-8  col-xs-8">
 								<div class="avatar pull-left">
 		                            <img src="./assets/images/user-pictures/<?= $userPic?>" alt="avatar"  	/>
 		                            <span class="status"></span>
@@ -82,10 +89,10 @@
 								<div class="selectuser pull-left">
 									<div class="btn-group pull-right dropdown">
 										<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="true"> Bailey <span class="caret"></span></button>
+											aria-haspopup="true" aria-expanded="true"><?= $userName ?><span class="caret"></span></button>
 										<ul class="dropdown-menu">
 											<li><a href="./channel.php">My Channel</a></li>
-											<li><a href="./signup.php">Sign up</a></li>
+											<li><a href="./logOUT.php">Log Out</a></li>
 										</ul>
 									</div>
 								</div>
@@ -115,9 +122,9 @@
 							</div>
 							<div class="col-lg-3  col-sm-10 col-xs-12">
 								<div class="h-icons">
-									<a href="#"><i class="cv cvicon-cv-liked" data-toggle="tooltip" data-placement="top" title="Liked Videos"></i></a> 
-									<a href="#"><i class="cv cvicon-cv-watch-later" data-toggle="tooltip" data-placement="top" title="Watch Later"></i></a> 
-									<a href="#"><i class="cv cvicon-cv-play-circle" data-toggle="tooltip" data-placement="top" title="Saved Playlist"></i></a> 
+									<a href="likedVideos.php"><i class="cv cvicon-cv-liked" data-toggle="tooltip" data-placement="top" title="Liked Videos"></i></a> 
+									<a href="watchLater.php"><i class="cv cvicon-cv-watch-later" data-toggle="tooltip" data-placement="top" title="Watch Later"></i></a> 
+									<a href="savedPlaylist.php"><i class="cv cvicon-cv-play-circle" data-toggle="tooltip" data-placement="top" title="Saved Playlist"></i></a> 
 									<a href="history.php"><i class="cv cvicon-cv-history" data-toggle="tooltip" data-placement="top" title="History"></i></a>
 								</div>
 							</div>

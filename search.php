@@ -1,7 +1,15 @@
-<?php 
-	require 'logInHeader.php';
-?>
+<!-- =-=-=-=-=-=-= HEADER  =-=-=-=-=-=-= -->
+<?php
+session_start();
+if (isset($_SESSION['user'])){
 
+	include 'logInHeader.php';
+
+}else {
+	include 'header.php';
+}
+?>
+<!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
 <!-- search -->
 <div class="container-fluid">
     <div class="row">
