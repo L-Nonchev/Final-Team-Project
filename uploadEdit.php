@@ -155,8 +155,9 @@
                                 <div class="col-lg-12 ud-caption">Upload Details</div>
                                 <div class="col-lg-2"><img id='videoPoster' alt="" src="assets/images/<?= $videoPosterPath?>"></div>
                                 <div class="col-lg-10">
-                                    <div class="u-title"><?= $fileName ?></div>
-                                    <div class="u-size"><?= round( $fileSize, 2 ) . ' MB' ?></div>
+                                	<div class="u-title"><?= $fileName ?></div>
+                                    <div class="u-title" ><?= $printDuration ?></div>
+                                    <div class="u-size"><?= $printFileSize ?></div>
                                     <div class="u-progress">
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%;">
@@ -178,15 +179,16 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 ">
+            <div class="col-lg-12 " id='videoDetails'>
 
-			<form action="" method="post">
+			<form action="addVideoController.php" method="post">
                 <div class="u-form">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="e1">Video Title</label>
                                 <input type="text" class="form-control" name='title' id="title" placeholder=<?php echo $fileName ?>>
+                                <input type="hidden" id = 'duration' value = "<?= $printDuration ?>"/>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -243,7 +245,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox"  name="musicGenre" onclick ='checked(1)'>
+                                        <input type="radio"  name="musicGenre" value = '1'>
                                         <span class="arrow"></span>
                                     </label> Asian Pop (J-Pop, K-pop)
                                 </label>
@@ -251,7 +253,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(2)'/>
+                                        <input type="radio" name="musicGenre" value = '2'/>
                                         <span class="arrow"></span>
                                     </label> Blues
                                 </label>
@@ -259,7 +261,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(3)'/>
+                                        <input type="radio" name="musicGenre" value = '3'/>
                                         <span class="arrow"></span>
                                     </label> Children’s Music
                                 </label>
@@ -267,7 +269,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(4)'/>
+                                        <input type="radio" name="musicGenre" value = '4'/>
                                         <span class="arrow"></span>
                                     </label> Classical Music
                                 </label>
@@ -282,7 +284,7 @@
                         	<div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(5)'/>
+                                        <input type="radio" name="musicGenre" value = '5'/>
                                         <span class="arrow"></span>
                                     </label> Country Music
                                 </label>
@@ -290,7 +292,7 @@
                              <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(6)'/>
+                                        <input type="radio" name="musicGenre" value = '6'/>
                                         <span class="arrow"></span>
                                     </label> Dance Music
                                 </label>
@@ -298,7 +300,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(7)'/>
+                                        <input type="radio" name="musicGenre" value = '7'/>
                                         <span class="arrow"></span>
                                     </label> European Music (Folk/Pop)
                                 </label>
@@ -306,7 +308,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(8)'/>
+                                        <input type="radio" name="musicGenre" value = '8'/>
                                         <span class="arrow"></span>
                                     </label> Hip Hop/Rap
                                 </label>
@@ -321,7 +323,7 @@
                         	<div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(9)'/>
+                                        <input type="radio" name="musicGenre" value = '9'/>
                                         <span class="arrow"></span>
                                     </label> Indie Pop
                                 </label>
@@ -329,7 +331,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(10)'/>
+                                        <input type="radio" name="musicGenre" value = '10'/>
                                         <span class="arrow"></span>
                                     </label> Inspirational (incl. Gospel)
                                 </label>
@@ -337,7 +339,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(11)'/>
+                                        <input type="radio" name="musicGenre" value = '11'/>
                                         <span class="arrow"></span>
                                     </label> Jazz
                                 </label>
@@ -345,7 +347,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(12)'/>
+                                        <input type="radio" name="musicGenre" value = '12'/>
                                         <span class="arrow"></span>
                                     </label> Latin Music
                                 </label>
@@ -360,7 +362,7 @@
                         	<div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(13)'/>
+                                        <input type="radio" name="musicGenre" value = '13'/>
                                         <span class="arrow"></span>
                                     </label> New Age
                                 </label>
@@ -368,7 +370,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(14)'/>
+                                        <input type="radio" name="musicGenre" value = '14'/>
                                         <span class="arrow"></span>
                                     </label> Opera
                                 </label>
@@ -376,7 +378,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(15)'/>
+                                        <input type="radio" name="musicGenre" value = '15'/>
                                         <span class="arrow"></span>
                                     </label> Pop (Popular music)
                                 </label>
@@ -384,7 +386,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(16)'/>
+                                        <input type="radio" name="musicGenre" value = '16'/>
                                         <span class="arrow"></span>
                                     </label> R&B/Soul
                                 </label>
@@ -398,7 +400,7 @@
                         	<div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(17)'/>
+                                        <input type="radio" name="musicGenre" value = '17'/>
                                         <span class="arrow"></span>
                                     </label> Reggae
                                 </label>
@@ -406,7 +408,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(18)'/>
+                                        <input type="radio" name="musicGenre" value = '18'/>
                                         <span class="arrow"></span>
                                     </label> Rock
                                 </label>
@@ -414,7 +416,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(19)'/>
+                                        <input type="radio" name="musicGenre" value = '19'/>
                                         <span class="arrow"></span>
                                     </label> Singer/Songw
                                 </label>
@@ -422,7 +424,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(20)'/>
+                                        <input type="radio" name="musicGenre" value ='20'/>
                                         <span class="arrow"></span>
                                     </label> Singer/Songwriter (inc. Folk)
                                 </label>
@@ -436,7 +438,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(21)'/>
+                                        <input type="radio" name="musicGenre" value = '21'/>
                                         <span class="arrow"></span>
                                     </label> Soundtrack
                                 </label>
@@ -444,7 +446,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(22)'/>
+                                        <input type="radio" name="musicGenre" value = '22'/>
                                         <span class="arrow"></span>
                                     </label> Vocal
                                 </label>
@@ -452,7 +454,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="checkbox" name="musicGenre" onclick ='checked(23)'/>
+                                        <input type="radio" name="musicGenre" value ='23'/>
                                         <span class="arrow"></span>
                                     </label> World Music/Beats
                                 </label>
@@ -463,9 +465,11 @@
                 </div>
 
 
-                    
+                    <div>
+            			<p id='errorUploded'></p>
+            		</div>
                     <div class="u-area">
-                        <a name='uploadVideo' class="btn btn-primary u-btn" id='uploadVideo' onclick = 'uploded()'>Save</a>
+                        <a class="btn btn-primary u-btn" id='uploadVideo' onclick = 'uploded()' >Save</a>
                    	</div>
                 </form>
                 
@@ -474,6 +478,16 @@
                     <p>Please be sure not to violate others' copyright or privacy rights. Learn more</p>
                 </div>
             </div>
+            
+            <div id='sucssesUploded'>
+            	<div>
+            		<p id='uploded'>Upload successfully!</p>
+            	</div>
+	            <div class="u-area">
+	            	<a class="btn btn-primary u-btn" id='uploadVideo' >Open video</a>
+	            	<a class="btn btn-primary u-btn" id='uploadVideo' >Go to home page</a>
+	            </div>
+	        </div>
         </div>
     </div>
 </div>
