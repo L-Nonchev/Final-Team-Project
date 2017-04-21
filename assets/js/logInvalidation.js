@@ -11,11 +11,11 @@ if (email) {
 		var currier = new XMLHttpRequest();
 		currier.onreadystatechange = function(){
 			if (this.readyState === 4 && this.status === 200) {
-				
+				console.log(this.responseText);
 				var incomeData = JSON.parse(this.responseText);
 				
 				// exist email
-				if(!incomeData['email'] ){
+				if(incomeData['email'] === false){
 					email.style.borderColor = "red";
 					emailLabel.style.color = "red";
 					emailLabel.innerHTML  = "The email is not found. Please enter a valid email.";

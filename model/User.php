@@ -9,6 +9,7 @@ class User implements JsonSerializable {
 	private $joinDate;
 	private $subscribers;
 	private $profilPicName;
+	private $profilBanner;
 	private $description;
 	
 	
@@ -33,8 +34,8 @@ class User implements JsonSerializable {
 		if (!empty($username)) {
 			$name = $username;
 			if (strlen($username) <= 20){
-				if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-					throw new Exception ( 'Username ERROR: Only letters and white space allowed.');
+				if (!preg_match("/^[a-zA-Z0-9 ]*$/",$name)) {
+					throw new Exception ( 'Username ERROR: Only letters ,numbers and white space allowed.');
 				}else {
 					$this->username = htmlentities($username);
 				}
@@ -101,6 +102,16 @@ class User implements JsonSerializable {
 		}
 	}
 	
+	//set profil banner name
+	public function setProfilBanner($profilBanner){
+		if (isset($profilBanner))
+			if (!empty($profilBanner)) {
+				$this->profilBanner = htmlentities($profilBanner);
+			}else{
+				throw new Exception ( 'Empty profil banner name');
+			}
+	}
+	
 	//set description for profil
 	public function setDescription($description){
 		if (isset($description))
@@ -146,7 +157,7 @@ class User implements JsonSerializable {
 	
 	//constructor
 	public function __construct($email = null, $password = null , $username = null,  $country = null, $joinDate = null,
-			$subscribers = 0, $profilPicName = null, $description = null, $userId = 0 ){
+			$subscribers = 0, $profilPicName = null, $profilBanner = null, $description = null, $userId = 0 ){
 		
 				 $this->setUserName($username);
 				 $this->setEmail($email);
@@ -155,6 +166,7 @@ class User implements JsonSerializable {
 				 $this->setJoinDate($joinDate);
 				 $this->setSubscribers($subscribers);
 				 $this->setProfilPicName($profilPicName);
+				 $this->setProfilBanner($profilBanner);
 				 $this->setDescription($description);
 				 $this->setUserId($userId);			 
 		

@@ -59,7 +59,7 @@
 								</ul>
 							</div>
 							<div class="visible-xs visible-sm clearfix"></div>
-							<div class="col-lg-6 col-sm-8 col-xs-12">
+							<div class="col-lg-5 col-sm-8 col-xs-12">
 								<form action="search.php" method="post">
 									<div class="topsearch">
 										<div class="input-group">

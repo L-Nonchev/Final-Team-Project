@@ -1,5 +1,12 @@
-<?php 
-	require './logInHeader.php';
+<?php
+session_start();
+if (isset($_SESSION['user'])){
+
+	include 'logInHeader.php';
+
+}else {
+	include 'header.php';
+}
 ?>
 
 <div class="content-wrapper">
@@ -39,11 +46,11 @@
                             <div class="row">
                                 <div class="col-md-3 col-sm-4 col-xs-6">
                                     <div class="cns-block">
-                                        <a href="./channel.php" class="cns-image"  >
+                                        <a href="./ChannelController.php?@$^^%@@^@^$^@=2&page=Video" class="cns-image"  >
                                             <img src="cover.jpg" alt="image" >
                                         </a>
                                         <div class="cns-img-small">
-                                            <a href="./channel.php" class="cns-img-small cns-small-wrapp">
+                                            <a href="./ChannelController.php?@$^^%@@^@^$^@=2&page=Video" class="cns-img-small cns-small-wrapp">
                                             	  <img src="slaves1.jpg" alt="small">
                                             </a>
                                         </div>
@@ -62,11 +69,11 @@
                                 </div>
                        			<div class="col-md-3 col-sm-4 col-xs-6">
                                     <div class="cns-block">
-                                        <a href="./channel.php" class="cns-image"  >
+                                        <a href="./ChannelController.php?@$^^%@@^@^$^@=3&page=Video" class="cns-image"  >
                                             <img src="cover.jpg" alt="image" >
                                         </a>
                                         <div class="cns-img-small">
-                                            <a href="./channel.php" class="cns-img-small cns-small-wrapp">
+                                            <a href="./ChannelController.php?@$^^%@@^@^$^@=3&page=Video" class="cns-img-small cns-small-wrapp">
                                             	  <img src="slaves1.jpg" alt="small">
                                             </a>
                                         </div>

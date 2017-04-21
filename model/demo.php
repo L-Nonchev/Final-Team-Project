@@ -1,4 +1,20 @@
 <?php
+
+
+
+?>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<a href="demo2.php?page=home">Cyk</a>
+</body>
+</html>
+
+<?php 
 // autoload function
 // function __autoload($className){
 // 	require_once $className .'.php';

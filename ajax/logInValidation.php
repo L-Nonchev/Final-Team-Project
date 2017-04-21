@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 				));
 			}
 				
-
 		}catch (Exception $e){
 			echo json_encode(array(
 					'exception' => true,

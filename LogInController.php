@@ -16,39 +16,44 @@
 	
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (isset($_POST['log-in-button'])){
-		
-			$errorMessage = "hahga";
-			try {
-				//-=-=-=-=-=-=---==-=-=-= Check input =-=-=-==-=-==-=-==--\\
-				$email = htmlentities(trim($_POST['email']));
-				$password = htmlentities(trim($_POST['password']));
+			if (isset($_POST['email']) && isset($_POST['password'])){
+				try {
+					//-=-=-=-=-=-=---==-=-=-= Check input =-=-=-==-=-==-=-==--\\
+					$email = htmlentities(trim($_POST['email']));
+					$password = htmlentities(trim($_POST['password']));
 				
-				// create user
-				//-=-=-=-=-=-=---==-=-=-= Create User=-=-=-==-=-==-=-==--\\
-				$user = new User($email, $password);
-					
-				$userData = new UserDAO();
-					
-				//-=-=-=-=-=-=---==-=-=-= Insert new user to DB=-=-=-==-=-==-=-==--\\
-				$ifCreatet = $userData->loginUser($user);
-					
-				if ($ifCreatet){
-					echo json_encode($user);
-			
-					//-=-=-=-=-=-=---==-=-=-= CREATE  SESSION =-=-=-==-=-==-=-==--\\
-			
-					$_SESSION['user'] = json_encode($user);
-			
-					header('Location: ./index.php', true ,302);
+					// create user
+					//-=-=-=-=-=-=---==-=-=-= Create User=-=-=-==-=-==-=-==--\\
+					$user = new User($email, $password);
+						
+					$userData = new UserDAO();
+						
+					//-=-=-=-=-=-=---==-=-=-= Insert new user to DB=-=-=-==-=-==-=-==--\\
+					$ifCreatet = $userData->loginUser($user);
+						
+					if ($ifCreatet){
+						echo json_encode($user);
+							
+						//-=-=-=-=-=-=---==-=-=-= CREATE  SESSION =-=-=-==-=-==-=-==--\\
+							
+						$_SESSION['user'] = json_encode($user);
+							
+						header('Location: ./index.php', true ,302);
+					}
+				
+				
+				}catch (PDOException $e){
+					$errorMessage = $e->getMessage();;
+					include logInPage;
+				} catch (Exception $e){
+					$errorMessage = $e->getMessage();
+					include logInPage;
 				}
-				
-				
-			}catch (PDOException $e){
-				$errorMessage = $e->getMessage();;
-				include logInPage;
-			} catch (Exception $e){
-				$errorMessage = $e->getMessage();
-				include logInPage;			}
+			}else {
+				$errorMessage = "There are blank fields!";
+				include singUpPage;
+			}
+			
 		}else{
 			include logInPage;
 		}
