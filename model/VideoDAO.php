@@ -17,7 +17,7 @@ class VideoDAO implements IVideoDAO{
 		try{
 			$video->setVideoDate(date("Y-m-d"));
 			$pstmt = $this->db->prepare(self::ADD_VIDEO_SQL);
-			$pstmt->execute ( array ($video->videoTitle, $video->videoPath, $video->videoPoster, $video->videoText, $video->videoDate,$video->duration , $video->categoryId, $video->musicGenre, $video->privacy, $video->userId) );
+			$pstmt->execute ( array ($video->videoTitle, $video->videoPath, $video->videoPoster, $video->duration, $video->videoDate,$video->videoText , $video->categoryId, $video->musicGenre, $video->privacy, $video->userId) );
 		}catch (PDOException $e){
 			throw new Exception('Incorect data!');
 		}
@@ -30,7 +30,7 @@ class VideoDAO implements IVideoDAO{
 	//-=-=-=-=-=-=check dublicate video name=-=-=-==-=-==--\\
 	public function checkVideoName($videoName){
 		try {
-			return $this->db->query("SELECT video_id FROM videos WHERE v_path = '$videoName';")->fetchColumn();
+			return $this->db->query("SELECT video_id FROM videos WHERE path = '$videoName';")->fetchColumn();
 		}catch (PDOException $e){
 			throw new Exception('Incorect video name!');
 		}

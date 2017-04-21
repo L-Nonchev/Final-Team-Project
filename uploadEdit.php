@@ -153,7 +153,7 @@
                         <div class="u-details">
                             <div class="row">
                                 <div class="col-lg-12 ud-caption">Upload Details</div>
-                                <div class="col-lg-2"><img id='videoPoster' alt="" src="assets/images/<?= $videoPosterPath?>"></div>
+                                <div class="col-lg-2"><img id='videoPoster' alt="" src="assets/images/video-poster/<?= $videoPosterPath?>"></div>
                                 <div class="col-lg-10">
                                 	<div class="u-title"><?= $fileName ?></div>
                                     <div class="u-title" ><?= $printDuration ?></div>

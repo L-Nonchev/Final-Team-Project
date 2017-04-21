@@ -49,13 +49,17 @@ class Video implements JsonSerializable {
 	}
 	
 	public function setVideoTitle($videoTitle){
-		if ($videoTitle !== '' && strlen($videoTitle) < 100) {
-			$this->videoTitle = $videoTitle;
+		if ($videoTitle !== '' && strlen($videoTitle) < 200) {
+			if (!preg_match("/^[- _ a-zA-Z0-9 . ()]*$/",$videoTitle)) {
+				throw new Exception ( 'Title ERROR: Only letters ,numbers , - , _ , ( ) and white space allowed.');
+			}else {
+				$this->videoTitle = htmlentities($videoTitle);
+			}
 		}else throw new Exception("Incorect video title!");
 	}
 	
 	public function setVideoPath($videoPath){
-		if ($videoPath !== '' && strlen($videoPath) < 200){
+		if ($videoPath !== '' && strlen($videoPath) < 200 && preg_match("/^[- _ a-zA-Z0-9 . \ () ]*$/",$videoPath) ){
 			$this->videoPath = $videoPath;
 		}else throw new Exception("Incorect video path!");
 	}
@@ -67,7 +71,7 @@ class Video implements JsonSerializable {
 	}
 	
 	public function setVideoPoster($videoPoster){
-		if ($videoPoster !== '' && strlen($videoPoster) < 100){
+		if ($videoPoster !== '' && strlen($videoPoster) < 100 && preg_match("/^[- _ a-zA-Z0-9 . \ () ]*$/",$videoPoster)){
 			$this->videoPoster = $videoPoster;
 		}else throw new Exception("Incorect video poster path!");
 	}
@@ -76,7 +80,7 @@ class Video implements JsonSerializable {
 	public function setVideoText($videoText){
 		if ($videoText !== '' && strlen($videoText) < 500){
 			$this->videoText = $videoText;
-		}else throw new Exception("Incorect description!");
+		}else throw new Exception("Incorect description! Maximum characters is 500");
 	}
 	
 	public function setVideoLike($videoLike){

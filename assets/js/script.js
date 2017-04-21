@@ -28,17 +28,20 @@ function checkMimeType() {
 	xhr.send(dataSend);
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			console.log(this.responseText);	
 			var response = JSON.parse(this.responseText);
 			
-			if (response['success']){
+			console.log(response);	
+			if (response["success"]){
 				hasErrors = false;
-			}else if(response['dublicate']){
+			}else if(response["dublicate"]){
 				error.innerHTML = 'Dublicate video name!'
 				error.style.display = 'block';		
-			}else if(response['error']){
+			}else if(response["error"]){
 				error.innerHTML = response['error'];
 				error.style.display = 'block';					
+			}else if(response["incorectName"]){
+				error.innerHTML = 'File name ERROR: Only letters ,numbers , - , _ , ( ) and white space allowed.';
+				error.style.display = 'block';
 			}else{
 				error.innerHTML = 'Please, enter corect video/type!';
 				error.style.display = 'block';
@@ -82,7 +85,7 @@ function uploded() {
 	xhr.send(dataSend);
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			console.log(videoText);	
+			console.log(this.responseText);	
 			var response = JSON.parse(this.responseText);
 			if (response['success']){
 				document.getElementById('sucssesUploded').style.display = 'block';

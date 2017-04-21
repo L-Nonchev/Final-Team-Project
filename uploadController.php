@@ -9,6 +9,7 @@ session_start();
 if (isset($_SESSION['user'])){
 
 	if (isset($_FILES['video'])){
+		$milliseconds = round(microtime(true) * 1000);
 		$fileType = trim( $_FILES['video']['type'] );
 		
 		//-=-=-=-=-= check mime/type=-=-=-==--==--\\
@@ -33,11 +34,13 @@ if (isset($_SESSION['user'])){
 				
 				$videoType = substr($fileOriginName, -4);
 				$fileName = str_replace("$videoType", '', $fileOriginName);
-				$filePath = str_replace("$videoType", '.mp4',$_FILES['video']['name']);	
 				
-				$videoPosterPath = preg_replace('/\s+/', '', $fileName) . ".jpg";
+				$filePath = str_replace("$videoType", "$milliseconds",$_FILES['video']['name']);
+				$filePath .= '.mp4';
+				
+				$videoPosterPath = preg_replace('/\s+/', '', $fileName) . "$milliseconds.jpg";
 				exec("ffmpeg.exe");
-				exec("ffmpeg -ss 00:00:02 -i $fileOnServerName -vf scale=800:-1 -vframes 1 assets/images/$videoPosterPath");
+				exec("ffmpeg -ss 00:00:02 -i $fileOnServerName -vf scale=800:-1 -vframes 1 assets/images/video-poster/$videoPosterPath");
 				$timeVideo = exec("ffprobe -i $fileOnServerName -sexagesimal -show_entries format=duration -v quiet -of csv=\"p=0\"");
 				$printDuration = strstr($timeVideo, '.' ,true);
 				
