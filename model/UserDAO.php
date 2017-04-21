@@ -9,13 +9,17 @@
 		
 		const SELECT_USER_NAME_SQL = "SELECT username FROM users WHERE username = ?;";
 		
-		const SELECT_EMAIL_SQL = "SELECT u_email FROM users WHERE u_email = sha1(?);";
+		const SELECT_EMAIL_SQL = "SELECT email FROM users WHERE email = sha1(?);";
 		
 		const SELECT_COUNTRY_NAME_SQL = "SELECT country_name FROM countries WHERE country_id = ?;";
 		
-		const SELECT_ALL_USER_DATA = "SELECT u.user_id, u.username, c.country_name, u.join_date, u.subscribers, u.description, u.pic_user , u.pic_banner
+		const SELECT_ALL_USER_DATA_BY_EMAIL_PASSWORD_SQL = "SELECT u.user_id, u.username, c.country_name, u.join_date, u.subscribers, u.description, u.picture , u.banner
 									  FROM users u JOIN countries c ON ( u.country_id = c.country_id)
-									  WHERE u_email = sha1(?) AND u_password = sha1(?);";
+									  WHERE email = sha1(?) AND password = sha1(?);";
+		
+		const SELECT_ALL_USER_DATA_BY_ID_SQL = "SELECT u.user_id, u.username, c.country_name, u.join_date, u.subscribers, u.description, u.picture , u.banner
+									  FROM users u JOIN countries c ON ( u.country_id = c.country_id)
+									  WHERE user_id = ?;";
 		
 		//<!-- =-=-=-=-=-=-=  DB CONECTION CREATE  =-=-=-=-=-=-= -->\\
 		public function __construct(){
@@ -25,7 +29,7 @@
 		//<!-- =-=-=-=-=-=-=  FUNCTIONS FOR User  =-=-=-=-=-=-= -->\\
 		
 		public function loginUser(User $user){
-			$pstmt = $this->db->prepare(self::SELECT_ALL_USER_DATA);
+			$pstmt = $this->db->prepare(self::SELECT_ALL_USER_DATA_BY_EMAIL_PASSWORD_SQL);
 			if ($pstmt->execute(array($user->email, $user->password))){
 				
 				
@@ -41,8 +45,8 @@
 					$user->setJoinDate($result['join_date']);
 					$user->setSubscribers($result['subscribers']);
 					$user->setDescription($result['description']);
-					$user->setProfilPicName($result['pic_user']);
-					$user->setProfilBanner($result['pic_banner']);
+					$user->setProfilPicName($result['picture']);
+					$user->setProfilBanner($result['banner']);
 					
 					return true;
 				}				
@@ -91,6 +95,12 @@
 			}
 			
 		}
+		
+		/**
+		 * 
+		 * @param User $user
+		 * @return boolean
+		 */
 		public function selectEmailFromDB (User $user){
 			$pstmt = $this->db->prepare(self::SELECT_EMAIL_SQL);
 			if ($pstmt->execute(array($user->email))){
@@ -103,6 +113,29 @@
 			}
 				
 		}
+		
+		
+		public  function getAllUserData ($id){
+			$pstmt = $this->db->prepare(self::SELECT_ALL_USER_DATA_BY_ID_SQL);
+			if ($pstmt->execute(array($id))){
+			
+				$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+				
+				if (count($result) === 0 ){
+					throw new Exception("User not found");
+				}else{
+					$result = $result[0];
+					
+					$user = new User(null, null, $result['username'], $result['country_name'], $result['join_date'], $result['subscribers'],
+							 $result['picture'], $result['banner'] ,$result['description'], $result['user_id']);
+					
+					return $user;
+				}
+			}
+		}
+		
+		
+		
 	}
 
 	

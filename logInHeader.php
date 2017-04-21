@@ -1,9 +1,9 @@
 <?php 
+
 $user = json_decode($_SESSION['user']);
+$sessuionUserId = $user->userId;
 $userPic = $user->profilPicName;
 $userName = $user->username;
-$userBanner = $user->profilBanner;
-$subscribers = $user->subscribers;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +91,7 @@ $subscribers = $user->subscribers;
 										<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="true"><?= $userName ?><span class="caret"></span></button>
 										<ul class="dropdown-menu">
-											<li><a href="./channel.php">My Channel</a></li>
+											<li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $sessuionUserId ?>&page=Video">My Channel</a></li>
 											<li><a href="./logOUT.php">Log Out</a></li>
 										</ul>
 									</div>

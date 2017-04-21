@@ -14,9 +14,9 @@ if (isset($_SESSION['user'])){
 <div class="chanal">
     <div class="row2">
         <div class="img">
-            <img src="assets/images/user-banners/<?= $userBanner ?>" alt="" class="c-banner" >
+            <img src="assets/images/user-banners/<?= $channelBanner ?>" alt="" class="c-banner" >
             <div class="c-avatar">
-                <a href="#"><img src="./assets/images/user-pictures/<?= $userPic?>" alt="" ></a>
+                <a href="#"><img src="./assets/images/user-pictures/<?= $channelPic?>" alt="" ></a>
             </div>
         </div>
     </div>
@@ -34,15 +34,17 @@ if (isset($_SESSION['user'])){
                         <div class="col-lg-10 col-lg-offset-2 col-xs-12">
                             <div class="c-details">
                                 <div class="c-name">
-                                    <?= $userName ?>
+                                    <?= $channelName ?>
                                 </div>
                                 <div class="c-nav">
                                     <ul class="list-inline">
-                                        <li><a href="channel.php">Videos</a></li>
-                                        <li><a href="channelPlaylist.php">Playlist</a></li>
-                                        <li><a href="channelLikedChannels.php">Channels</a></li>
-                                        <li><a href="channelDiscusion.php">Discussion</a></li>
+                                           <ul class="list-inline">
+                                        <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Video">Videos</a></li>
+                                        <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Playlist">Playlist</a></li>
+                                        <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=LikedChannels">Channels</a></li>
+                                        <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Discusion">Discussion</a></li>
                                         <li><a href="#">About</a></li>
+                                    </ul>
                                     </ul>
                                 </div>
                                 <div class="c-sub pull-right">

@@ -90,7 +90,7 @@
             </div>
             <div class="login-window">
                 <div class="l-head">
-                    <h3>Log Into Your Circle Account</h3>
+                    <h3>Login to Your Circle Account</h3>
                     <p><?= $errorMessage?></p>
                 </div>
                 <div class="l-form">
