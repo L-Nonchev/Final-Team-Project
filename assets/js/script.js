@@ -30,10 +30,14 @@ function checkMimeType() {
 		if (xhr.status === 200) {
 			console.log(this.responseText);	
 			var response = JSON.parse(this.responseText);
-			if (response['succsess']){
+			
+			if (response['success']){
 				hasErrors = false;
 			}else if(response['dublicate']){
 				error.innerHTML = 'Dublicate video name!'
+				error.style.display = 'block';		
+			}else if(response['error']){
+				error.innerHTML = response['error'];
 				error.style.display = 'block';					
 			}else{
 				error.innerHTML = 'Please, enter corect video/type!';
@@ -78,16 +82,15 @@ function uploded() {
 	xhr.send(dataSend);
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			console.log(this.responseText);	
+			console.log(videoText);	
 			var response = JSON.parse(this.responseText);
-			if (response['succsess']){
+			if (response['success']){
 				document.getElementById('sucssesUploded').style.display = 'block';
 				document.getElementById('videoDetails').style.display = 'none';
-			}else{
-				var errorUploded = document.getElementById('videoDetails');
-				errorUploded.style.display = 'block';
-				errorUploded.innerHTML = response['error'];
-			}
+			}else if (response['error']){
+				document.getElementById('errorUploded').style.display = 'block';
+				document.getElementById('errorUploded').innerHTML = response['error'];
+			}else document.getElementById('errorUploded').style.display = 'block';
 		}
 	}	
 };

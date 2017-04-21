@@ -5,7 +5,11 @@ class VideoDAO implements IVideoDAO{
 	const OPEN_VIDEO = '';
 	
 	public function __construct(){
-		$this->db = DBConnection::getDb();
+		try {
+			$this->db = DBConnection::getDb();
+		}catch (Exception $e){
+			throw new Exception('Please, try again later!');
+		}
 	}
 	
 	//-=-=-=-=-=-=Insert video in DB=-=-=-==-=-==--\\
@@ -31,5 +35,6 @@ class VideoDAO implements IVideoDAO{
 			throw new Exception('Incorect video name!');
 		}
 	}
+	
 }
 ?>

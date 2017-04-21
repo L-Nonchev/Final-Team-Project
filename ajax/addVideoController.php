@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$newVideo = new Video( htmlentities( trim($video['title']) ), 
 								htmlentities( trim($video['pathVideo']) ), 
 								htmlentities( trim($video['posterVideo']) ), 
-								htmlentities( trim($video['description']) ),
 								htmlentities( trim($video['duration']) ),
+								htmlentities( trim($video['description']) ),								
 								($video['privacy']==='true')?true:false ,
 								htmlentities( trim($userId)), 
 								htmlentities( trim($video['category']) ),
@@ -29,9 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$addVideo = new VideoDAO();
 			$addVideo->addVideo($newVideo);
 			
-			echo '{"succsess" : true}';
+			echo '{"success" : true}';
 		}catch (Exception $e){
-			echo '{"error": ' .$e->getMessage (). '}';
+			echo json_encode(array(
+					'error' => $e->getMessage ())
+			);
 		}
 	}
 }

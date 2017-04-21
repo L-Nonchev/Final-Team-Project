@@ -465,8 +465,8 @@
                 </div>
 
 
-                    <div>
-            			<p id='errorUploded'></p>
+                    <div id='errorUploded'>
+            			<p>Please, try again later</p>
             		</div>
                     <div class="u-area">
                         <a class="btn btn-primary u-btn" id='uploadVideo' onclick = 'uploded()' >Save</a>

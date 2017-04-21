@@ -12,17 +12,10 @@ if (isset($_SESSION['user'])){
 		$fileType = trim( $_FILES['video']['type'] );
 		
 		//-=-=-=-=-= check mime/type=-=-=-==--==--\\
-		switch ($fileType){
-			case 'video/mp4': $corectMimeType = true; break;
-			case 'video/x-msvideo': $corectMimeType = true; break;
-			case 'video/x-flv': $corectMimeType = true; break;
-			case 'video/quicktime': $corectMimeType = true; break;
-			case 'video/3gpp': $corectMimeType = true; break;
-			case 'video/x-ms-wmv': $corectMimeType = true; break;
-			
-			default: $corectMimeType = false;
-		}
-		if ($corectMimeType){
+		$allowedMimeType = array(	'video/mp4', 'video/x-msvideo', 'video/avi', 'video/x-msvideo',
+									'video/x-flv', 'video/quicktime', 'video/3gpp','video/x-ms-wmv' );
+		
+		if (in_array($fileType, $allowedMimeType)){
 			$fileSize = trim( ($_FILES['video']['size']) );
 			
 			//-=-=-=-=-= check file size=-=-=-==--==--\\
@@ -54,10 +47,10 @@ if (isset($_SESSION['user'])){
 					if (move_uploaded_file($fileOnServerName,'videos/' . $filePath)) {
 						echo "<input type='hidden' id='videoPath' value='$filePath'>";
 						echo "<input type='hidden' id='videoPosterPath' value='$videoPosterPath'>";
-					}
+					}else die("Problems with " . $fileOriginName);
 				}
 			}
-		}
-	}
-}
+		}else header('Location: upload.php', true , 302); 
+	}else header('Location: upload.php', true , 302);
+}else header('Location: index.php', true , 302);
 ?>

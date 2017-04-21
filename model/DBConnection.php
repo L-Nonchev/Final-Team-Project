@@ -15,7 +15,7 @@ class DBConnection {
 				self::$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 			}
 			catch (PDOException $e) {
-				throw new Exception("DataBase dosn't worck!", $e);
+				throw new Exception("DataBase dosn't worck!");
 			}
 		}
 

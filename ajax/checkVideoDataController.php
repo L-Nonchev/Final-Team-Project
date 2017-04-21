@@ -14,24 +14,27 @@ function __autoload($className) {
 			$videoType = pathinfo($videoName['type'],PATHINFO_EXTENSION );
 			
 			$newVideoName = substr($videoName['type'], 12);
-			$checkName = str_replace("$videoType", 'mp4',$newVideoName);	
+			$checkName = str_replace(".$videoType", '.mp4',$newVideoName);	
 			
+			//-=-=-=-=-= check mime/type=-=-=-==--==--\\
 			$allowedType = array('mp4', 'avi', 'flv', 'mov', '3gp', 'wmv');
-			$available = false;
-			for ($index=0;$index<count($allowedType);$index++){
-				if ($allowedType[$index] === $videoType){
-					$available = true;
-					break;
-				}
-			}
 			
-			if ($available){
-				$newVideo = new VideoDAO();
-				$checkVideoName = $newVideo->checkVideoName($checkName);
-				if ($checkVideoName){
-					echo '{"dublicate" : true}';
-				}else echo '{"succsess" : true}';;
-			}else echo '{"succsess" : false}';
+			if (in_array($videoType, $allowedType)){
+				try {
+					$newVideo = new VideoDAO();
+					$checkVideoName = $newVideo->checkVideoName($checkName);
+				
+				
+					//-=-=-=-=-= check dublicate file name=-=-=-==--==--\\
+					if ($checkVideoName){
+						echo '{"dublicate" : true}';
+					}else echo '{"success" : true}';;
+				}catch (Exception $e){
+					echo json_encode(array(
+							'error' => $e->getMessage ())
+							);
+				}
+			}else echo '{"success" : false}';
 		}
 	}
 ?>
