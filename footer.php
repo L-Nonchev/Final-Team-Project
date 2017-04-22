@@ -41,6 +41,8 @@
 <!-- =-=-=-=-=-=-= Bootstrap core JavaScript =-=-=-=-=-=-= -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery-3.1.1.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/vendor/clipboard/dist/clipboard.min.js"></script>
 <script src="assets/js/vendor/player/johndyer-mediaelement-89793bc/build/mediaelement-and-player.min.js"></script>

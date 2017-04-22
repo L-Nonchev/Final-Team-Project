@@ -12,51 +12,6 @@ function showMusicGenre(){
 	}
 }
 
-var hasErrors = true;
-var form = document.getElementById('formUpload');
-function checkMimeType() {
-	var error = document.getElementById('type-error');
-	var dublicate = document.getElementById('dublicateName');
-	var video = document.getElementById('video').value;
-		
-	var xhr = new XMLHttpRequest();
-	var dataSend = 'fileType=' + JSON.stringify({type:video});
-	
-	xhr.open('POST', 'http://localhost/Final-Team-Project/ajax/checkVideoDataController.php', true);
-	xhr.setRequestHeader("Content-type", "application/json");
-	
-	xhr.send(dataSend);
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-			var response = JSON.parse(this.responseText);
-			
-			console.log(response);	
-			if (response["success"]){
-				hasErrors = false;
-			}else if(response["dublicate"]){
-				error.innerHTML = 'Dublicate video name!'
-				error.style.display = 'block';		
-			}else if(response["error"]){
-				error.innerHTML = response['error'];
-				error.style.display = 'block';					
-			}else if(response["incorectName"]){
-				error.innerHTML = 'File name ERROR: Only letters ,numbers , - , _ , ( ) and white space allowed.';
-				error.style.display = 'block';
-			}else{
-				error.innerHTML = 'Please, enter corect video/type!';
-				error.style.display = 'block';
-			}				
-		}
-	}
-	
-};
-
-form.onsubmit = function(event) {
-		if (hasErrors) {
-			event.preventDefault();
-		}
-	}
-
 function uploded() {
 	var videoTitle = document.getElementById('title').value;
 	var videoPath = document.getElementById('videoPath').value;
@@ -65,6 +20,7 @@ function uploded() {
 	var videoText = document.getElementById('description').value;
 	var videoCategory = document.getElementById('category').value;	
 	var isPrivace = document.getElementById('privace').value;
+	var serverName = document.getElementById('originName').value;
 	var musicGenre = null;
 	
 	var dataGenre = document.querySelectorAll('.checkbox > input');
@@ -77,7 +33,7 @@ function uploded() {
 	}
 	
 	var xhr = new XMLHttpRequest();
-	var dataSend = 'video=' + JSON.stringify({title:videoTitle, pathVideo:videoPath, posterVideo:videoPoster, duration:videoDuration, description:videoText, category:videoCategory, genre:musicGenre, privacy:isPrivace});
+	var dataSend = 'video=' + JSON.stringify({title:videoTitle, pathVideo:videoPath, posterVideo:videoPoster, duration:videoDuration, description:videoText, category:videoCategory, genre:musicGenre, privacy:isPrivace, originName: serverName});
 	
 	xhr.open('POST', 'http://localhost/Final-Team-Project/ajax/addVideoController.php', true);
 	xhr.setRequestHeader("Content-type", "application/json");
@@ -98,6 +54,44 @@ function uploded() {
 	}	
 };
 
-
-
-
+$('#UploadForm').on('click', function() {
+	document.getElementById('uploading-file').style.display = 'block';
+ 	document.getElementById('start-upload').style.display = 'none';
+    
+ 	var file_data = $('#video').prop('files')[0];   
+    var form_data = new FormData();                  
+    form_data.append('video', file_data);
+    
+    $.ajax({
+                url: 'http://localhost/Final-Team-Project/uploadController.php', // point to server-side PHP script 
+                dataType: "text",  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,                         
+                type: 'post',
+                success: function(data){
+                	var response = JSON.parse(data);
+                	console.log(data);
+                    if(response['error']){
+                    	document.getElementById('type-error').style.display = 'block';
+                    	document.getElementById('type-error').innerHTML = response['error']; 
+                    	document.getElementById("videoPoster").src = 'assets/images/error.png';
+                    }else{
+                    	document.getElementById('addVideo').style.display = 'block';
+                    	document.getElementById('videoPath').value = response["videoPath"];
+                    	document.getElementById('videoPosterPath').value = response["posterPath"];
+                    	document.getElementById('duration').value = response["duration"];
+                    	document.getElementById("videoPoster").src = 'assets/images/video-poster/'+response["posterPath"];
+                    	document.getElementById("videoPoster").style.width = '180px';
+                    	document.getElementById('print-title').innerHTML = response["videoName"];
+                    	document.getElementById('print-duration').innerHTML = response["duration"];
+                    	document.getElementById('print-size').innerHTML = response["videoSize"];
+//                    	document.getElementById('type-error').innerHTML = "successful uploaded";
+                    	document.getElementById('type-error').style.display = 'none';
+                    	document.getElementById('originName').value = response["originName"]
+                    }               
+                	
+                }
+     });
+});

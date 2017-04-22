@@ -3,12 +3,12 @@
 function __autoload($className) {
 	require_once "../model/" . $className . '.php';
 }
-if (isset($_POST['uploadVideo'])){
-	session_start();
-	if (isset($_SESSION['user'])){
-		$user = json_decode($_SESSION['user']);
-	
-		$userId = $user->userId;
+session_start();
+if (isset($_SESSION['user'])){
+	$user = json_decode($_SESSION['user']);
+
+	$userId = $user->userId;
+	if (isset($_POST['uploadVideo'])){
 		
 		// create video object
 		try {
@@ -16,11 +16,13 @@ if (isset($_POST['uploadVideo'])){
 			$newVideo = new Video( htmlentities( trim($video['title']) ),
 					htmlentities( trim($video['pathVideo']) ),
 					htmlentities( trim($video['posterVideo']) ),
+					htmlentities( trim($video['duration']) ),
 					htmlentities( trim($video['description']) ),
-					htmlentities( trim($video['privace']) ),
-					htmlentities( trim($userId) ),
-					htmlentities( trim($video['category']) ));
-			
+					($video['privacy']==='true')?true:false ,
+					htmlentities( trim($userId)),
+					htmlentities( trim($video['category']) ),
+					($video['genre'])?htmlentities( trim($video['genre'])):null);
+				
 			//-=-===-=-=-= add video in DB=-=-=-==-=-==--\\
 			$addVideo = new VideoDAO();
 			$addVideo->addVideo($newVideo);

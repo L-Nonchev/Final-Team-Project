@@ -4266,9 +4266,16 @@ i.cv:hover {
 .c-social i.fa {
   color: white !important;
 }
-#type-error, #errorUploded, #sucssesUploded{
+#type-error{
 	color:red;
-	margin-top: 2em;
+	margin-top: 1em;
+	font-size: 1.5em;
+	text-decoration: blink;
+	text-align: center;
+}
+#errorUploded, #sucssesUploded{
+	color:red;
+	margin-top: 1em;
 	font-size: 1.5em;
 	text-decoration: blink;
 	display:none;
@@ -4276,11 +4283,27 @@ i.cv:hover {
 }
 
 #videoPoster{
-	width: 180px;
+	width: 120px;
 }
-#video{
+#video, #uploading-file, #conteinerMusicGenre{
 	display: none;
 }
-#conteinerMusicGenre{
+#addVideo{
 	display: none;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.radio-genre{
+	width: 100%;
+	text-align: left;
+}
+
+.radio-genre label{
+	cursor: pointer;
+	font-size: 1.3em;
+}
+.radio-genre input[type=radio]{
+	cursor: pointer;
+	width: 30px;
 }
