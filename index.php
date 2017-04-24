@@ -95,7 +95,7 @@
                                         <div class="time">7:18</div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php">Batman Arkham City: Hugo Strange Trailer</a>
+                                        <a href="singleVideo.php">Batman Arkham City: </a>
                                     </div>
                                     <div class="v-views">
                                         7,239,852 views. <span class="v-percent"><span class="v-circle"></span> 84%</span>

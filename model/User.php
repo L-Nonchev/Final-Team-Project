@@ -34,8 +34,8 @@ class User implements JsonSerializable {
 		if (!empty($username)) {
 			$name = $username;
 			if (strlen($username) <= 20){
-				if (!preg_match("/^[a-zA-Z0-9 ]*$/",$name)) {
-					throw new Exception ( 'Username ERROR: Only letters ,numbers and white space allowed.');
+				if (!preg_match("/^[- _ a-zA-Z0-9 ()]*$/",$name)) {
+					throw new Exception ( 'User ERROR: Only letters ,numbers , - , _ , ( ) and white space allowed.');
 				}else {
 					$this->username = htmlentities($username);
 				}

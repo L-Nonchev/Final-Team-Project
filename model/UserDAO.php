@@ -26,8 +26,15 @@
 			$this->db = DBConnection::getDb();
 		}
 		
-		//<!-- =-=-=-=-=-=-=  FUNCTIONS FOR User  =-=-=-=-=-=-= -->\\
+//<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=   FUNCTIONS FOR User   =-=-=-=-=-=- =-=-=-=-=-=-=-=-=-=-=-=-= -->\\
 		
+		
+		//<!-- =-=-=-=-=-=-=  LogIn user  =-=-=-=-=-=-= -->\\
+		/**
+		 * 
+		 * {@inheritDoc}
+		 * @see IUserDAO::loginUser()
+		 */
 		public function loginUser(User $user){
 			$pstmt = $this->db->prepare(self::SELECT_ALL_USER_DATA_BY_EMAIL_PASSWORD_SQL);
 			if ($pstmt->execute(array($user->email, $user->password))){
@@ -53,13 +60,13 @@
 			}
 		}
 		
+		//<!-- =-=-=-=-=-=-=  Sing Up user  =-=-=-=-=-=-= -->\\
+		/**
+		 * 
+		 * {@inheritDoc}
+		 * @see IUserDAO::singInUser()
+		 */
 		public function singInUser(User $user){
-			$user->setJoinDate(date("Y-m-d"));
-			$user->setSubscribers(0);
-			$user->setDescription("Welcome to my chanel!");
-			$user->setProfilPicName("default-user.jpg");
-			$user->setProfilBanner("channel-banner.png");
-			
 			$pstmt = $this->db->prepare(self::INSERT_NEW_USER_SQL);
 			
 			if ($pstmt->execute(array($user->username, $user->email, $user->password, $user->country
@@ -77,7 +84,7 @@
 			}
 		}		
 		
-		// check for exist user
+		//<!-- =-=-=-=-=-=-=  Check for Exist user for Ajax valid=-=-=-=-=-=-= -->\\
 		/**
 		 * 
 		 * @param User $user - Object ,and we need  only user->username
@@ -96,6 +103,7 @@
 			
 		}
 		
+		//<!-- =-=-=-=-=-=-=  Check for exist email  Ajax valid=-=-=-=-=-=-= -->\\
 		/**
 		 * 
 		 * @param User $user
@@ -114,7 +122,13 @@
 				
 		}
 		
-		
+		//<!-- =-=-=-=-=-=-=  Get All data for user by ID =-=-=-=-=-=-= -->\\
+		/**
+		 * 
+		 * @param unknown $id
+		 * @throws Exception
+		 * @return User
+		 */
 		public  function getAllUserData ($id){
 			$pstmt = $this->db->prepare(self::SELECT_ALL_USER_DATA_BY_ID_SQL);
 			if ($pstmt->execute(array($id))){
@@ -132,10 +146,7 @@
 					return $user;
 				}
 			}
-		}
-		
-		
-		
+		}	
 	}
 
 	

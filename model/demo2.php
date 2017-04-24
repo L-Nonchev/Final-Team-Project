@@ -1,8 +1,14 @@
 <?php
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-	$a = $_GET['page'];
+function zxc ($a , $b = 0){
+	
+	if ($b === 0){
+		$b = 20;
+	}
 	echo $a;
-	echo " hahah";
-}
+	echo $b;
+	
+};
+
+
+echo zxc(10,0);

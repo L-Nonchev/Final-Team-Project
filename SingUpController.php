@@ -39,6 +39,12 @@
 						$userData = new UserDAO();
 							
 						//-=-=-=-=-=-=---==-=-=-= Insert new user to DB=-=-=-==-=-==-=-==--\\
+						// ADD DEFINED FILDS
+						$user->setJoinDate(date("Y-m-d"));
+						$user->setSubscribers(0);
+						$user->setDescription("Welcome to my chanel!");
+						$user->setProfilPicName("default-user.jpg");
+						$user->setProfilBanner("channel-banner.png");
 						$ifCreatet = $userData->singInUser($user);
 							
 						if ($ifCreatet){

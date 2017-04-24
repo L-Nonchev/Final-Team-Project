@@ -36,5 +36,25 @@ class VideoDAO implements IVideoDAO{
 		}
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	//-=-=-=-=-=-= get videos for user by id=-=-=-==-=-==--\\
+	public function getChannelVideos ($userId, $ofset, $order){
+		
+	
+		$pstmt = $this->db->prepare("SELECT video_id, title , poster_path , duration , views
+				FROM videos WHERE user_id = ? ORDER BY $order  LIMIT 8 OFFSET $ofset;");
+		$pstmt->execute(array($userId));
+		$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+	
+		return $result;
+	}
+	
 }
 ?>

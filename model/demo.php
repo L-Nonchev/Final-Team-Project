@@ -2,17 +2,17 @@
 
 
 
-?>
+// ?>
 <!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>Document</title>
-</head>
-<body>
-	<a href="demo2.php?page=home">Cyk</a>
-</body>
-</html>
+<!-- <html lang="en"> -->
+<!-- <head> -->
+<!-- 	<meta charset="UTF-8" /> -->
+<!-- 	<title>Document</title> -->
+<!-- </head> -->
+<!-- <body> -->
+<!-- 	<a href="demo2.php?page=home">Cyk</a> -->
+<!-- </body> -->
+<!-- </html> -->
 
 <?php 
 // autoload function
@@ -61,10 +61,24 @@
 // 	echo " good ";
 // }
 
-var_dump(date("Y-m-d")); 
+// var_dump(date("Y-m-d")); 
+
+// echo microtime(true);
 
 
+// $a = 1234231;
+// $b = 230;
 
+// echo $a/$b;
+
+
+$x = 100242312;
+$y =250;
+
+$percent = $x/$y;
+$percent_friendly = number_format( $percent * 1, 0 ) . '%';
+// echo round($fakecount * 100 / $totalcount);
+echo $percent_friendly;
 
 
  

@@ -1795,6 +1795,7 @@ ul.menu {
   height: 48px;
   border-radius: 24px;
   font-weight: normal;
+  outline: none;
 }
 .v-history .loadmore .h-btn:hover {
   color: #ea2c5a;
@@ -1943,6 +1944,7 @@ ul.menu {
   border-bottom-left-radius: 3px;
   background-color: #ea2c5a;
   color: #ffffff;
+  outline: none;
 }
 .channel .c-details .c-sub .c-s {
   float: left;
@@ -3810,6 +3812,9 @@ ul.menu {
 .content-block.subscription .videolist .videoitem {
   min-height: auto;
   margin-bottom: 8px;
+}
+.content-block .videolist .videoitem {
+  height: 20em;
 }
 .content-block.subscription .videolist .videoitem .v-views {
   padding-bottom: 0;

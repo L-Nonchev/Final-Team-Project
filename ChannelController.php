@@ -10,62 +10,45 @@ function __autoload($className){
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
 	$userId = $_GET['@$^^%@@^@^$^@'];
 	$page = $_GET['page'];
-	$page;
 	
-	
-
 	if (isset($_SESSION['user'])){
 	
 		$user = json_decode($_SESSION['user']);
 		$sessuionUserId = $user->userId;
-		//data for  logged user channelVideo
+		
+		//<!-- =-=-=-=-=-=-=  get data for loget  users  =-=-=-=-=-=-= -->\\
 		if ($userId === $sessuionUserId){
-			try {
-				$userData = new UserDAO();
-				$user = $userData->getAllUserData($userId);
-			}catch (PDOException $e){
-				
-				header('Location: 404.php', true , 302);
-			}catch (Exception $e){
-				
-				header('Location: 404.php', true , 302);
-			}
-			
-		}
-		// log 
-		else{
-			// data for other users
-			try {
-				$userData = new UserDAO();
-				$user = $userData->getAllUserData($userId);
-			}catch (PDOException $e){
-			
-				header('Location: 404.php', true , 302);
-			}catch (Exception $e){
-				
-				header('Location: 404.php', true , 302);
-			}
+			$userId = $sessuionUserId;	
 		}
 		
-		// user data
-		$userId = $user->userId;
-		$channelName = $user->username;
-		$channelBanner = $user->profilBanner;
-		$channelPic = $user->profilPicName;
-		$subscribers = $user->subscribers;
-	
+		try {
+			$userData = new UserDAO();
+			$user = $userData->getAllUserData($userId);
+			
+			// user data
+			$channelName = $user->username;
+			$channelBanner = $user->profilBanner;
+			$channelPic = $user->profilPicName;
+			$subscribers = $user->subscribers;
+			
+			include './logInHeader.php';
+			include './channel'.$page.'.php';
+			
+		}catch (PDOException $e){
 		
-		include './logInHeader.php';
-		include './channel'.$page.'.php';
+			header('Location: 404.php', true , 302);
+		}catch (Exception $e){
+			
+			header('Location: 404.php', true , 302);
+		}
 	}
-	// data for other users
+	//<!-- =-=-=-=-=-=-=  get data for other users when SESSION missed  =-=-=-=-=-=-= -->\\
 	else{
 		try {
 			$userData = new UserDAO();
 			$user = $userData->getAllUserData($userId);
 			
 			// user data
-			$userId = $user->userId;
 			$channelName = $user->username;
 			$channelBanner = $user->profilBanner;
 			$channelPic = $user->profilPicName;
@@ -81,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 			header('Location: 404.php', true , 302);
 		};
 	}
-	
-	
+} else{
+	header('Location: 404.php', true , 302);
 }
 
 

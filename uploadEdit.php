@@ -187,7 +187,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="e1">Video Title</label>
-                                <input type="text" class="form-control" name='title' id="title" placeholder=<?php echo $fileName ?>>
+                                <input type="text" class="form-control" name='title' id="title" placeholder=<?= $fileName ?> required>
                                 <input type="hidden" id = 'duration' value = "<?= $printDuration ?>"/>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="radio"  name="musicGenre" value = '1'>
+                                        <input type="checkbox"  name="musicGenre" value = '1'>
                                         <span class="arrow"></span>
                                     </label> Asian Pop (J-Pop, K-pop)
                                 </label>
