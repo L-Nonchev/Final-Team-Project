@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label for="e1">Video Title</label>
                                 <input type="text" class="form-control" name='title' id="title" placeholder='Enter title'>
-                                
+                                <p id = 'titleError'></p>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -125,25 +125,25 @@
                     	<div>
 	                        <div class="col-lg-2">
 		                        <div class='radio-genre'>
-			                        <label>
+			                        <label class = 'checkbox'>
 			                            <input type="radio"  name="musicGenre" value = '1'>
 			                            <span class="arrow"></span>
 			                        </label> Asian Pop (J-Pop, K-pop)
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '2'/>
 			                            <span class="arrow"></span>
 			                        </label> Blues
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '3'/>
 			                            <span class="arrow"></span>
 			                        </label> Children’s Music
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '4'/>
 			                            <span class="arrow"></span>
 			                       </label> Classical Music 
@@ -153,25 +153,25 @@
 	                        <!-- checkbox 2col -->
 	                        <div class="col-lg-2">
 		                        <div class='radio-genre'>
-			                        <label>
+			                        <label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '5'/>
 			                            <span class="arrow"></span>
 			                        </label> Country Music
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '6'/>
 			                            <span class="arrow"></span>
 			                        </label> Dance Music
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '7'/>
 			                            <span class="arrow"></span>
 			                        </label> European Music (Folk/Pop)
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '8'/>
 			                            <span class="arrow"></span>
 			                        </label> Hip Hop/Rap
@@ -181,25 +181,25 @@
 	                        <!-- checkbox 3col -->
 	                        <div class="col-lg-2">
 		                        <div class='radio-genre'>
-			                        <label>
+			                        <label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '9'/>
 			                            <span class="arrow"></span>
 			                        </label> Indie Pop
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '10'/>
 			                            <span class="arrow"></span>
 			                        </label> Inspirational (incl. Gospel)
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '11'/>
 			                            <span class="arrow"></span>
 			                        </label> Jazz
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '12'/>
 			                            <span class="arrow"></span>
 			                        </label> Latin Music
@@ -209,25 +209,25 @@
 	                        <!-- checkbox 4col -->
 	                        <div class="col-lg-2">
 	                        	<div class='radio-genre'>
-		                        	<label>
+		                        	<label class = 'checkbox'>
 		                            	<input type="radio" name="musicGenre" value = '13'/>
 		                            	<span class="arrow"></span>
 		                            </label> New Age
 	                            </div>
 	                            <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 		                            	<input type="radio" name="musicGenre" value = '14'/>
 		                            	<span class="arrow"></span>
 		                            </label> Opera
 	                            </div>
 	                            <div class='radio-genre'>
-		                           	<label>           
+		                           	<label class = 'checkbox'>           
 			                            <input type="radio" name="musicGenre" value = '15'/>
 			                            <span class="arrow"></span>
 		                           	</label> Pop (Popular music)
 	                           	</div>
 	                           	<div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 		                              <input type="radio" name="musicGenre" value = '16'/>
 		                              <span class="arrow"></span>
 		                            </label> R&B/Soulz
@@ -237,25 +237,25 @@
                        		 <!-- checkbox 5col -->
                         	<div class="col-lg-2">
 		                        <div class='radio-genre'>
-			                        <label>
+			                        <label class = 'checkbox'>
 			                             <input type="radio" name="musicGenre" value = '17'/>
 			                             <span class="arrow"></span>
 			                        </label> Reggae
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
-			                             <input type="radio" name="musicGenre" value = '18'/>
+									<label class = 'checkbox'>
+			                             <input type="checkbox" name="musicGenre" value = '18'/>
 			                             <span class="arrow"></span>
 			                        </label> Rock
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                             <input type="radio" name="musicGenre" value = '19'/>
 			                             <span class="arrow"></span>
 			                        </label> Singer/Songw
 		                        </div>
 		                        <div class='radio-genre'>
-									<label>
+									<label class = 'checkbox'>
 			                             <input type="radio" name="musicGenre" value ='20'/>
 			                             <span class="arrow"></span> 
 			                        </label> Singer/Songwriter (inc. Folk)
@@ -264,19 +264,19 @@
                         	<!-- checkbox 6col -->
 	                        <div class="col-lg-2">
 	                        	<div class='radio-genre'>
-			                        <label>
+			                        <label class = 'checkbox'>
 			                            <input type="radio" name="musicGenre" value = '21'/>
 			                            <span class="arrow"></span>
 			                        </label>Soundtrack
 		                        </div>
 								<div class='radio-genre'>
-									<label>
+									<label class = 'checkbox-genre'>
 			                            <input type="radio" name="musicGenre" value = '22'/>
 			                            <span class="arrow"></span>
 			                        </label>Vocal
 								</div>
 								<div class='radio-genre'>
-									<label>
+									<label class = 'checkbox-genre'>
 			                            <input type="radio" name="musicGenre" value ='23'/>
 			                            <span class="arrow"></span> 
 			                        </label>World Music/Beats
@@ -307,10 +307,14 @@
             	<div>
             		<p id='uploded'>Upload successfully!</p>
             	</div>
-	            <div class="u-area">
-	            	<a class="btn btn-primary u-btn" id='uploadVideo' >Open video</a>
-	            	<a class="btn btn-primary u-btn" id='uploadVideo' >Go to home page</a>
+            	 
+	            <div class="u-area" id='uploadVideo' >
+	            	<a class="btn btn-primary u-btn" href='index.php'>Open video</a>
+	            	<a class="btn btn-primary u-btn" href='index.php'>Go to home page</a>
 	            </div>
+	        </div>
+	        <div class="u-area" id ='back'>
+	            	<a class="btn btn-primary u-btn" href='Upload.php'>Back</a>
 	        </div>
         </div>
     </div>

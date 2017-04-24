@@ -4285,13 +4285,8 @@ i.cv:hover {
 #videoPoster{
 	width: 120px;
 }
-#video, #uploading-file, #conteinerMusicGenre{
+#video, #uploading-file, #conteinerMusicGenre, #back{
 	display: none;
-}
-#addVideo{
-	display: none;
-	text-align: center;
-	margin: 0 auto;
 }
 
 .radio-genre{
@@ -4306,4 +4301,18 @@ i.cv:hover {
 .radio-genre input[type=radio]{
 	cursor: pointer;
 	width: 30px;
+}
+#addVideo{
+	text-align: center;
+	margin: 0 auto;
+}
+
+#titleError{
+	font-size: 1em;
+	font-weight: bold;
+	font-style: italic;
+	text-decoration: blink;
+	text-align: left;
+	color: red;
+	margin-top: 0.6em;
 }

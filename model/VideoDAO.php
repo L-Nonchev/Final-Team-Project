@@ -27,12 +27,18 @@ class VideoDAO implements IVideoDAO{
 	
 	}
 	
-	//-=-=-=-=-=-=check dublicate video name=-=-=-==-=-==--\\
+	/**
+	 * function for check video name
+	 *
+	 * @param string $videoName -
+	 * @throws Exception
+	 * @return json
+	 */	
 	public function checkVideoName($videoName){
 		try {
-			return $this->db->query("SELECT video_id FROM videos WHERE path = '$videoName';")->fetchColumn();
+			return $this->db->query("SELECT video_id FROM videos WHERE title = '$videoName';")->fetchColumn();
 		}catch (PDOException $e){
-			throw new Exception('Incorect video name!');
+			throw new Exception('Incorect video title!');
 		}
 	}
 	

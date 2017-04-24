@@ -1,8 +1,3 @@
-function checked(id){
-	var idGenre = id;
-	genre = idGenre;
-}
-
 function showMusicGenre(){
 	var genre = document.getElementById('category');
 	if (genre.value == 3){
@@ -12,6 +7,7 @@ function showMusicGenre(){
 	}
 }
 
+//-=-=-=-=-=-=--=---=-=add video in DB =-=-=-=-=-=-=--=-=-==-=-=\\
 function uploded() {
 	var videoTitle = document.getElementById('title').value;
 	var videoPath = document.getElementById('videoPath').value;
@@ -25,6 +21,7 @@ function uploded() {
 	
 	var dataGenre = document.querySelectorAll('.checkbox > input');
 
+	//-=-=-=-=-=-=--=---=-=ckeck for music genre =-=-=-=-=-=-=--=-=-==-=-=\\
 	for (var index = 0; index < dataGenre.length; index++){
 		if (dataGenre[index].checked){
 			musicGenre = dataGenre[index].value;
@@ -32,8 +29,9 @@ function uploded() {
 		}
 	}
 	
+	//-=-=-=-=-=-=--=---=-=ajax query add video in DB =-=-=-=-=-=-=--=-=-==-=-=\\
 	var xhr = new XMLHttpRequest();
-	var dataSend = 'video=' + JSON.stringify({title:videoTitle, pathVideo:videoPath, posterVideo:videoPoster, duration:videoDuration, description:videoText, category:videoCategory, genre:musicGenre, privacy:isPrivace, originName: serverName});
+	var dataSend = 'video=' + JSON.stringify({title:videoTitle, pathVideo:videoPath, posterVideo:videoPoster, duration:videoDuration, description:videoText, category:videoCategory, genre:musicGenre, privacy:isPrivace});
 	
 	xhr.open('POST', 'http://localhost/Final-Team-Project/ajax/addVideoController.php', true);
 	xhr.setRequestHeader("Content-type", "application/json");
@@ -54,6 +52,7 @@ function uploded() {
 	}	
 };
 
+//-=-=-=-=-=-=--=---=-= Upload video =-=-=-=-=-=-=--=-=-==-=-=\\
 $('#UploadForm').on('click', function() {
 	document.getElementById('uploading-file').style.display = 'block';
  	document.getElementById('start-upload').style.display = 'none';
@@ -63,8 +62,8 @@ $('#UploadForm').on('click', function() {
     form_data.append('video', file_data);
     
     $.ajax({
-                url: 'http://localhost/Final-Team-Project/uploadController.php', // point to server-side PHP script 
-                dataType: "text",  // what to expect back from the PHP script, if anything
+                url: 'http://localhost/Final-Team-Project/uploadController.php',
+                dataType: "text", 
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -74,11 +73,12 @@ $('#UploadForm').on('click', function() {
                 	var response = JSON.parse(data);
                 	console.log(data);
                     if(response['error']){
+                    	document.getElementById('videoDetails').style.display = 'none';
                     	document.getElementById('type-error').style.display = 'block';
                     	document.getElementById('type-error').innerHTML = response['error']; 
                     	document.getElementById("videoPoster").src = 'assets/images/error.png';
+                    	document.getElementById('back').style.display = 'block';
                     }else{
-                    	document.getElementById('addVideo').style.display = 'block';
                     	document.getElementById('videoPath').value = response["videoPath"];
                     	document.getElementById('videoPosterPath').value = response["posterPath"];
                     	document.getElementById('duration').value = response["duration"];
@@ -87,7 +87,6 @@ $('#UploadForm').on('click', function() {
                     	document.getElementById('print-title').innerHTML = response["videoName"];
                     	document.getElementById('print-duration').innerHTML = response["duration"];
                     	document.getElementById('print-size').innerHTML = response["videoSize"];
-//                    	document.getElementById('type-error').innerHTML = "successful uploaded";
                     	document.getElementById('type-error').style.display = 'none';
                     	document.getElementById('originName').value = response["originName"]
                     }               
@@ -95,3 +94,22 @@ $('#UploadForm').on('click', function() {
                 }
      });
 });
+
+//-=-=-=-=-=-=--=---=-= Chech for dublicate video name=-=-=-=-=-=-=--=-=-==-=-=\\
+document.getElementById('title').onblur = function() {
+
+	var title = $('#title').val();
+	$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ title: title }, 
+			function(data){
+		var response = JSON.parse(data);
+		if (response['error']){
+			document.getElementById('titleError').innerHTML = response["error"];
+			document.getElementById('addVideo').style.display = 'none';
+			document.getElementById('title').style.border = '1.3px solid red';
+		}else{
+			document.getElementById('titleError').innerHTML = '';
+			document.getElementById('title').style.border = '1.3px solid green';
+			document.getElementById('addVideo').style.display = 'block';
+		}
+	});
+}
