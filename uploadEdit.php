@@ -244,15 +244,15 @@
                         <div class="col-lg-2">
                             <div class="checkbox">
                                 <label>
-                                    <label class="checkbox">
-                                        <input type="checkbox"  name="musicGenre" value = '1'>
+                                    <label class="radio">
+                                        <input type="radio"  name="musicGenre" value = '1'>
                                         <span class="arrow"></span>
                                     </label> Asian Pop (J-Pop, K-pop)
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <label class="checkbox">
+                                    <label class="radio">
                                         <input type="radio" name="musicGenre" value = '2'/>
                                         <span class="arrow"></span>
                                     </label> Blues
@@ -260,7 +260,7 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <label class="checkbox">
+                                    <label class="radio">
                                         <input type="radio" name="musicGenre" value = '3'/>
                                         <span class="arrow"></span>
                                     </label> Children’s Music
@@ -268,7 +268,7 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <label class="checkbox">
+                                    <label class="radio">
                                         <input type="radio" name="musicGenre" value = '4'/>
                                         <span class="arrow"></span>
                                     </label> Classical Music
@@ -362,7 +362,7 @@
                         	<div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="radio" name="musicGenre" value = '13'/>
+                                        <input type="checkbox" name="musicGenre" value = '13'/>
                                         <span class="arrow"></span>
                                     </label> New Age
                                 </label>
@@ -370,7 +370,7 @@
                             <div class="checkbox">
                                 <label>
                                     <label class="checkbox">
-                                        <input type="radio" name="musicGenre" value = '14'/>
+                                        <input type="checkbox" name="musicGenre" value = '14'/>
                                         <span class="arrow"></span>
                                     </label> Opera
                                 </label>
@@ -437,7 +437,7 @@
                         <div class="col-lg-2">
                             <div class="checkbox">
                                 <label>
-                                    <label class="checkbox">
+                                    <label class="radio">
                                         <input type="radio" name="musicGenre" value = '21'/>
                                         <span class="arrow"></span>
                                     </label> Soundtrack
@@ -445,7 +445,7 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <label class="checkbox">
+                                    <label class="radio">
                                         <input type="radio" name="musicGenre" value = '22'/>
                                         <span class="arrow"></span>
                                     </label> Vocal
@@ -453,7 +453,7 @@
                             </div>                            
                             <div class="checkbox">
                                 <label>
-                                    <label class="checkbox">
+                                    <label class="radio">
                                         <input type="radio" name="musicGenre" value ='23'/>
                                         <span class="arrow"></span>
                                     </label> World Music/Beats

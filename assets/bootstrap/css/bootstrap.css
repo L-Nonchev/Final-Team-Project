@@ -2655,6 +2655,7 @@ input[type="search"] {
 .radio input[type="radio"],
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
+.checkbox input[type="radio"],
 .checkbox-inline input[type="checkbox"] {
   position: absolute;
   margin-left: -20px;
@@ -2960,7 +2961,8 @@ select[multiple].input-lg {
     padding-left: 0;
   }
   .form-inline .radio input[type="radio"],
-  .form-inline .checkbox input[type="checkbox"] {
+  .form-inline .checkbox input[type="checkbox"]
+  .checkbox input[type="radio"]  {
     position: relative;
     margin-left: 0;
   }
