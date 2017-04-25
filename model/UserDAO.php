@@ -148,6 +148,7 @@
 					return $user;
 				}
 			}
+
 		}	
 		
 		public function updateUserSuscribers ($userId ,$suscribers){
@@ -159,6 +160,23 @@
 				return $result;
 			}else {
 				throw new Exception("Changing failed");
+			}
+		}
+		
+
+		//-=-=-=-=-=-= get sorted users =-=-=-==-=-==--\\
+		/**
+		 * function gets sorted user
+		 *
+		 * @param string $sortBy
+		 * @throws Exception
+		 * @return array
+		 */
+		public function getSortedUsers($sortBy, $limit){
+			try {
+				return $this->db->query("SELECT user_id, username, subscribers, picture FROM users ORDER BY  $sortBy DESC LIMIT $limit;")->fetchAll(PDO::FETCH_ASSOC);
+			}catch (PDOException $e){
+				throw new Exception('Incorect data!');
 			}
 		}
 		

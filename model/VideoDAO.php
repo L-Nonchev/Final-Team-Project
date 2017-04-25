@@ -24,7 +24,7 @@ class VideoDAO implements IVideoDAO{
 	}
 	
 	public function openVideo(Video $video){
-	
+		
 	}
 	
 	/**
@@ -42,12 +42,25 @@ class VideoDAO implements IVideoDAO{
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
+	//-=-=-=-=-=-= get sorted videos =-=-=-==-=-==--\\
+	/**
+	 * function gets all videos order by
+	 *
+	 * @param string $sortBy
+	 * @param int $limit
+	 * @throws Exception
+	 * @return array
+	 */
+	public function getSortedVideos($sortBy, $limit){
+		try {
+			return $this->db->query("SELECT  video_id, title , poster_path , duration , views 
+									FROM videos 
+									WHERE is_privacy = false
+									ORDER BY $sortBy DESC LIMIT $limit;")->fetchAll(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			throw new Exception('Incorect data!');
+		}
+	}	
 	
 	
 	//-=-=-=-=-=-= get videos for user by id=-=-=-==-=-==--\\

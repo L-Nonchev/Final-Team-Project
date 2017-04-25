@@ -31,7 +31,7 @@ function uploadedFile(){
 			$allowedMimeType = array(	'video/mp4', 'video/x-msvideo', 'video/avi', 'video/x-msvideo',
 										'video/x-flv', 'video/quicktime', 'video/3gpp','video/x-ms-wmv', 'video/x-ms-asf' );
 			
-			if (in_array($fileType, $allowedMimeType)){
+			if (in_array($mimeType, $allowedMimeType)){
 				$fileSize = trim( ($_FILES['video']['size']) );
 				
  				//-=-=-=-=-= check file size=-=-=-==--==--\\
