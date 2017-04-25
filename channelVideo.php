@@ -23,8 +23,8 @@
                         <div class="col-lg-10 col-lg-offset-2 col-xs-12">
                             <div class="c-details">
                                 <div class="c-name" id="channel-name"> <?= $channelName ?></div>
-                                <input type="hidden" id="user-id" value="<?= $userId ?>"  />
-                                <input type="hidden" id="logged-user-id" value="<?= $sessuionUserId ?>"  />
+                                <input type="hidden" id="@gdsfdY42$" value="<?= $userId ?>"  />
+                                <input type="hidden" id="EfdsJs@4" value="<?= $sessuionUserId ?>"  />
                                 <div class="c-nav">
                                     <ul class="list-inline">
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Video">Videos</a></li>
@@ -36,10 +36,8 @@
                                 </div>
                                 <div class="c-sub pull-right">
                                     <div class="c-sub-wrap">
-                                     	<button class="c-f" id="subscribers">  </button>
-                                        <div class="c-s">
-                                            <?= $subscribers ?>
-                                        </div>
+                                     	<button class="c-f" id="subscribers"> Subscribe </button>
+                                        <div class="c-s" id="suscribers"><?= $subscribers ?></div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -53,29 +51,53 @@
                     <div class="cb-header">
                         <div class="row">
                             <div class="col-lg-8 col-xs-12 col-sm-6">
-
+									
                             </div>
-                            <div class="col-lg-4 col-xs-12 col-sm-6">
+                            <div class="col-lg-3 col-xs-15col-sm-6">
+								<div class="btn-group pull-right bg-clean">
+                                    <button type="button" class="btn btn-default dropdown-toggle" id="bnt-order" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Videos <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('video_id');"><i class="cv cvicon-cv-relevant"></i> Public</a></li>
+                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('video_id DESC'); " ><i class="cv cvicon-cv-calender"></i> Privascy</a></li>
+                                    </ul>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-lg-1 col-xs-12 col-sm-6">
                                 <div class="btn-group pull-right bg-clean">
                                     <button type="button" class="btn btn-default dropdown-toggle" id="bnt-order" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Sort By <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('video_id');"><i class="cv cvicon-cv-relevant"></i> Date Added</a></li>
-                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('video_id DESC'); " ><i class="cv cvicon-cv-calender"></i> Recent</a></li>
-                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('views DESC');" ><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
-                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('likes DESC');"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
-                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('duration');"><i class="cv cvicon-cv-watch-later"></i> Logestc</a></li>
+                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('2345');"><i class="cv cvicon-cv-relevant"></i> Date Added</a></li>
+                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('1234'); " ><i class="cv cvicon-cv-calender"></i> Recent</a></li>
+                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('3456');" ><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
+                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('4567');"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
+                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('5678');"><i class="cv cvicon-cv-watch-later"></i> Logestc</a></li>
                                     </ul>
                                 </div>
-
                                 <div class="clearfix"></div>
                             </div>
                         </div>
                     </div>
                     <div class="cb-content videolist">
                         <div class="row"  id="row-video-container">
-                                                
+                            <div class=" col-lg-3 col-xs-6 videoitem">
+                                <div class="b-video">
+                                    <div class="v-img">
+                                        <a href="single-video-tabs.html"><img src="images/video1-1.png" alt=""></a>
+                                        <div class="time">3:50</div>
+                                    </div>
+                                    <div class="v-desc">
+                                        <a href="single-video-tabs.html">Man's Sky: 21 Minutes of New Gameplay - IGN First</a>
+                                    </div>
+                                    <div class="v-views">
+                                        27,548 views. <span class="v-percent"><span class="v-circle"></span> 78%</span>
+                                    </div>
+                                </div>
+                            </div>                 
                         
 
 
@@ -87,8 +109,10 @@
              	<div class="loadmore">
                     <form action="#" method="post" onsubmit="event.preventDefault();" >
                         <button class="btn btn-default h-btn" id="bnt-more-videos">Load more Videos</button>
-                        <input type="hidden" id="offset"  value="0" />
-                        <input type="hidden" id="orderBy"  value="video_id DESC" />
+                        <input type="hidden" id="132Ascasd@gadsa"  value="0" />
+                        <input type="hidden" id="53453Asd!sdgad"  value="1234" />
+                        <input type="hidden" id="fsd^3S2fsafas"  value="" />
+                        
                     </form>
                 </div>
 

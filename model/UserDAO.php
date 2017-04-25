@@ -21,6 +21,8 @@
 									  FROM users u JOIN countries c ON ( u.country_id = c.country_id)
 									  WHERE user_id = ?;";
 		
+		const UPDATE_USER_SUSCRIBERS_SQL = "UPDATE users SET subscribers = subscribers ?  WHERE user_id = ?;";
+		
 		//<!-- =-=-=-=-=-=-=  DB CONECTION CREATE  =-=-=-=-=-=-= -->\\
 		public function __construct(){
 			$this->db = DBConnection::getDb();
@@ -147,7 +149,20 @@
 				}
 			}
 		}	
-	}
-
-	
+		
+		public function updateUserSuscribers ($userId ,$suscribers){
+			$pstmt = $this->db->prepare(UPDATE_USER_SUSCRIBERS_SQL);
+			if ($pstmt->execute($userId , $suscribers)){
+				
+				$result = $pstmt->fetchColumn();
+				
+				return $result;
+			}else {
+				throw new Exception("Changing failed");
+			}
+		}
+		
+		
+	//end class
+	}	
 ?>

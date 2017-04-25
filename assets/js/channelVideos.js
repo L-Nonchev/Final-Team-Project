@@ -1,9 +1,10 @@
-var userId = document.getElementById('user-id');
+var userId = document.getElementById('@gdsfdY42$');
 
 var videoContainer = document.getElementById('row-video-container');
 
-var offset = document.getElementById('offset');
-var orderBy = document.getElementById('orderBy');
+var offset = document.getElementById('132Ascasd@gadsa');
+var orderBy = document.getElementById('53453Asd!sdgad');
+var privacy = document.getElementById('fsd^3S2fsafas');
 
 var btnMoreVideos = document.getElementById('bnt-more-videos');
 
@@ -34,8 +35,6 @@ function createVideo(id, duration , poster, title, views) {
 				div3.appendChild(href1);
 				div3.appendChild(divTime);
 				
-				
-			
 			//title div
 			var div4 = document.createElement("div");	
 			div4.className = "v-desc";
@@ -67,20 +66,22 @@ function createVideo(id, duration , poster, title, views) {
 		div2.appendChild(div4);
 		div2.appendChild(div5);
 	
-
-	div1.appendChild(div2);
+		div1.appendChild(div2);
 			
 videoContainer.appendChild(div1);
+
+
 	
 }
 // send JSON GET request 
 function getVideos(userId, offset , orderBy) {
 	var currier = new XMLHttpRequest();
+	
 	currier.onreadystatechange = function(){
 		if (this.readyState === 4 && this.status === 200) {
-			
+//			console.log(this.responseText);
 			var incomeData = JSON.parse(this.responseText);
-			
+				
 			if (incomeData.length < 8) {
 				btnMoreVideos.style.display = "none";	
 			}else {
@@ -91,12 +92,13 @@ function getVideos(userId, offset , orderBy) {
 				createVideo(incomeData[int].video_id, incomeData[int].duration , 
 				incomeData[int].poster_path , incomeData[int].title, incomeData[int].views );
 				
+				videoPosterOptions();
 			}			
 		}
 	}
-
+	
 	currier.open('GET', 
-			'http://localhost/Final-Team-Project/ajax/channelVideos.php?@$^^%@@^@^$^@='+userId+'&limit='+offset+'&orderBy='+orderBy, 
+			'http://localhost/Final-Team-Project/ajax/getChannelVideos.php?@$^^%@@^@^$^@='+userId+'&limit='+offset+'&orderBy='+orderBy+'&privacy='+privacy.value, 
 			true);
 	currier.send(null);
 }
@@ -131,5 +133,9 @@ function orderedBy(order) {
 	offset.value = Number(0);
 	// get new SQL video ordered BY
 	getVideos(userId.value, 0, orderBy.value)
+}
+
+function privacyVideo (privacy){
+	
 }
 
