@@ -5,8 +5,7 @@ function __autoload($className) {
 session_start();
 function checkDublicateName (){
 	
-	//-=-=-=-=-= check corect title=-=-=-==--==--\\
-	if (isset($_POST['title'])){		
+	//-=-=-=-=-= check corect title=-=-=-==--==--\\		
 		$videoTitle = htmlentities( trim($_POST['title']) );
 		if ($videoTitle !== ''){
 			
@@ -25,10 +24,30 @@ function checkDublicateName (){
 					}
 			}else return $responce = array("error"=> "File name ERROR: Only letters ,numbers , - , _ , ( ) and white space allowed.");
 		}else return $responce = array("error" => "Please, enter video title!");						
-	}else return $responce = array("error" => "Please, enter video title!");
 }
+
+function deleteVideo (){
+	$video = htmlentities( trim ($_POST['deleteVideo']) );
+	if ($video !==''){
+		$videoPath = "../videos/$video";
+		if (unlink("$videoPath")){
+			return true;
+		}
+	}
+}
+
 	//-=-=-=-=-= check user login=-=-=-==--==--\\
 if (isset($_SESSION['user'])){
-	echo json_encode(checkDublicateName());
+	if (isset($_POST['title'])){
+		echo json_encode(checkDublicateName());
+	}
+	
+	if (isset($_POST['deleteVideo'])){
+		echo deleteVideo ();
+	}
+	
+	if (isset($_POST['checkLoginUser'])){
+		echo true;
+	}
 }
 ?>

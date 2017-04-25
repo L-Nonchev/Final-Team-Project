@@ -4297,15 +4297,29 @@ i.cv:hover {
 .radio-genre{
 	width: 100%;
 	text-align: left;
+	line-height: 1.5em;
 }
 
-.radio-genre label{
+.genre{
 	cursor: pointer;
-	font-size: 1.3em;
+	font-size: 1em;
+	width: 100%;
+	font-weight: bold;
+}
+.genre:HOVER{
+	color:#ea2c5a;
 }
 .radio-genre input[type=radio]{
 	cursor: pointer;
-	width: 30px;
+	height:18px;
+	width: 18px;
+	vertical-align: middle;
+}
+#genre-css{
+	margin-bottom: 1.2em;
+}
+.radio-genre input[type=radio]:CHECKED .genre{
+	color: red;
 }
 #addVideo{
 	text-align: center;
@@ -4320,4 +4334,8 @@ i.cv:hover {
 	text-align: left;
 	color: red;
 	margin-top: 0.6em;
+}
+#delete{
+	float: right;
+	display: none;	
 }

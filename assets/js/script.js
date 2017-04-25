@@ -19,7 +19,7 @@ function uploded() {
 	var serverName = document.getElementById('originName').value;
 	var musicGenre = null;
 	
-	var dataGenre = document.querySelectorAll('.checkbox > input');
+	var dataGenre = document.querySelectorAll('.genre > input');
 
 	//-=-=-=-=-=-=--=---=-=ckeck for music genre =-=-=-=-=-=-=--=-=-==-=-=\\
 	for (var index = 0; index < dataGenre.length; index++){
@@ -44,6 +44,7 @@ function uploded() {
 			if (response['success']){
 				document.getElementById('sucssesUploded').style.display = 'block';
 				document.getElementById('videoDetails').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
 			}else if (response['error']){
 				document.getElementById('errorUploded').style.display = 'block';
 				document.getElementById('errorUploded').innerHTML = response['error'];
@@ -88,7 +89,8 @@ $('#UploadForm').on('click', function() {
                     	document.getElementById('print-duration').innerHTML = response["duration"];
                     	document.getElementById('print-size').innerHTML = response["videoSize"];
                     	document.getElementById('type-error').style.display = 'none';
-                    	document.getElementById('originName').value = response["originName"]
+                    	document.getElementById('originName').value = response["originName"];
+                    	document.getElementById('delete').style.display = 'block';
                     }               
                 	
                 }
@@ -96,20 +98,32 @@ $('#UploadForm').on('click', function() {
 });
 
 //-=-=-=-=-=-=--=---=-= Chech for dublicate video name=-=-=-=-=-=-=--=-=-==-=-=\\
-document.getElementById('title').onblur = function() {
-
-	var title = $('#title').val();
-	$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ title: title }, 
-			function(data){
-		var response = JSON.parse(data);
-		if (response['error']){
-			document.getElementById('titleError').innerHTML = response["error"];
-			document.getElementById('addVideo').style.display = 'none';
-			document.getElementById('title').style.border = '1.3px solid red';
-		}else{
-			document.getElementById('titleError').innerHTML = '';
-			document.getElementById('title').style.border = '1.3px solid green';
-			document.getElementById('addVideo').style.display = 'block';
-		}
-	});
+var title = document.getElementById('title')
+if(title){
+	title.onblur = function() {
+	
+		var title = $('#title').val();
+		$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ title: title }, 
+				function(data){
+			var response = JSON.parse(data);
+			if (response['error']){
+				document.getElementById('titleError').innerHTML = response["error"];
+				document.getElementById('title').style.border = '1.3px solid red';
+			}else{
+				document.getElementById('titleError').innerHTML = '';
+				document.getElementById('title').style.border = '1.3px solid green';
+			}
+		});
+	}
+}
+//-=-=-=-=-=-=--=---=-= Delete video from folder =-=-=-=-=-=-=--=-=-==-=-=\\
+var deleteVideo = document.getElementById('deleteVideo');
+if (deleteVideo){
+	deleteVideo.onclick = function() {
+	
+		var video = $('#videoPath').val();
+		$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ deleteVideo: video }, 
+				function(data){
+		});
+	}
 }
