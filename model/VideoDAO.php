@@ -2,21 +2,28 @@
 class VideoDAO implements IVideoDAO{
 	private $db;
 
-	const ADD_VIDEO_SQL =  'INSERT INTO videos VALUES(null, ?,?,?,?,?,?, 0,0,0,?,?,?,?);';
-	const GET_VIDEO_SQL =  'SELECT v.video_id, v.title, v.path, v.duration, v.date, v.text, v.likes, v.dislikes, v.views, v.user_id, u.username, u.subscribers, c.category_name
+	const ADD_VIDEO_SQL =  'INSERT INTO videos VALUES(null, ?,?,?,?,?,?,?,?,?,?);';
+	const GET_VIDEO_SQL =  "SELECT v.video_id, v.title, v.path, v.duration, v.date, v.text, v.user_id, u.username, u.subscribers, c.category_name, COUNT(w.user_id) AS 'views', COUNT(l.user_id) AS 'likes', COUNT(d.user_id) AS 'dislikes'
 							FROM videos v JOIN users u 
-							ON (v.user_id = u.user_id AND video_id=?)
-							JOIN category c
-							ON (v.category_id = c.category_id)';
+							ON (v.user_id = u.user_id AND v.video_id=?)
+							LEFT OUTER JOIN category c
+							ON (v.category_id = c.category_id)
+							LEFT OUTER JOIN video_views w
+							ON (v.video_id = w.video_id)
+                            LEFT OUTER JOIN liked_videos l
+							ON (v.video_id = l.video_id)
+                            LEFT OUTER JOIN disliked_videos d
+							ON (v.video_id = d.video_id);";
 	const ADD_VIDEO_WHATCH_LATER = 'INSERT INTO watches_later VALUES(?,?);';
 	const CHECK_VIDEO_EXIST_WHATCH_LATER = 'SELECT * FROM watches_later WHERE user_id= ? AND video_id = ?;';
 	const COUNT_USER_VIDEO = 'SELECT count(video_id) FROM videos WHERE user_id= ?;';
+	const GET_VIDEO_COMENTS = 'SELECT * FROM coments WHERE video_id = ;';
 		
 	public function __construct(){
 		try {
 			$this->db = DBConnection::getDb();
 		}catch (Exception $e){
-			throw new Exception('Please, try again later!');
+			throw new Exception('Problem with DB!');
 		}
 	}
 	
@@ -49,7 +56,7 @@ class VideoDAO implements IVideoDAO{
 			$pstmt->execute(array($userId));
 			return $pstmt->fetchColumn();
 		}catch (PDOException $e){
-			throw new Exception('Bad user ID or video ID!');
+			throw new Exception('Bad user ID!');
 		}
 	}
 	
@@ -101,10 +108,16 @@ class VideoDAO implements IVideoDAO{
 	 */
 	public function getSortedVideos($sortBy, $limit){
 		try {
-			return $this->db->query("SELECT  video_id, title , poster_path , duration 
-									FROM videos 
+			return $this->db->query("SELECT  v.video_id, v.title , v.poster_path , v.duration,  COUNT(l.user_id) AS 'likes', COUNT(w.user_id) AS 'views'
+									FROM videos v
+                                    LEFT JOIN liked_videos l
+									ON (v.video_id = l.video_id)
+                                    LEFT JOIN video_views w
+									ON (v.video_id = w.video_id)
 									WHERE is_privacy = false
-									ORDER BY $sortBy DESC LIMIT $limit;")->fetchAll(PDO::FETCH_ASSOC);
+									GROUP BY v.video_id, v.title , v.poster_path , v.duration
+									ORDER BY $sortBy DESC 
+									LIMIT $limit;")->fetchAll(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
 			throw new Exception('Incorect data!');
 		}
@@ -121,6 +134,17 @@ class VideoDAO implements IVideoDAO{
 		$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 	
 		return $result;
+	}
+	//-=-=-=-=-=-= get video comments=-=-=-==-=-==--\\
+	public function getVideoComents ($videoId){
+		try {
+			$pstmt = $this->db->prepare(self::GET_VIDEO_COMENTS);
+			$pstmt->execute(array($userId, $videoId));
+			$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
+		}catch (PDOException $e){
+			throw new Exception('Bad video ID!');
+		}
 	}
 	
 }

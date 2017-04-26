@@ -9,8 +9,10 @@ if (isset($_GET['físeán%'])){
 	$getVideo = new VideoDAO();
 	$video = $getVideo->getVideo($videoId);
 	$countOfVideo = $getVideo->countUserVideo($video[0]['user_id']);
-	$percent =( $video[0]['dislikes']/$video[0]['likes'] )*100;
-	$percent = floor(100 - $percent);
+	if ($video[0]['likes'] != 0){
+		$percent =( $video[0]['dislikes']/$video[0]['likes'] )*100;
+		$percent = floor(100 - $percent);
+	}
 	$now = date_create(date("Y-m-d"));
 	$uploadetDate = date_create($video[0]['date']);
 	$releaseDate = date_diff($now, $uploadetDate);
@@ -26,10 +28,10 @@ if (isset($_GET['físeán%'])){
 }
 if (isset($_SESSION['user'])){
 
-	include 'logInHeader.php';
+	include 'view/logInHeader.php';
 
 }else {
-	include 'header.php';
+	include 'view/header.php';
 }
-include 'Video.php';
+include 'view/Video.php';
 ?>

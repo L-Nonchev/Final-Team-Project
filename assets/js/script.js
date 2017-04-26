@@ -144,3 +144,14 @@ if (showMore){
 		showLess.style.display = 'block';
 	}
 }
+
+var addVideoComment = document.getElementById('addVideoComent');
+if (addVideoComment){
+	addVideoComment.onclick = function(){
+		var comment = $('#videoComent').val();
+		var videoId = $('#qsf').val();
+		$.post('http://localhost/Final-Team-Project/ajax/videoComment.php',{ comment: comment, videoId: videoId }, 
+				function(data){
+		});	
+	}
+}

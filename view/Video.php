@@ -211,13 +211,6 @@
                         <!-- END tabs-content -->
                     </div>
 
-                    <div class="adblock2">
-                        <div class="img">
-                            Google AdSense<br>
-                            728 x 90
-                        </div>
-                    </div>
-
                     <!-- comments -->
                     <div class="comments">
                         <div class="reply-comment">
@@ -225,10 +218,11 @@
                             <div class="rc-ava"><a href="#"><img src="assets/images/ava5.png" alt=""></a></div>
                             <div class="rc-comment">
                                 <form action="#" method="post">
-                                    <textarea rows="3">Share what you think?</textarea >
-                                    <button type="submit">
+                                    <textarea rows="3" id = 'videoComent'>Share what you think?</textarea >
+                                    <button type="submit" id='addVideoComent'>
                                         <i class="cv cvicon-cv-add-comment"></i>
                                     </button>
+                                    <input type='hidden' id='qsf' value ="<?=$video[0]['video_id']??''?>">
                                 </form>
                             </div>
                             <div class="clearfix"></div>

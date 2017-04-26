@@ -28,10 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 			//-=-===-=-=-= add video in DB=-=-=-==-=-==--\\
 			$addVideo = new VideoDAO();
 			$addVideo->addVideo($newVideo);
-//			if (move_uploaded_file($video['originName'],'videos/' . $video['pathVideo'])) {
-				echo '{"success" : true}';
-//			}else echo json_encode (array("error" => "Problems with" . $video['originName']));
-			
+			echo '{"success" : true}';			
 		}catch (Exception $e){
 			echo json_encode(array(
 					'error' => $e->getMessage ())

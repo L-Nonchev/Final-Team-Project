@@ -60,7 +60,7 @@ function uploadedFile(){
 								"videoPath" => "$filePath",
 								"posterPath" => "$videoPosterPath",
 								"duration" => "$printDuration",
-								"originName" => "$fileOnServerName"
+								"originName" => "$fileType"
 						);
 					}else return $responce = array("error" => "Problems with $fileOriginName");
 				}else return $responce = array("error" => "Please select a file smaller than 1GB");
