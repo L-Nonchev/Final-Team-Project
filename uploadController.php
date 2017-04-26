@@ -12,12 +12,12 @@ function uploadedFile(){
 			$fileType = trim( $_FILES['video']['type'] );
 			$milliseconds = round(microtime(true) * 1000);
 			
-			$allowedType = array('mp4', 'avi', 'flv', 'mov', '3gp', 'wmv');
+			$allowedType = array('mp4', 'ogv', 'mov');
 			$videoType = pathinfo($fileOriginName,PATHINFO_EXTENSION );
 			
 			//-=-=-=-=-=-=-=-=-= check video type=-=-=-=-=-=-=--=-=--\\
 			if (!in_array($videoType, $allowedType)) {
-				return $responce = array ("error" => "Please, enter corect video type!");
+				return $responce = array ("error" => "Please, enter corect video type (Allowed type: ogg, mp4, mov)!");
 			}
 			
 			//-=-=-=-=-=-=-=-=-= check video name=-=-=-=-=-=-=--=-=--\\
@@ -28,8 +28,7 @@ function uploadedFile(){
 			//-=-=-=-=-= check mime/type=-=-=-==--==--\\
 			$fileInfo = new finfo(FILEINFO_MIME_TYPE);
 			$mimeType = $fileInfo->buffer(file_get_contents($fileOnServerName));
-			$allowedMimeType = array(	'video/mp4', 'video/x-msvideo', 'video/avi', 'video/x-msvideo',
-										'video/x-flv', 'video/quicktime', 'video/3gpp','video/x-ms-wmv', 'video/x-ms-asf' );
+			$allowedMimeType = array(	'video/mp4', 'video/ogg', 'video/quicktime');
 			
 			if (in_array($mimeType, $allowedMimeType)){
 				$fileSize = trim( ($_FILES['video']['size']) );
@@ -65,7 +64,7 @@ function uploadedFile(){
 						);
 					}else return $responce = array("error" => "Problems with $fileOriginName");
 				}else return $responce = array("error" => "Please select a file smaller than 1GB");
-			}else return $responce = array("error" => "Please, enter corect video type!"); 
+			}else return $responce = array("error" => "Please, enter corect video type (Allowed mime/type: video/ogg, video/mp4, video/quicktime)!"); 
 		}else return $responce = array("error" => "Problem with file!");
 	}else return $responce = array("error" => "Please, enter file!");
 }

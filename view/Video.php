@@ -1,35 +1,26 @@
-<?php 
-	session_start();
-	if (isset($_SESSION['user'])){
-		require_once 'logInHeader.php';
-	}else {
-		require_once 'header.php';
-	}
-	
-?>
 
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-xs-12 col-sm-12">
                 <div class="sv-video">
-                    <video poster="./maxresdefault.jpg" style="width:100%;height:100%;" controls="controls" width="100%" height="100%" autoplay="autoplay">
-                        <source src="videos/Basto - Hold You (Official Video).avi" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+                    <video style="width:100%;height:100%;" controls="controls" width="100%" height="100%" autoplay="autoplay">
+                        <source src="videos/<?=$video[0]['path']??''?>" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
                     </video>
                     <!-- <span class="sv-psingle-videolay"><i class="cv cvicon-cv-play"></i></span> -->
                 </div>
-                <h1><a href="#">Analyzing the Mass Effect: Andromeda E3 2016 Trailer</a></h1>
+                <h1><a href="#"><?=$video[0]['title']??''?></a></h1>
                 <div class="author">
                     <a href="#"><img src="slaves1.jpg" alt="" class="sv-avatar"></a>
                     <div class="sv-name">
-                        <div><a href="#">NaughtyDog</a> . 52 Videos</div>
+                        <div><a href="#"><?=$video[0]['username']??''?></a> . <?=$countOfVideo??''?></div>
                         <div class="c-sub">
                         <a href=""></a>
                         	 <button class="c-f">
                                Subscribe
                             </button>
                             <div class="c-s">
-                                22,548,145
+                                <?=$video[0]['subscribers']??''?>
                             </div>
                             
                             <div class="clearfix"></div>
@@ -37,15 +28,15 @@
                     </div>
                     <div class="sv-views">
                         <div class="sv-views-count">
-                            2,729,347 views
+                            <?=$video[0]['views']??''?> views
                         </div>
                         <div class="sv-views-progress">
                             <div class="sv-views-progress-bar"></div>
                         </div>
                         <div class="sv-views-stats">
-                            <span class="percent">95%</span>
-                            <span class="green"><span class="circle"></span> 39,852</span>
-                            <span class="grey"><span class="circle"></span> 852</span>
+                            <span class="percent"> <?=$percent??''?> %</span>
+                            <span class="green"><span class="circle"></span>  <?=$video[0]['likes']??''?></span>
+                            <span class="grey"><span class="circle"></span>  <?=$video[0]['dislikes']??''?></span>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -76,39 +67,32 @@
                         <div class="tabs-content">
                             <!-- BEGIN tab-1 -->
                             <div class="tab-1">
-                                <div>
-                                    <h4>Cast:</h4>
-                                    <p>Nathan Drake , Victor Sullivan , Sam Drake , Elena Fisher</p>
-
+                                <div id = 'aboutVideo'>
                                     <h4>Category :</h4>
-                                    <p>Gaming , PS4 Exclusive , Gameplay , 1080p</p>
+                                    <p><?=$video[0]['category_name']??''?></p>
 
                                     <h4>About :</h4>
-                                    <p>Three years after the events of Uncharted 3: Drake's Deception, Nathan Drake, now retired as a fortune hunter, has settled into a normal life with his wife Elena Fisher. His world is then turned upside down when his older brother Sam, long believed to be dead, suddenly reappears seeking Drake's help.</p>
-
-                                    <h4>Tags :</h4>
-                                    <p class="sv-tags">
-                                        <span><a href="#">Uncharted 4</a></span>
-                                        <span><a href="#">Playstation 4</a></span>
-                                        <span><a href="#">Gameplay</a></span>
-                                        <span><a href="#">1080P</a></span>
-                                        <span><a href="#">ps4Share</a></span>
-                                        <span><a href="#">+ 6</a></span>
-                                    </p>
+                                    <p><?=$video[0]['text']??''?></p>                
 
                                     <div class="row date-lic">
                                         <div class="col-lg-6">
                                             <h4>Release Date:</h4>
-                                            <p>2 Days ago</p>
+                                            <p><?=$printDate??''?></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    
+                                <div></div>
+                                <div id = 'showLess'>
+	                                <div class="clearfix"></div>
+	                                <div class="showless">
+	                                    <a >Show Less</a>
+	                                </div>
                                 </div>
-                                <div class="clearfix"></div>
-                                <div class="showless">
-                                    <a href="#">Show Less</a>
+                                <div id = 'showMore'>
+	                                <div class="clearfix"></div>
+	                                <div class="showless">
+	                                    <a >Show More</a>
+	                                </div>
                                 </div>
                             </div>
                             <!-- END tab-1 -->

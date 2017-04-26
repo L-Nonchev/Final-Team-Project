@@ -1,6 +1,19 @@
 /**
  * Created by Alex on 12.08.2016.
  */
+
+	function watchLater(){
+		var videoId = ($(this).parent().parent().parent().attr('id'));
+		$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ videoId: videoId }, 
+				function(data){
+			console.log(videoId);
+			var response = JSON.parse(data);
+			if(response['success']){
+					
+			}
+		});
+	}
+	
 "use strict";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,8 +95,8 @@ $( document ).ready(function() {
     			function(data){
     		if(data==true){
         		$plusDetails = $( '<div class="plus-details">\
-                        <ul >\
-                            <li><a href="#"><i class="cvicon-cv-watch-later" aria-hidden="true" onclick ="watchLater()"></i> Watch Later</a></li>\
+                        <ul>\
+                            <li ><a href="#"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Watch Later</a></li>\
                             <li><a href="#"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Add to Playlist</a></li>\
                         </ul>\
                     </div>' );
@@ -92,7 +105,8 @@ $( document ).ready(function() {
             $(this).append($plus);
             $(".plus").hover( function() {
             	
-                $(this).parent().append($plusDetails);                
+                $(this).parent().append($plusDetails);    
+                $('div.plus-details>ul>li:first-of-type').on('click', watchLater);
                 } , function(){
 
                 }
@@ -104,7 +118,7 @@ $( document ).ready(function() {
         }
     );
 
-
+    
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Header
     // Goto section
@@ -252,5 +266,5 @@ $( document ).ready(function() {
     };
 
     MYAPP.initialize();
-
+   
 });

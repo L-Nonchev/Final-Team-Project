@@ -1,9 +1,17 @@
 <?php
 class VideoDAO implements IVideoDAO{
 	private $db;
-	const ADD_VIDEO_SQL = 'INSERT INTO videos VALUES(null, ?,?,?,?,?,?,?,?,?,?);';
-	const OPEN_VIDEO = '';
-	
+
+	const ADD_VIDEO_SQL =  'INSERT INTO videos VALUES(null, ?,?,?,?,?,?, 0,0,0,?,?,?,?);';
+	const GET_VIDEO_SQL =  'SELECT v.video_id, v.title, v.path, v.duration, v.date, v.text, v.likes, v.dislikes, v.views, v.user_id, u.username, u.subscribers, c.category_name
+							FROM videos v JOIN users u 
+							ON (v.user_id = u.user_id AND video_id=?)
+							JOIN category c
+							ON (v.category_id = c.category_id)';
+	const ADD_VIDEO_WHATCH_LATER = 'INSERT INTO watches_later VALUES(?,?);';
+	const CHECK_VIDEO_EXIST_WHATCH_LATER = 'SELECT * FROM watches_later WHERE user_id= ? AND video_id = ?;';
+	const COUNT_USER_VIDEO = 'SELECT count(video_id) FROM videos WHERE user_id= ?;';
+		
 	public function __construct(){
 		try {
 			$this->db = DBConnection::getDb();
@@ -23,8 +31,48 @@ class VideoDAO implements IVideoDAO{
 		}
 	}
 	
-	public function openVideo(Video $video){
+	public function getVideo($videoId){
+		try {
+			$pstmt = $this->db->prepare(self::GET_VIDEO_SQL);
+			$pstmt->execute(array($videoId));
+			$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
+		}catch (PDOException $e){
+			throw new Exception('Bad video ID!');
+		}
 		
+	}
+	
+	public function countUserVideo ($userId){
+		try{
+			$pstmt = $this->db->prepare(self::COUNT_USER_VIDEO);
+			$pstmt->execute(array($userId));
+			return $pstmt->fetchColumn();
+		}catch (PDOException $e){
+			throw new Exception('Bad user ID or video ID!');
+		}
+	}
+	
+	public function existVideoWhatchLater($userId, $videoId){
+		try {
+			$pstmt = $this->db->prepare(self::CHECK_VIDEO_EXIST_WHATCH_LATER);
+			$pstmt->execute(array($userId, $videoId));
+			$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
+		}catch (PDOException $e){
+			throw new Exception('Bad user ID or video ID!');
+		}
+	}
+	
+	public function watchLater($userId, $videoId){
+		if (!($this->existVideoWhatchLater($userId, $videoId))){
+			try {
+				$pstmt = $this->db->prepare(self::ADD_VIDEO_WHATCH_LATER);
+				return	$pstmt->execute(array($userId, $videoId));
+			}catch (PDOException $e){
+				throw new Exception('Bad user ID or video ID!');
+			}
+		}return true;
 	}
 	
 	/**

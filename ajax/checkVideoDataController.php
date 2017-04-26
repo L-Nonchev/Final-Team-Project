@@ -35,6 +35,15 @@ function deleteVideo (){
 		}
 	}
 }
+//-=-=-=-=-= add video in table watches_later=-=-=-==--==--\\
+function watchVideoLater($userId, $videoId){
+	try {
+		( new VideoDAO())->watchLater($userId, $videoId);
+		return $responce = array ("success" => true);
+	}catch (Exception $e){
+		return $responce = array ("error" => $e->getMessage ());
+	}
+}
 
 	//-=-=-=-=-= check user login=-=-=-==--==--\\
 if (isset($_SESSION['user'])){
@@ -48,6 +57,13 @@ if (isset($_SESSION['user'])){
 	
 	if (isset($_POST['checkLoginUser'])){
 		echo true;
+	}
+	
+	if (isset($_POST['videoId'])){
+		$videoId = htmlentities( trim($_POST['videoId']) );
+		$user = json_decode($_SESSION['user']);
+		$userId = $user->userId;
+		echo json_encode(watchVideoLater($userId, $videoId));
 	}
 }
 ?>
