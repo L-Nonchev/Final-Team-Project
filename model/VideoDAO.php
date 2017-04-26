@@ -112,12 +112,25 @@ class VideoDAO implements IVideoDAO{
 	
 	
 	//-=-=-=-=-=-= get videos for user by id=-=-=-==-=-==--\\
-	public function getChannelVideos ($userId, $ofset, $order){
+	public function getChannelVideos ($userId, $ofset, $order, $privacy){
 		
-	
+		switch ($order) {
+			
+			case "1234": $order = 'video_id DESC' ; break;
+			case "2345": $order = 'video_id' ; break;
+			case "3456": $order = 'views DESC' ; break;
+			case "4567": $order = 'likes DESC' ; break;
+			case "5678": $order = 'duration' ; break;
+			
+			default: $order = 'video_id DESC' ; break;
+		}
+		
+		
+		
+		$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 		$pstmt = $this->db->prepare("SELECT video_id, title , poster_path , duration , views
-				FROM videos WHERE user_id = ? ORDER BY $order  LIMIT 8 OFFSET $ofset;");
-		$pstmt->execute(array($userId));
+				FROM videos WHERE user_id = ? && is_privacy = ? ORDER BY $order  LIMIT 8 OFFSET ?;");
+		$pstmt->execute(array($userId , $privacy , $ofset));
 		$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 	
 		return $result;

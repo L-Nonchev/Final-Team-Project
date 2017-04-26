@@ -10,59 +10,37 @@ function __autoload($className){
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
 	$userId = $_GET['@$^^%@@^@^$^@'];
 	$page = $_GET['page'];
+	$sessuionUserId = "";
+	
+	try {
+		$userData = new UserDAO();
+		$user = $userData->getAllUserData($userId);
+			
+		// user data
+		$channelName = $user->username;
+		$channelBanner = $user->profilBanner;
+		$channelPic = $user->profilPicName;
+		$subscribers = $user->subscribers;
+				
+	}catch (PDOException $e){
+	
+		header('Location: 404.php', true , 302);
+	}catch (Exception $e){
+			
+		header('Location: 404.php', true , 302);
+	}
 	
 	if (isset($_SESSION['user'])){
-	
+		
 		$user = json_decode($_SESSION['user']);
-		$sessuionUserId = $user->userId;
-		
-		//<!-- =-=-=-=-=-=-=  get data for loget  users  =-=-=-=-=-=-= -->\\
-		if ($userId === $sessuionUserId){
-			$userId = $sessuionUserId;	
-		}
-		
-		try {
-			$userData = new UserDAO();
-			$user = $userData->getAllUserData($userId);
-			
-			// user data
-			$channelName = $user->username;
-			$channelBanner = $user->profilBanner;
-			$channelPic = $user->profilPicName;
-			$subscribers = $user->subscribers;
-			
-			include './logInHeader.php';
-			include './channel'.$page.'.php';
-			
-		}catch (PDOException $e){
-		
-			header('Location: 404.php', true , 302);
-		}catch (Exception $e){
-			
-			header('Location: 404.php', true , 302);
-		}
-	}
-	//<!-- =-=-=-=-=-=-=  get data for other users when SESSION missed  =-=-=-=-=-=-= -->\\
-	else{
-		try {
-			$userData = new UserDAO();
-			$user = $userData->getAllUserData($userId);
-			
-			// user data
-			$channelName = $user->username;
-			$channelBanner = $user->profilBanner;
-			$channelPic = $user->profilPicName;
-			$subscribers = $user->subscribers;
-			
-			include './header.php';
-			include './channel'.$page.'.php';
-		}catch (PDOException $e){
-				
-			header('Location: 404.php', true , 302);
-		}catch (Exception $e){
-				
-			header('Location: 404.php', true , 302);
-		};
+// 		$sessuionUserId = $user->userId;
+
+		include './logInHeader.php';
+		include './channel'.$page.'.php';
+	} else{
+		include './header.php';
+		include './channel'.$page.'.php';
+
 	}
 } else{
 	header('Location: 404.php', true , 302);
