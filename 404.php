@@ -3,10 +3,10 @@
 session_start();
 if (isset($_SESSION['user'])){
 
-	include 'logInHeader.php';
+	include 'view/logInHeader.php';
 
 }else {
-	include 'header.php';
+	include 'view/header.php';
 }
 ?>
 <!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
@@ -25,5 +25,5 @@ if (isset($_SESSION['user'])){
 
 <!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
 <?php 
-	require './footer.php';
+	require 'view//footer.php';
 ?>

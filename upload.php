@@ -1,5 +1,5 @@
 <?php session_start();
-	require_once 'logInHeader.php';
+	include 'view/logInHeader.php';
 ?>
 <body class="light">
 
@@ -322,5 +322,5 @@
 </div>
 
 <?php 
-	require_once 'footer.php';
+	include 'view/footer.php';
 ?>

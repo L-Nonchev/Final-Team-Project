@@ -4,7 +4,7 @@ var suscribers = document.getElementById('suscribers');
 var channelName = document.getElementById('channel-name');
 
 var btnSubscribers = document.getElementById('subscribers');
-
+var updateSuscribers;
 
 
 if (loogedUserId){
@@ -15,8 +15,36 @@ if (loogedUserId){
 			btnSubscribers.innerHTML ="Subscribers";
 			
 		}else{
-			btnSubscribers.disabled = false;
-			btnSubscribers.innerHTML ="Subscribe";		
+//			btnSubscribers.disabled = false;
+			var currier = new XMLHttpRequest();
+			currier.onreadystatechange = function(){
+				if (this.readyState === 4 && this.status === 200) {
+					
+					var incomeData = JSON.parse(this.responseText);
+					console.log(incomeData);
+					if (incomeData.result === true) {
+						
+						btnSubscribers.innerHTML ="Subscribed";
+						btnSubscribers.style.backgroundColor = "#91c1ea";
+						btnSubscribers.style.borderColor = "#91c1ea";
+					}else{
+						btnSubscribers.innerHTML ="Subscribe";
+						btnSubscribers.style.backgroundColor = "#ea2c5a";
+						btnSubscribers.style.borderColor = "#ea2c5a";	
+					}
+				}
+			}
+			
+			var dataSend = 'data=' + JSON.stringify({
+				suscribers : suscribers.innerHTML,
+				channelId : userId.value,
+				userId : loogedUserId.value
+				
+			});
+			currier.open('GET', 
+					'http://localhost/Final-Team-Project/ajax/sucribers.php?CH=' + userId.value + '&UID=' + loogedUserId.value, 
+					true);
+			currier.send(null);
 		}
 		
 		
@@ -26,46 +54,63 @@ if (loogedUserId){
 				btnSubscribers.innerHTML ="Subscribed";
 				btnSubscribers.style.backgroundColor = "#91c1ea";
 				btnSubscribers.style.borderColor = "#91c1ea";
-				
-				suscribers = Number(suscribers.innerHTML) + Number(1);
+				updateSuscribers = true;
 			}else{
-				if (confirm("Unsubscribe from " + channelName.innerHTML + " channel ?") == true) {
+				if (confirm("Unsubscribe from " + channelName.innerHTML + " channel ?") === false) {
+					btnSubscribers.innerHTML ="Subscribed";
+					btnSubscribers.style.backgroundColor = "#91c1ea";
+					btnSubscribers.style.borderColor = "#91c1ea";
+					updateSuscribers = false;
+				}else{
 					btnSubscribers.innerHTML ="Subscribe";
 					btnSubscribers.style.backgroundColor = "#ea2c5a";
 					btnSubscribers.style.borderColor = "#ea2c5a";
-					suscribers = Number(suscribers.innerHTML) - Number(1);
-					
+					updateSuscribers = true;
 				}
 				
 			}
 			
-			var currier = new XMLHttpRequest();
-			currier.onreadystatechange = function(){
-				if (this.readyState === 4 && this.status === 200) {
-					
-					console.log(this.responseText);
-					var incomeData = JSON.parse(this.responseText);
-					
-					
+			if (updateSuscribers === true) {
+				
+				var currier = new XMLHttpRequest();
+				currier.onreadystatechange = function(){
+					if (this.readyState === 4 && this.status === 200) {
+						
+						
+						console.log(this.responseText);
+						var incomeData = JSON.parse(this.responseText);
+						console.log(incomeData);
+						if (incomeData.upload === "success") {
+							console.log("uspeh");
+							suscribers.innerHTML = incomeData.suscribers;
+							
+						}else{
+							console.log("proval");
+							btnSubscribers.disabled = true;
+							btnSubscribers.innerHTML ="Subscribers";
+							btnSubscribers.style.backgroundColor = "#ea2c5a";
+							btnSubscribers.style.borderColor = "#ea2c5a";
+						}
+						
+					}
 				}
-			}
-			
-			var dataSend = 'data=' + JSON.stringify({
-				channelId : userId.value,
-				userId : loogedUserId.value,
-				suscribers : suscribers.innerHTML
-			});
-			currier.open('POST', 
-					'http://localhost/Final-Team-Project/ajax/sucribers.php', 
-					true);
-			currier.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			currier.send(dataSend);
-			
-			
+				
+				var dataSend = 'data=' + JSON.stringify({
+					suscribers : suscribers.innerHTML,
+					channelId : userId.value,
+					userId : loogedUserId.value
+					
+				});
+				currier.open('POST', 
+						'http://localhost/Final-Team-Project/ajax/sucribers.php', 
+						true);
+				currier.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				currier.send(dataSend);	
+			}	
 		}
 	
-	} else {
-		btnSubscribers.disabled = true;
-		btnSubscribers.innerHTML ="Subscribers";
-}
+		} else {
+			btnSubscribers.disabled = true;
+			btnSubscribers.innerHTML ="Subscribers";
+	}
 }

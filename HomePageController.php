@@ -9,7 +9,8 @@ function drawVideoContent($sortBy, $limit){
 		$video = new VideoDAO();
 		return $video->getSortedVideos($sortBy, $limit);
 	}catch (Exception $e){
-		header('Location:404.php', true, 302);
+		echo $e->getMessage();
+		header('Location: 404.php', true, 302);
 	}	
 }
 
@@ -18,21 +19,22 @@ function drowUserContent($sortBy, $limit){
 		$user = new UserDAO();
 		return $user->getSortedUsers($sortBy, $limit);
 	}catch (Exception $e){
-		header('Location:404.php', true, 302);
+		echo $e->getMessage();
+// 		header('Location: 404.php', true, 302);
 	}
 }
 $newVideos = drawVideoContent('video_id', 12);
-$mostViewed = drawVideoContent('views', 12); 
-$popularVideo = drawVideoContent('likes', 12);
+// $mostViewed = drawVideoContent('views', 12); 
+// $popularVideo = drawVideoContent('likes', 12);
 $popularChannels = drowUserContent('subscribers', 6);
 
 if (isset($_SESSION['user'])){
 
-	include 'logInHeader.php';
+	include 'view/logInHeader.php';
 
 }else {
-	include 'header.php';
+	include 'view/header.php';
 }
-include 'index.php';
+include 'view/index.php';
 
 ?>

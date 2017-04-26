@@ -1,43 +1,58 @@
 <?php
+// autoload function
+function __autoload($className){
+	require_once '../model/'. $className .'.php';
+}
 
-	define('INSERT_CHANNEL_SUSCRIBER_SQL', 'INSERT INTO channel_subscribers (`channel_id`, `user_id`) VALUES (?, ?);');	
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+	$channelId = $_GET['CH'];
+	$userId = $_GET['UID'];
+	
+	
+	try {
+		$userData = new UserDAO();
+		if ($userData->cheangeChannelFollowed($userId, $channelId)){
+				echo json_encode(array(
+						'result' => true
+				));
+		}else{
+			echo json_encode(array(
+					'result' => false
+			));
+		}
+	}catch (Exception $e){
 		
-	define('DELETE_CHANEL_SUSCRIBER_SQL', 'DELETE FROM channel_subscribers WHERE channel_id = ? && user_id = ?;');
-	
-	define('SELECT_CHANEL_SQL', 'SELECT channel_id FROM channel_subscribers WHERE user_id = ? && channel_id = ?;');
-	
-	
+	}
+}
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 	
 	$data = json_decode($_POST['data']);
+	
 		$channelId = $data->channelId;
 		$userId = $data->userId;
-		$suscribers = $data->suscribers;
+		$suscribers = $data->suscribers;	
 		
+		
+// 		echo $userId;
+// 		echo $channelId;
+// 		echo $suscribers;
 		try {
-		$userData = new UserDAO();
-		
-		$userData->updateUserSuscribers($userId, $suscribers);
-		
-		
-		
-		}catch (PDOException $e){
-	
-		
-	}catch (Exception $e){
+			$userData = new UserDAO();
 			
-	}
-		
-		
-	echo $channelId;
-	echo($userId);
-	echo ($suscribers);
-		
+			$results = $userData->channelSuscribers($userId, $channelId, $suscribers);
+			
+			echo json_encode($results);
 	
-	
+		}catch (Exception $e){
+			$a = $e->getMessage();
+			
+			echo json_encode(array(
+					'update'  => false,
+					'error' => $a
+			));
+		}
 }
-	
-	
-	
-// $db = DBConnection::getDb();
-
+?>

@@ -21,8 +21,24 @@
 									  FROM users u JOIN countries c ON ( u.country_id = c.country_id)
 									  WHERE user_id = ?;";
 		
-		const UPDATE_USER_SUSCRIBERS_SQL = "UPDATE users SET subscribers = subscribers ?  WHERE user_id = ?;";
+		const UPDATE_USER_SUSCRIBERS_SQL = "UPDATE users SET subscribers = ?  WHERE user_id = ?;";
 		
+		const INSERT_CHANNEL_SUSCRIBER_SQL = "INSERT INTO channel_subscribers (`channel_id`, `user_id`) VALUES (?, ?);";
+		
+		const DELETE_CHANEL_SUSCRIBER_SQL = "DELETE FROM channel_subscribers WHERE channel_id = ? && user_id = ?;";
+		
+		const CHECK_FOR_EXIST_CHANNEL_SQL = "SELECT channel_id FROM channel_subscribers WHERE channel_id = ? && user_id  = ?;";
+		
+		const SELECT_ALL_ID_SUBSCRIBERS_WHER_USER_IS_FOLLOWED_SQL = "SELECT channel_id FROM channel_subscribers WHERE user_id = ? LIMIT 2 OFFSET ?;";
+		
+		const SELECT_USER_COUNT_VIDEOS_SQL = "SELECT COUNT(video_id) FROM videos WHERE user_id  = ?;";
+		
+		
+		
+		
+// 		const SELECT_CHANNE:S
+		
+
 		//<!-- =-=-=-=-=-=-=  DB CONECTION CREATE  =-=-=-=-=-=-= -->\\
 		public function __construct(){
 			$this->db = DBConnection::getDb();
@@ -150,20 +166,8 @@
 			}
 
 		}	
+	
 		
-		public function updateUserSuscribers ($userId ,$suscribers){
-			$pstmt = $this->db->prepare(UPDATE_USER_SUSCRIBERS_SQL);
-			if ($pstmt->execute($userId , $suscribers)){
-				
-				$result = $pstmt->fetchColumn();
-				
-				return $result;
-			}else {
-				throw new Exception("Changing failed");
-			}
-		}
-		
-
 		//-=-=-=-=-=-= get sorted users =-=-=-==-=-==--\\
 		/**
 		 * function gets sorted user
@@ -179,6 +183,155 @@
 				throw new Exception('Incorect data!');
 			}
 		}
+		
+//-=-=-=-=-=-=-=-=-=-=-=-=  Channel suscribers functions =-=-=-==-=-==-=-=-=-==-=-==--\\
+		/**
+		 * 
+		 * @param unknown $userId
+		 * @param unknown $suscribers
+		 * @return boolean
+		 */
+		
+
+		public function updateUserSuscribers ($userId ,$suscribers){
+			$pstmt = $this->db->prepare(self::UPDATE_USER_SUSCRIBERS_SQL);
+			if ($pstmt->execute(array($suscribers, $userId))){
+				return true;
+			}else {
+				return false;
+			}
+		}
+		
+		/**
+		 * Checks if the user has followed this channel
+		 *
+		 * @param unknown $userId - user wants to follow channel
+		 * @param unknown $channelId - ide for used channel
+		 * @return boolean
+		 */
+		function cheangeChannelFollowed ($userId, $channelId){
+			$pstmt = $this->db->prepare(self::CHECK_FOR_EXIST_CHANNEL_SQL);
+			$pstmt->execute(array($channelId, $userId));
+			
+			$result = $pstmt->fetchColumn();
+	
+			if ($result > 0){
+				return true;
+			}else {
+				return false;
+			}	
+		}
+		/**
+		 * Delete user following channel
+		 *
+		 * @param unknown $userId
+		 * @param unknown $channelId
+		 * @return boolean
+		 */
+		function deleteChannelSybscriber ($userId, $channelId){
+			$pstmt = $this->db->prepare(self::DELETE_CHANEL_SUSCRIBER_SQL);
+		
+			if ($pstmt->execute(array($channelId, $userId))){
+				return true;
+			}else {
+				throw new Exception("Unsubscribe from subscribers");
+			}
+		}
+		
+		/**
+		 * Add user to follows channel
+		 *
+		 * @param unknown $userId
+		 * @param unknown $channelId
+		 * @return boolean
+		 */
+		function addChannelSybscriber ($userId, $channelId){
+			$pstmt = $this->db->prepare(self::INSERT_CHANNEL_SUSCRIBER_SQL);
+			
+			if ($pstmt->execute(array($channelId, $userId))){
+				return true;
+			}else {
+				throw new Exception("Subscription unsuccessful");
+			}
+		}
+		
+		 
+		/**
+		 * The feature brings together all channel follower options
+		 * 
+		 * @param unknown $userId -
+		 * @param unknown $channelId
+		 * @param unknown $suscribers
+		 * @return boolean
+		 */
+		function channelSuscribers ($userId, $channelId, $suscribers){
+			try {
+				$this->db->beginTransaction();
+				if ($this->cheangeChannelFollowed($userId, $channelId)){
+					// 				$this->db->beginTransaction();
+					$suscribers--;
+					if ($this->deleteChannelSybscriber($userId, $channelId));
+					if ($this->updateUserSuscribers($channelId, $suscribers));
+					$this->db->commit();
+					
+					return  array( 
+							'upload' => "success",
+							'suscribers' => $suscribers,
+							'ko stna' => "dell"
+					);
+				
+				}else {
+					$suscribers++;
+					$this->addChannelSybscriber($userId, $channelId);
+					$this->updateUserSuscribers($channelId, $suscribers);
+					$this->db->commit();
+					
+					return  array(
+							'upload' => "success",
+							'suscribers' => $suscribers,
+							'ko stna' => "add"
+					);
+				}
+			}catch (Exception $e){
+					$error = $e->getMessage();
+				throw new Exception($error);
+			}
+		}
+		
+		//-=-=-=-=-=-= /Channel suscribers functions =-=-=-==-=-==--\\
+		
+		//-=-=-=-=-=-= USER Channels functions =-=-=-==-=-==--\\
+		function getVideosCount($userId){
+			$pstmt = $this->db->prepare(self::SELECT_USER_COUNT_VIDEOS_SQL);
+			
+			if ($pstmt->execute(array($userId))){
+				 $result = $pstmt->fetchColumn();
+				 
+				 return $result;
+			}
+			
+		}
+		
+		function àllFollowedPages($user_id , $offset){
+			$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
+			$pstmt = $this->db->prepare(self::SELECT_ALL_ID_SUBSCRIBERS_WHER_USER_IS_FOLLOWED_SQL);
+			
+			if ($pstmt->execute(array($user_id, $offset))){
+				$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+				
+				return $result;
+			}
+		}
+		
+		
+		
+		
+		function getInfAboutChannelsFollwed($user_id , $offset){
+				
+		}
+		
+		
+		
 		
 		
 	//end class

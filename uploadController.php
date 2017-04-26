@@ -73,5 +73,5 @@ function uploadedFile(){
 //-=-=-=-=-= check user login=-=-=-==--==--\\
 if (isset($_SESSION['user'])){
 	echo json_encode(uploadedFile());
-}else header('Location: index.php', true , 302);
+}else header('Location: view/index.php', true , 302);
 ?>

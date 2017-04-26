@@ -7,9 +7,6 @@ class Video implements JsonSerializable {
 	private $duration;
 	private $videoDate;
 	private $videoText;
-	private $videoLike;
-	private $videoDislike;
-	private $videView;
 	private $categoryId;
 	private $privacy;
 	private $userId;
@@ -26,8 +23,7 @@ class Video implements JsonSerializable {
 	}
 	
 	public function __construct($videoTitle, $videoPath, $videoPoster, $duration, $videoText, $privacy, $userId = null,
-			$categoryId = null, $musicGenre = null, $videoLike = 0, $videoDislike = 0, $videView = 0,
-			$videoId = null){
+			$categoryId = null, $musicGenre = null, $videoId = null){
 	
 				$this->setVideoTitle($videoTitle);
 				$this->setVideoPath($videoPath);
@@ -37,9 +33,6 @@ class Video implements JsonSerializable {
 				$this->setVideoDuration($duration);
 				$this->setCategoryId($categoryId);
 				$this->setMusicGenre($musicGenre);
-				$this->setVideoLike($videoLike);
-				$this->setVideoDislike($videoDislike);
-				$this->setVideoView($videView);
 				$this->setUserId($userId);
 	}
 	public function setVideoId($videoId){
@@ -83,24 +76,6 @@ class Video implements JsonSerializable {
 		}else throw new Exception("Incorect description! Maximum characters is 500");
 	}
 	
-	public function setVideoLike($videoLike){
-		if (is_numeric($videoLike) && $videoLike >= 0){
-			$this->videoLike = $videoLike;
-		}else throw new Exception("Incorect number of video like!");
-	}
-	
-	public function setVideoDislike($videoDislike){
-		if (is_numeric($videoDislike) && $videoDislike >= 0){
-			$this->videoDislike = $videoDislike;
-		}else throw new Exception("Incorect number of video dislike!");
-	}
-	
-	public function setVideoView($videView){
-		if (is_numeric($videView) && $videView >= 0){
-			$this->videView = $videView;
-		}else throw new Exception("Incorect number of video view!");
-	}
-	
 	public function setCategoryId($categoryId){
 		if (is_numeric($categoryId) && $categoryId > 0){
 			$this->categoryId = $categoryId;
@@ -130,8 +105,6 @@ class Video implements JsonSerializable {
 			$this->videoDate = $videoDate;
 		}else throw new Exception("Incorect video date!");
 	}
-	
-	
 }
 
 ?>

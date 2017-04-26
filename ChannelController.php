@@ -24,10 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 				
 	}catch (PDOException $e){
 	
-		header('Location: 404.php', true , 302);
+		header('Location: view/404.php', true , 302);
 	}catch (Exception $e){
 			
-		header('Location: 404.php', true , 302);
+		header('Location: view/404.php', true , 302);
 	}
 	
 	if (isset($_SESSION['user'])){
@@ -35,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 		$user = json_decode($_SESSION['user']);
 // 		$sessuionUserId = $user->userId;
 
-		include './logInHeader.php';
-		include './channel'.$page.'.php';
+		include 'view//logInHeader.php';
+		include 'view/channel'.$page.'.php';
 	} else{
-		include './header.php';
-		include './channel'.$page.'.php';
+		include 'view/header.php';
+		include 'view/channel'.$page.'.php';
 
 	}
 } else{

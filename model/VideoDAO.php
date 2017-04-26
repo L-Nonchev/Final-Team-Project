@@ -1,7 +1,7 @@
 <?php
 class VideoDAO implements IVideoDAO{
 	private $db;
-	const ADD_VIDEO_SQL = 'INSERT INTO videos VALUES(null, ?,?,?,?,?,?, 0,0,0,?,?,?,?);';
+	const ADD_VIDEO_SQL = 'INSERT INTO videos VALUES(null, ?,?,?,?,?,?,?,?,?,?);';
 	const OPEN_VIDEO = '';
 	
 	public function __construct(){
@@ -53,7 +53,7 @@ class VideoDAO implements IVideoDAO{
 	 */
 	public function getSortedVideos($sortBy, $limit){
 		try {
-			return $this->db->query("SELECT  video_id, title , poster_path , duration , views 
+			return $this->db->query("SELECT  video_id, title , poster_path , duration 
 									FROM videos 
 									WHERE is_privacy = false
 									ORDER BY $sortBy DESC LIMIT $limit;")->fetchAll(PDO::FETCH_ASSOC);
@@ -65,22 +65,9 @@ class VideoDAO implements IVideoDAO{
 	
 	//-=-=-=-=-=-= get videos for user by id=-=-=-==-=-==--\\
 	public function getChannelVideos ($userId, $ofset, $order, $privacy){
-		
-		switch ($order) {
-			
-			case "1234": $order = 'video_id DESC' ; break;
-			case "2345": $order = 'video_id' ; break;
-			case "3456": $order = 'views DESC' ; break;
-			case "4567": $order = 'likes DESC' ; break;
-			case "5678": $order = 'duration' ; break;
-			
-			default: $order = 'video_id DESC' ; break;
-		}
-		
-		
-		
+				
 		$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
-		$pstmt = $this->db->prepare("SELECT video_id, title , poster_path , duration , views
+		$pstmt = $this->db->prepare("SELECT video_id, title , poster_path , duration
 				FROM videos WHERE user_id = ? && is_privacy = ? ORDER BY $order  LIMIT 8 OFFSET ?;");
 		$pstmt->execute(array($userId , $privacy , $ofset));
 		$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);

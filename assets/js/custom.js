@@ -2,6 +2,46 @@
  * Created by Alex on 12.08.2016.
  */
 "use strict";
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Add to ajax create video elements options to add Watch later and add to Playlist.
+function addAjaxVideoOptions() {
+    // Video block hover
+    var $plus = $( '<div class="plus"><i class="cvicon-cv-plus" aria-hidden="true"></i></div>' );
+    var $plusDetails = $( '<div class="plus-details">\
+                                        <ul >\
+                                            <li><a href="LoginController.php"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Login to watch video later</a></li>\
+                                        </ul>\
+                                    </div>' );
+
+    $(".videolist .v-img").hover( function() {
+    	$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ checkLoginUser: 1 }, 
+    			function(data){
+    		if(data==true){
+        		$plusDetails = $( '<div class="plus-details">\
+                        <ul >\
+                            <li><a href="#"><i class="cvicon-cv-watch-later" aria-hidden="true" onclick ="watchLater()"></i> Watch Later</a></li>\
+                            <li><a href="#"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Add to Playlist</a></li>\
+                        </ul>\
+                    </div>' );
+    		}
+    	});
+            $(this).append($plus);
+            $(".plus").hover( function() {
+            	
+                $(this).parent().append($plusDetails);                
+                } , function(){
+
+                }
+            );
+
+        } , function(){
+            $(this).find(".plus").remove();
+            $(this).find(".plus-details").remove();
+        }
+    );
+}
+
 $( document ).ready(function() {
 
 

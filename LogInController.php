@@ -10,7 +10,7 @@
 	
 	// chech for exist sesion ande redirec to index.php
 	if (isset($_SESSION['user'])){
-		header('Location: ./index.php ' , true , 302);
+		header('Location: ./HomePageController.php ' , true , 302);
 		die();
 	}
 	
@@ -38,7 +38,7 @@
 							
 						$_SESSION['user'] = json_encode($user);
 							
-						header('Location: ./index.php', true ,302);
+						header('Location: ./HomePageController.php', true ,302);
 					}
 				
 				

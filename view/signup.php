@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-lg-3 col-sm-10 col-xs-10">
                         <ul class="list-inline menu">
-                       		 <li><a href="./index.php">Home Page</a></li>
+                       		 <li><a href="./HomePageController.php">Home Page</a></li>
                         </ul>
                     </div>
                     <div class="visible-xs visible-sm clearfix"></div>
@@ -137,6 +137,6 @@
 
 <!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
 <?php 
-	require './footer.php';
+	require 'view/footer.php';
 	
 ?>
