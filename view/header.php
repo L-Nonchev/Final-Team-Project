@@ -14,6 +14,8 @@
 	<!-- =-=-=-=-=-=-= Bootstrap core CSS =-=-=-=-=-=-= -->
 	<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+	<!-- player -->
+    <link rel="stylesheet" href="assets/js/vendor/player/johndyer-mediaelement-89793bc/build/mediaelementplayer.min.css" />
 	
 	<!-- =-=-=-=-=-=-= Theme CSS =-=-=-=-=-=-= -->
 	<link href="assets/css/style.css" rel="stylesheet">

@@ -127,3 +127,20 @@ if (deleteVideo){
 		});
 	}
 }
+
+var showLess = document.getElementById('showLess');
+if (showLess){
+	showLess.onclick = function(){
+		document.getElementById('aboutVideo').style.display = 'none';
+		showMore.style.display = 'block'
+			showLess.style.display = 'none';
+	}
+}
+var showMore = document.getElementById('showMore');
+if (showMore){
+	showMore.onclick = function(){
+		document.getElementById('aboutVideo').style.display = 'block';
+		showMore.style.display = 'none'
+		showLess.style.display = 'block';
+	}
+}

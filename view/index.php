@@ -46,7 +46,7 @@
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
                                     <div class="v-img" id=<?=$newVideos[0]['video_id']??'';?>>
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[0]['video_id']??'';?>"><img src="assets/images/video-poster/<?=($newVideos[0]['poster_path'])??'';?>" alt="<?=($newVideos[0]['title'])??'';?>" ></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[0]['video_id']??'';?>"><img src="assets/images/video-poster/<?=($newVideos[0]['poster_path'])??'';?>" alt="<?=($newVideos[0]['title'])??'';?>" ></a>
                                         <div class="time"><?=($newVideos[0]['duration'])??'';?></div>
                                     </div>
                                     <div class="v-desc">
@@ -60,8 +60,8 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[1]['video_id']??''?>"><img src="assets/images/video-poster/<?=$newVideos[1]['poster_path']??''?>" alt="<?=$newVideos[1]['title']??''?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[1]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[1]['video_id']??''?>"><img src="assets/images/video-poster/<?=$newVideos[1]['poster_path']??''?>" alt="<?=$newVideos[1]['title']??''?>" ></a>
                                         <div class="time"><?=$newVideos[1]['duration']??''?></div>
                                     </div>
                                     <div class="v-desc">
@@ -75,8 +75,8 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                             	<div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[2]['video_id']??''?>"><img src="assets/images/video-poster/<?=$newVideos[2]['poster_path']??''?>" alt="<?=$newVideos[2]['title']??''?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[2]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[2]['video_id']??''?>"><img src="assets/images/video-poster/<?=$newVideos[2]['poster_path']??''?>" alt="<?=$newVideos[2]['title']??''?>" ></a>
                                         <div class="time"><?=$newVideos[2]['duration']??''?></div>
                                     </div>
                                     <div class="v-desc">
@@ -90,12 +90,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[3]['video_id']??''?>"><img src="assets/images/video-poster/<?=$newVideos[3]['poster_path']??''?>" alt="<?=$newVideos[3]['title']??''?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[3]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[3]['video_id']??''?>"><img src="assets/images/video-poster/<?=$newVideos[3]['poster_path']??''?>" alt="<?=$newVideos[3]['title']??''?>" ></a>
                                         <div class="time"><?=$newVideos[3]['duration']??''?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[3]['video_id']??''?>"><?=$newVideos[3]['title']??''?></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[3]['video_id']??''?>"><?=$newVideos[3]['title']??''?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$newVideos[3]['views']??''?> views.</span>
@@ -105,12 +105,12 @@
                             
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[4]['video_id']??''?>"><img src="assets/images/video-poster/<?=$newVideos[4]['poster_path']??'';?>" alt="<?=$newVideos[4]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[4]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[4]['video_id']??''?>"><img src="assets/images/video-poster/<?=$newVideos[4]['poster_path']??'';?>" alt="<?=$newVideos[4]['title']??'';?>" ></a>
                                         <div class="time"><?=$newVideos[4]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[4]['video_id']??'';?>"><?=$newVideos[4]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[4]['video_id']??'';?>"><?=$newVideos[4]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span> <?=$newVideos[4]['views']??'';?> views.</span>
@@ -120,12 +120,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[5]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[5]['poster_path']??'';?>" alt="<?=$newVideos[5]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[5]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[5]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[5]['poster_path']??'';?>" alt="<?=$newVideos[5]['title']??'';?>" ></a>
                                         <div class="time"><?=$newVideos[5]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[5]['video_id']??'';?>"><?=$newVideos[5]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[5]['video_id']??'';?>"><?=$newVideos[5]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$newVideos[5]['views']??'';?> views.</span>
@@ -135,12 +135,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                             	<div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[6]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[6]['poster_path']??'';?>" alt="<?=$newVideos[6]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[6]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[6]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[6]['poster_path']??'';?>" alt="<?=$newVideos[6]['title']??'';?>" ></a>
                                         <div class="time"><?=$newVideos[6]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[6]['video_id']??'';?>"><?=$newVideos[6]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[6]['video_id']??'';?>"><?=$newVideos[6]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$newVideos[6]['views']??'';?> views.</span>
@@ -150,12 +150,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[7]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[7]['poster_path']??'';?>" alt="<?=$newVideos[7]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[7]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[7]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[7]['poster_path']??'';?>" alt="<?=$newVideos[7]['title']??'';?>" ></a>
                                         <div class="time"><?=$newVideos[7]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[7]['video_id']??'';?>"><?=$newVideos[7]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[7]['video_id']??'';?>"><?=$newVideos[7]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$newVideos[7]['views']??'';?> views.</span>
@@ -165,12 +165,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[8]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[8]['poster_path']??'';?>" alt="<?=$newVideos[8]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[8]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[8]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[8]['poster_path']??'';?>" alt="<?=$newVideos[8]['title']??'';?>" ></a>
                                         <div class="time"><?=$newVideos[8]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[8]['video_id']??'';?>"><?=$newVideos[8]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[8]['video_id']??'';?>"><?=$newVideos[8]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$newVideos[8]['views']??'';?> views.</span>
@@ -180,12 +180,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[9]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[9]['poster_path']??'';?>" alt="<?=$newVideos[9]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[9]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[9]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[9]['poster_path']??'';?>" alt="<?=$newVideos[9]['title']??'';?>" ></a>
                                         <div class="time"><?=$newVideos[9]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[9]['video_id']??'';?>"><?=$newVideos[9]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[9]['video_id']??'';?>"><?=$newVideos[9]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$newVideos[9]['views']??'';?> views.</span>
@@ -195,12 +195,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[10]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[10]['poster_path']??'';?>" alt="<?=$newVideos[10]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[10]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[10]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[10]['poster_path']??'';?>" alt="<?=$newVideos[10]['title']??'';?>" ></a>
                                         <div class="time"><?=$newVideos[10]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[10]['video_id']??'';?>"><?=$newVideos[10]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[10]['video_id']??'';?>"><?=$newVideos[10]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$newVideos[10]['views']??'';?> views.</span>
@@ -210,12 +210,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[11]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[11]['poster_path']??'';?>" alt="<?=$newVideos[11]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$newVideos[11]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[11]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$newVideos[11]['poster_path']??'';?>" alt="<?=$newVideos[11]['title']??'';?>" ></a>
                                         <div class="time"><?=$newVideos[11]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$newVideos[11]['video_id']??'';?>"><?=$newVideos[11]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$newVideos[11]['video_id']??'';?>"><?=$newVideos[11]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$newVideos[11]['views']??'';?> views.</span>
@@ -258,8 +258,8 @@
                         <div class="row">
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[0]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[0]['poster_path']??'';?>" alt="<?=$mostViewed[0]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[0]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[0]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[0]['poster_path']??'';?>" alt="<?=$mostViewed[0]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[0]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
@@ -273,8 +273,8 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[1]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[1]['poster_path']??'';?>" alt="<?=$mostViewed[1]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[1]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[1]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[1]['poster_path']??'';?>" alt="<?=$mostViewed[1]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[1]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
@@ -288,12 +288,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                             	<div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[2]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[2]['poster_path']??'';?>" alt="<?=$mostViewed[2]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[2]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[2]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[2]['poster_path']??'';?>" alt="<?=$mostViewed[2]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[2]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[2]['video_id']??'';?>"><?=$mostViewed[2]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[2]['video_id']??'';?>"><?=$mostViewed[2]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$mostViewed[2]['views']??'';?> views.</span>
@@ -303,12 +303,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[3]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[3]['poster_path']??'';?>" alt="<?=$mostViewed[3]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[3]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[3]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[3]['poster_path']??'';?>" alt="<?=$mostViewed[3]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[3]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[3]['video_id']??'';?>"><?=$mostViewed[3]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[3]['video_id']??'';?>"><?=$mostViewed[3]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$mostViewed[3]['views']??'';?> views.</span>
@@ -318,8 +318,8 @@
                             
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[4]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[4]['poster_path']??'';?>" alt="<?=$mostViewed[4]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[4]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[4]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[4]['poster_path']??'';?>" alt="<?=$mostViewed[4]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[4]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
@@ -333,12 +333,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[5]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[5]['poster_path']??'';?>" alt="<?=$mostViewed[5]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[5]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[5]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[5]['poster_path']??'';?>" alt="<?=$mostViewed[5]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[5]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[5]['video_id']??'';?>"><?=$mostViewed[5]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[5]['video_id']??'';?>"><?=$mostViewed[5]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$mostViewed[5]['views']??'';?> views.</span>
@@ -348,12 +348,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                             	<div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[6]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[6]['poster_path']??'';?>" alt="<?=$mostViewed[6]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[6]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[6]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[6]['poster_path']??'';?>" alt="<?=$mostViewed[6]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[6]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[6]['video_id']??'';?>"><?=$mostViewed[6]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[6]['video_id']??'';?>"><?=$mostViewed[6]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$mostViewed[6]['views']??'';?> views.</span>
@@ -363,12 +363,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[7]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[7]['poster_path']??'';?>" alt="<?=$mostViewed[7]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[7]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[7]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[7]['poster_path']??'';?>" alt="<?=$mostViewed[7]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[7]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[7]['video_id']??'';?>"><?=$mostViewed[7]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[7]['video_id']??'';?>"><?=$mostViewed[7]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$mostViewed[7]['views']??'';?> views.</span>
@@ -378,12 +378,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[8]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[8]['poster_path']??'';?>" alt="<?=$mostViewed[8]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[8]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[8]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[8]['poster_path']??'';?>" alt="<?=$mostViewed[8]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[8]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[8]['video_id']??'';?>"><?=$mostViewed[8]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[8]['video_id']??'';?>"><?=$mostViewed[8]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$mostViewed[8]['views']??'';?> views.</span>
@@ -393,12 +393,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[9]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[9]['poster_path']??'';?>" alt="<?=$mostViewed[9]['title']??'';?>" ></a>
-                                        <div class="time"><?=$mostViewed[8]['duration']??'';?></div>
+                                    <div class="v-img" id=<?=$mostViewed[9]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[9]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[9]['poster_path']??'';?>" alt="<?=$mostViewed[9]['title']??'';?>" ></a>
+                                        <div class="time"><?=$mostViewed[9]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[9]['video_id']??'';?>"><?=$mostViewed[9]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[9]['video_id']??'';?>"><?=$mostViewed[9]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$mostViewed[9]['views']??'';?> views.</span>
@@ -408,12 +408,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[10]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[10]['poster_path']??'';?>" alt="<?=$mostViewed[10]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[10]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[10]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[10]['poster_path']??'';?>" alt="<?=$mostViewed[10]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[10]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[10]['video_id']??'';?>"><?=$mostViewed[10]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[10]['video_id']??'';?>"><?=$mostViewed[10]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$mostViewed[10]['views']??'';?> views.</span>
@@ -423,12 +423,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[11]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[11]['poster_path']??'';?>" alt="<?=$mostViewed[11]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$mostViewed[11]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[11]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$mostViewed[11]['poster_path']??'';?>" alt="<?=$mostViewed[11]['title']??'';?>" ></a>
                                         <div class="time"><?=$mostViewed[11]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$mostViewed[11]['video_id']??'';?>"><?=$mostViewed[11]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$mostViewed[11]['video_id']??'';?>"><?=$mostViewed[11]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$mostViewed[11]['views']??'';?> views.</span>
@@ -471,12 +471,12 @@
                         <div class="row">
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[0]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[0]['poster_path']??'';?>" alt="<?=$popularVideo[0]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[0]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[0]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[0]['poster_path']??'';?>" alt="<?=$popularVideo[0]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[0]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[0]['video_id']??'';?>"><?=$popularVideo[0]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[0]['video_id']??'';?>"><?=$popularVideo[0]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span> <?=$popularVideo[0]['views']??'';?> views.</span>
@@ -486,12 +486,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[1]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[1]['poster_path']??'';?>" alt="<?=$popularVideo[1]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[1]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[1]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[1]['poster_path']??'';?>" alt="<?=$popularVideo[1]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[1]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[1]['video_id']??'';?>"><?=$popularVideo[1]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[1]['video_id']??'';?>"><?=$popularVideo[1]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[1]['views']??'';?> views.</span>
@@ -501,12 +501,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                             	<div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[2]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[2]['poster_path']??'';?>" alt="<?=$mostViewed[2]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[2]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[2]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[2]['poster_path']??'';?>" alt="<?=$mostViewed[2]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[2]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[2]['video_id']??'';?>"><?=$popularVideo[2]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[2]['video_id']??'';?>"><?=$popularVideo[2]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[2]['views']??'';?> views.</span>
@@ -516,12 +516,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[3]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[3]['poster_path']??'';?>" alt="<?=$popularVideo[3]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[3]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[3]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[3]['poster_path']??'';?>" alt="<?=$popularVideo[3]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[3]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[3]['video_id']??'';?>"><?=$popularVideo[3]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[3]['video_id']??'';?>"><?=$popularVideo[3]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[3]['views']??'';?> views.</span>
@@ -531,12 +531,12 @@
                             
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[4]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[4]['poster_path']??'';?>" alt="<?=$popularVideo[4]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[4]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[4]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[4]['poster_path']??'';?>" alt="<?=$popularVideo[4]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[4]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[4]['video_id']??'';?>"><?=$popularVideo[4]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[4]['video_id']??'';?>"><?=$popularVideo[4]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span> <?=$popularVideo[4]['views']??'';?> views.</span>
@@ -546,12 +546,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[5]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[5]['poster_path']??'';?>" alt="<?=$popularVideo[5]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[5]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[5]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[5]['poster_path']??'';?>" alt="<?=$popularVideo[5]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[5]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[5]['video_id']??'';?>"><?=$popularVideo[5]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[5]['video_id']??'';?>"><?=$popularVideo[5]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[5]['views']??'';?> views.</span>
@@ -561,12 +561,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                             	<div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[6]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[6]['poster_path']??'';?>" alt="<?=$popularVideo[6]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[6]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[6]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[6]['poster_path']??'';?>" alt="<?=$popularVideo[6]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[6]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[6]['video_id']??'';?>"><?=$popularVideo[6]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[6]['video_id']??'';?>"><?=$popularVideo[6]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[6]['views']??'';?> views.</span>
@@ -576,12 +576,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[7]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[7]['poster_path']??'';?>" alt="<?=$popularVideo[7]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[7]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[7]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[7]['poster_path']??'';?>" alt="<?=$popularVideo[7]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[7]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[7]['video_id']??'';?>"><?=$popularVideo[7]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[7]['video_id']??'';?>"><?=$popularVideo[7]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[7]['views']??'';?> views.</span>
@@ -591,12 +591,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[8]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[8]['poster_path']??'';?>" alt="<?=$popularVideo[8]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[8]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[8]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[8]['poster_path']??'';?>" alt="<?=$popularVideo[8]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[8]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[8]['video_id']??'';?>"><?=$popularVideo[8]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[8]['video_id']??'';?>"><?=$popularVideo[8]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[8]['views']??'';?> views.</span>
@@ -606,12 +606,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[9]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[9]['poster_path']??'';?>" alt="<?=$popularVideo[9]['title']??'';?>" ></a>
-                                        <div class="time"><?=$popularVideo[8]['duration']??'';?></div>
+                                    <div class="v-img" id=<?=$popularVideo[9]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[9]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[9]['poster_path']??'';?>" alt="<?=$popularVideo[9]['title']??'';?>" ></a>
+                                        <div class="time"><?=$popularVideo[9]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[9]['video_id']??'';?>"><?=$popularVideo[9]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[9]['video_id']??'';?>"><?=$popularVideo[9]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[9]['views']??'';?> views.</span>
@@ -621,12 +621,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[10]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[10]['poster_path']??'';?>" alt="<?=$popularVideo[10]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[10]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[10]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[10]['poster_path']??'';?>" alt="<?=$popularVideo[10]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[10]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[10]['video_id']??'';?>"><?=$popularVideo[10]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[10]['video_id']??'';?>"><?=$popularVideo[10]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[10]['views']??'';?> views.</span>
@@ -636,12 +636,12 @@
 
                             <div class="col-lg-3 col-sm-6 videoitem">
                                 <div class="b-video last-row">
-                                    <div class="v-img">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[11]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[11]['poster_path']??'';?>" alt="<?=$popularVideo[11]['title']??'';?>" ></a>
+                                    <div class="v-img" id=<?=$popularVideo[11]['video_id']??'';?>>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[11]['video_id']??'';?>"><img src="assets/images/video-poster/<?=$popularVideo[11]['poster_path']??'';?>" alt="<?=$popularVideo[11]['title']??'';?>" ></a>
                                         <div class="time"><?=$popularVideo[11]['duration']??'';?></div>
                                     </div>
                                     <div class="v-desc">
-                                        <a href="singleVideo.php?físeán%=<?=$popularVideo[11]['video_id']??'';?>"><?=$popularVideo[11]['title']??'';?></a>
+                                        <a href="VideoController.php?físeán%=<?=$popularVideo[11]['video_id']??'';?>"><?=$popularVideo[11]['title']??'';?></a>
                                     </div>
                                     <div class="v-views">
                                          <span class="v-percent"><span class="v-circle"></span><?=$popularVideo[11]['views']??'';?> views.</span>

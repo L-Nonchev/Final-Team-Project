@@ -4339,3 +4339,11 @@ i.cv:hover {
 	float: right;
 	display: none;	
 }
+#showLess{
+	cursor: pointer;
+}
+
+#showMore{
+	cursor: pointer;
+	display: none;
+}

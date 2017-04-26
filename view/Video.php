@@ -1,163 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="assets/favicon.png">
-
-    <title>Circle Video | Single video</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- player -->
-    <link rel="stylesheet" href="assets/js/vendor/player/johndyer-mediaelement-89793bc/build/mediaelementplayer.min.css" />
-
-    <!-- Theme CSS -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/font-circle-video.css" rel="stylesheet">
-
-    <!-- font-family: 'Hind', sans-serif; -->
-    <link href='https://fonts.googleapis.com/css?family=Hind:400,300,500,600,700|Hind+Guntur:300,400,500,700' rel='stylesheet' type='text/css'>
-</head>
-
-<body class="single-video light">
-<!-- logo, menu, search, avatar -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="btn-color-toggle">
-            <img src="assets/images/icon_bulb_light.png" alt="">
-        </div>
-        <div class="navbar-container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-1 col-sm-2 col-xs-2">
-                        <a class="navbar-brand" href="index.html"><img src="assets/images/logo.svg" alt="Project name" class="logo" /></a>
-                    </div>
-					<div class="col-lg-3 col-sm-10 col-xs-10">
-						<ul class="list-inline menu">
-							<li class="pages color-active">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-								<ul class="dropdown-menu">
-									<li><a href="./index.php">Home Page</a></li>
-<!-- 											<li><a href="upload.html">Upload Video Page</a></li> -->
-<!-- 											<li><a href="upload-edit.html">Upload Video Edit Page</a></li> -->
-									<li><a href="search.html">Searched Videos Page</a></li>
-									<li><a href="channels.html">Channels Page</a></li>
-									<li><a href="singleVideo.php">Single Videos Page WithTabs</a></li>
-									<li><a href="singleVideoPlaylist.php">Single Videos Page With Playlist</a></li>
-									<li><a href="categories.html">Browse Categories Page</a></li>
-									<li><a href="categories_side_menu.html">Browse Categories Side Menu Page</a></li>
-									<li><a href="subscription.html">Subscription Page</a></li>
-								</ul></li>
-							<li><a href="./categories.php">Categories</a></li>
-							<li><a href="./channels.php">Channels</a></li>
-						</ul>
-					</div>
-                    <div class="visible-xs visible-sm clearfix"></div>
-                    <div class="col-lg-6 col-sm-8 col-xs-12">
-                        <form action="search.html" method="post">
-                            <div class="topsearch">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
-                                    <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="cv cvicon-cv-video-file"></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>/
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#"><i class="cv cvicon-cv-relevant"></i> Relevant</a></li>
-                                            <li><a href="#"><i class="cv cvicon-cv-calender"></i> Recent</a></li>
-                                            <li><a href="#"><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
-                                            <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
-                                            <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
-                                        </ul>
-                                    </div><!-- /btn-group -->
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="visible-xs clearfix"></div>
-   					<div class="col-lg-2 col-sm-4  col-xs-8">
-						<div class="avatar pull-left">
-                            <img src="slaves1.jpg" alt="avatar"  	/>
-                            <span class="status"></span>
-                        </div>
-						<div class="selectuser pull-left">
-							<div class="btn-group pull-right dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="true"> Bailey <span class="caret"></span></button>
-								<ul class="dropdown-menu">
-									<li><a href="./channel.php">My Channel</a></li>
-									<li><a href="./signup.php">Sign up</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-                </div>
-                <div>
-                    <a href="upload.html">
-                        <div class="upload-button">
-                            <i class="cv cvicon-cv-upload-video"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /logo -->
-
-<!-- goto -->
-<div class="container-fluid">
-	<div class="row">
-		<div class="navbar-container2">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-1 col-sm-2 col-xs-12">
-						<div class="goto">Go to:</div>
-					</div>
-					<div class="col-lg-3  col-sm-10 col-xs-12">
-						<div class="h-icons">
-							<a href="#"><i class="cv cvicon-cv-liked" data-toggle="tooltip" data-placement="top" title="Liked Videos"></i></a> 
-							<a href="#"><i class="cv cvicon-cv-watch-later" data-toggle="tooltip" data-placement="top" title="Watch Later"></i></a> 
-							<a href="#"><i class="cv cvicon-cv-play-circle" data-toggle="tooltip" data-placement="top" title="Saved Playlist"></i></a> 
-							<a href="history.php"><i class="cv cvicon-cv-history" data-toggle="tooltip" data-placement="top" title="History"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- /goto -->
 
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-xs-12 col-sm-12">
                 <div class="sv-video">
-                    <video poster="./maxresdefault.jpg" style="width:100%;height:100%;" controls="controls" width="100%" height="100%" autoplay="autoplay">
-                        <source src="Ariana Grande - Side To Side ft. Nicki Minaj.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+                    <video style="width:100%;height:100%;" controls="controls" width="100%" height="100%" autoplay="autoplay">
+                        <source src="videos/<?=$video[0]['path']??''?>" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
                     </video>
                     <!-- <span class="sv-psingle-videolay"><i class="cv cvicon-cv-play"></i></span> -->
                 </div>
-                <h1><a href="#">Analyzing the Mass Effect: Andromeda E3 2016 Trailer</a></h1>
+                <h1><a href="#"><?=$video[0]['title']??''?></a></h1>
                 <div class="author">
                     <a href="#"><img src="slaves1.jpg" alt="" class="sv-avatar"></a>
                     <div class="sv-name">
-                        <div><a href="#">NaughtyDog</a> . 52 Videos</div>
+                        <div><a href="#"><?=$video[0]['username']??''?></a> . <?=$countOfVideo??''?></div>
                         <div class="c-sub">
                         <a href=""></a>
                         	 <button class="c-f">
                                Subscribe
                             </button>
                             <div class="c-s">
-                                22,548,145
+                                <?=$video[0]['subscribers']??''?>
                             </div>
                             
                             <div class="clearfix"></div>
@@ -165,15 +28,15 @@
                     </div>
                     <div class="sv-views">
                         <div class="sv-views-count">
-                            2,729,347 views
+                            <?=$video[0]['views']??''?> views
                         </div>
                         <div class="sv-views-progress">
                             <div class="sv-views-progress-bar"></div>
                         </div>
                         <div class="sv-views-stats">
-                            <span class="percent">95%</span>
-                            <span class="green"><span class="circle"></span> 39,852</span>
-                            <span class="grey"><span class="circle"></span> 852</span>
+                            <span class="percent"> <?=$percent??''?> %</span>
+                            <span class="green"><span class="circle"></span>  <?=$video[0]['likes']??''?></span>
+                            <span class="grey"><span class="circle"></span>  <?=$video[0]['dislikes']??''?></span>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -204,39 +67,32 @@
                         <div class="tabs-content">
                             <!-- BEGIN tab-1 -->
                             <div class="tab-1">
-                                <div>
-                                    <h4>Cast:</h4>
-                                    <p>Nathan Drake , Victor Sullivan , Sam Drake , Elena Fisher</p>
-
+                                <div id = 'aboutVideo'>
                                     <h4>Category :</h4>
-                                    <p>Gaming , PS4 Exclusive , Gameplay , 1080p</p>
+                                    <p><?=$video[0]['category_name']??''?></p>
 
                                     <h4>About :</h4>
-                                    <p>Three years after the events of Uncharted 3: Drake's Deception, Nathan Drake, now retired as a fortune hunter, has settled into a normal life with his wife Elena Fisher. His world is then turned upside down when his older brother Sam, long believed to be dead, suddenly reappears seeking Drake's help.</p>
-
-                                    <h4>Tags :</h4>
-                                    <p class="sv-tags">
-                                        <span><a href="#">Uncharted 4</a></span>
-                                        <span><a href="#">Playstation 4</a></span>
-                                        <span><a href="#">Gameplay</a></span>
-                                        <span><a href="#">1080P</a></span>
-                                        <span><a href="#">ps4Share</a></span>
-                                        <span><a href="#">+ 6</a></span>
-                                    </p>
+                                    <p><?=$video[0]['text']??''?></p>                
 
                                     <div class="row date-lic">
                                         <div class="col-lg-6">
                                             <h4>Release Date:</h4>
-                                            <p>2 Days ago</p>
+                                            <p><?=$printDate??''?></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    
+                                <div></div>
+                                <div id = 'showLess'>
+	                                <div class="clearfix"></div>
+	                                <div class="showless">
+	                                    <a >Show Less</a>
+	                                </div>
                                 </div>
-                                <div class="clearfix"></div>
-                                <div class="showless">
-                                    <a href="#">Show Less</a>
+                                <div id = 'showMore'>
+	                                <div class="clearfix"></div>
+	                                <div class="showless">
+	                                    <a >Show More</a>
+	                                </div>
                                 </div>
                             </div>
                             <!-- END tab-1 -->
