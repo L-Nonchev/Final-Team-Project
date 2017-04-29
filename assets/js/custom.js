@@ -4,12 +4,17 @@
 
 	function watchLater(){
 		var videoId = ($(this).parent().parent().parent().attr('id'));
+		if (!videoId){
+			var videoId = $('#qsf').val();
+		}
 		$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ videoId: videoId }, 
 				function(data){
 			console.log(videoId);
 			var response = JSON.parse(data);
 			if(response['success']){
-					
+				alert('The video successful add to whatch later!');
+			}else {
+				alert('Please, login to watched video later!')
 			}
 		});
 	}

@@ -312,7 +312,7 @@
 			
 		}
 		
-		function àllFollowedPages($user_id , $offset){
+		function ï¿½llFollowedPages($user_id , $offset){
 			$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 			$pstmt = $this->db->prepare(self::SELECT_ALL_ID_SUBSCRIBERS_WHER_USER_IS_FOLLOWED_SQL);
 			

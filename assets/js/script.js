@@ -7,6 +7,69 @@ function showMusicGenre(){
 	}
 }
 
+//-=-=-=-=-=-=--=---=-=add video comment =-=-=-=-=-=-=--=-=-==-=-=\\
+var addVideoComment = document.getElementById('addVideoComent');
+if (addVideoComment){
+	addVideoComment.onclick = function(){
+		var comment = $('#videoComent').val();
+		var videoId = $('#qsf').val();
+		$.ajax({
+			url: 'ajax/checkVideoDetails.php',
+	         type: 'POST',
+	         dataType: "text",
+	         contentType: "application/x-www-form-urlencoded",
+	         data: {comment: comment, videoId: videoId},                        
+	         statusCode: {
+	            401:function() { alert("Please, login to add comments!"); },
+	            400:function() { alert("Incorect coment! Max simbol 500");},
+	          },
+	         success:function(data) {
+	        	  	console.log(data);
+	        	  	var response = JSON.parse(data);
+	             	$( ".comments-list" ).prepend( "<div class='cl-comment'><div class='cl-avatar'><a href='ChannelController.php?@$^^%@@^@^$^@="+response.userId+"&page=Video'><img width='70px' src='assets/images/user-pictures/"+response.userPic+"' alt=''></a></div><div class='cl-comment-text'><div class='cl-name-date'><a href='ChannelController.php?@$^^%@@^@^$^@="+response.userId+"&page=Video'>"+response.username+"</a> . now</div><div class='cl-text'>"+comment+"</div><div class='cl-meta'><a href='#'>Reply</a></div></div><div class='clearfix'></div></div>" );
+	          }
+		 });
+	}
+}
+
+
+//-=-=-=-=-=-=--=---=-=like video =-=-=-=-=-=-=--=-=-==-=-=\\
+function likeVideo(){
+	var videoId = $('#qsf').val();
+	 $.ajax({
+		 url: 'ajax/checkVideoDetails.php',
+         type: 'POST',
+         dataType: "text",
+         contentType: "application/x-www-form-urlencoded",
+         data: {likesVideoId: videoId},                        
+         statusCode: {
+            401:function() { alert("Please, login to liked video!"); },
+            400:function() { alert("Bad request!"); },
+            200:function() { $('#likeVideo').css("border", "1px solid #ea2c5a"); }
+          }
+	 });
+}
+
+//-=-=-=-=-=-=--=---=-=dislike video =-=-=-=-=-=-=--=-=-==-=-=\\
+function disLikeVideo(){
+	var videoId = $('#qsf').val();
+	 $.ajax({
+         url: 'ajax/checkVideoDetails.php',
+         type: 'POST',
+         dataType: "text",
+         contentType: "application/x-www-form-urlencoded",
+         data: {disLikesVideoId: videoId},                        
+         statusCode: {
+             401:function() { alert("Please, login to dislike video!"); },
+             400:function() { alert("Bad request!"); },
+             200:function() { $('#disLikeVideo').css("border", "1px solid red"); }
+           },
+          success:function(data) {
+       	  	console.log(data);
+          }
+	 });
+}
+
 //-=-=-=-=-=-=--=---=-=add video in DB =-=-=-=-=-=-=--=-=-==-=-=\\
 function uploded() {
 	var videoTitle = document.getElementById('title').value;
@@ -33,7 +96,7 @@ function uploded() {
 	var xhr = new XMLHttpRequest();
 	var dataSend = 'video=' + JSON.stringify({title:videoTitle, pathVideo:videoPath, posterVideo:videoPoster, duration:videoDuration, description:videoText, category:videoCategory, genre:musicGenre, privacy:isPrivace});
 	
-	xhr.open('POST', 'http://localhost/Final-Team-Project/ajax/addVideoController.php', true);
+	xhr.open('POST', 'ajax/addVideoController.php', true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	
 	xhr.send(dataSend);
@@ -63,7 +126,7 @@ $('#UploadForm').on('click', function() {
     form_data.append('video', file_data);
     
     $.ajax({
-                url: 'http://localhost/Final-Team-Project/uploadController.php',
+                url: 'uploadController.php',
                 dataType: "text", 
                 cache: false,
                 contentType: false,
@@ -103,7 +166,7 @@ if(title){
 	title.onblur = function() {
 	
 		var title = $('#title').val();
-		$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ title: title }, 
+		$.post('ajax/checkVideoDataController.php',{ title: title }, 
 				function(data){
 			var response = JSON.parse(data);
 			if (response['error']){
@@ -119,10 +182,9 @@ if(title){
 //-=-=-=-=-=-=--=---=-= Delete video from folder =-=-=-=-=-=-=--=-=-==-=-=\\
 var deleteVideo = document.getElementById('deleteVideo');
 if (deleteVideo){
-	deleteVideo.onclick = function() {
-	
+	deleteVideo.onclick = function() {	
 		var video = $('#videoPath').val();
-		$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ deleteVideo: video }, 
+		$.post('ajax/checkVideoDataController.php',{ deleteVideo: video }, 
 				function(data){
 		});
 	}
@@ -145,13 +207,138 @@ if (showMore){
 	}
 }
 
-var addVideoComment = document.getElementById('addVideoComent');
-if (addVideoComment){
-	addVideoComment.onclick = function(){
-		var comment = $('#videoComent').val();
-		var videoId = $('#qsf').val();
-		$.post('http://localhost/Final-Team-Project/ajax/videoComment.php',{ comment: comment, videoId: videoId }, 
-				function(data){
-		});	
-	}
+function drawComentDiv (index,userPicture,userName, commentText, userId, comentDate){
+	var comentContainer = document.getElementById('commentsDiv');
+	var divComment = document.createElement("div");
+	divComment.className = "cl-comment";
+	comentContainer.appendChild(divComment);
+	$( ".cl-comment" ).eq(index).prepend("<div class='cl-avatar'><a href='ChannelController.php?@$^^%@@^@^$^@="+userId+"&page=Video'><img width='70px' src='assets/images/user-pictures/"+userPicture+"' alt=''></a></div><div class='cl-comment-text'><div class='cl-name-date'><a href='ChannelController.php?@$^^%@@^@^$^@="+userId+"&page=Video'>"+userName+"</a> "+comentDate+"</div><div class='cl-text'>" +commentText+ "</div><div class='cl-meta'><a href='#'>Reply</a></div></div><div class='clearfix'></div>");
+	
+}
+function getComments() {
+	var videoId = $('#qsf').val();
+	$.post('ajax/showVideoComents.php',{showComents: videoId }, 
+			function(data){
+		
+		var videoComents = JSON.parse(data);
+		console.log(data)
+		for (var int = 0; int < videoComents.length; int++) {
+			drawComentDiv (int,videoComents[int].picture, videoComents[int].username, videoComents[int].text, videoComents[int].user_id, videoComents[int].date);
+			if (videoComents[int].deleteComent){
+				$( ".cl-name-date" ).eq(int).prepend("<a class ='deleteComent' id= "+videoComents[int].comment_id+" onclick='deleteComent("+videoComents[int].comment_id+")' href='#'><i class='cvicon-cv-cancel'></i></a>")
+			}
+		}	
+		
+	});		
+}
+if (document.getElementById('commentsDiv')){
+	getComments();
+}
+////////VIDEO PAGE CHANNEL :
+var videoContainer = document.getElementById('next-video');
+
+var videoOffset = document.getElementById('132Ascasd@gadsa');
+var orderBy = document.getElementById('53453Asd!sdgad');
+var privacy = document.getElementById('fsd^3S2fsafas');
+
+var btnMoreVideos = document.getElementById('bnt-more-videos');
+var praivacyDiv = document.getElementById('privacy');
+
+function drawRightAside(id, duration , poster, title, views, percent){
+	// create video
+		
+		//video div
+		var div1 = document.createElement("div");
+		div1.className = "h-video row";
+		
+			// inner video div
+			var div2 = document.createElement("div");
+			div2.className = "col-lg-6 col-sm-6";
+			
+				//image div
+				var div3  = document.createElement("div");
+				div3.className = "v-img";
+					
+					var href1 = document.createElement("a");
+					href1.href ="VideoController.php?físeán%="+ id;
+					
+					var divTime = document.createElement("div");
+					divTime.className = "time";
+					divTime.innerHTML = duration;
+					
+					href1.innerHTML =  '<img src="assets/images/video-poster/'+ poster +'" alt="" >';
+					
+					div3.appendChild(href1);
+					div3.appendChild(divTime);
+					
+				//title div
+				var div4 = document.createElement("div");	
+				div4.className = "col-lg-6 col-sm-6";
+				
+				var div5 = document.createElement("div");	
+				div5.className = "v-desc";	
+					var href2 = document.createElement("a");
+					href2.href ="VideoController.php?físeán%="+ id;
+					href2.innerHTML = title;
+					
+					div5.appendChild(href2);
+					
+				//views div
+				var div6 = document.createElement("div");
+				div6.className = "v-views";
+				div6.innerHTML = views + " views";
+					var viv7 = document.createElement("div");
+					viv7.className = "v-percent";
+					
+						var span2 = document.createElement("span");
+						span2.className = "v-circle";
+						
+						
+						viv7.innerHTML =  percent + " %";
+						viv7.appendChild(span2);
+						
+
+					
+			div2.appendChild(div3);
+			div4.appendChild(div5);
+			div4.appendChild(div6);
+			div4.appendChild(viv7);
+		
+		div1.appendChild(div2);
+		div1.appendChild(div4);
+				
+	videoContainer.appendChild(div1);
+}
+
+function getVideoByCategory (){
+	var category_id = $('#category').val();
+	$.ajax({
+		url: 'ajax/showVideoByCategory.php?categoryId='+category_id,
+         type: 'GET',
+         dataType: "text",
+         contentType: "application/x-www-form-urlencoded",                      
+         statusCode: {
+            400:function() { alert("Bad request!"); },
+          },
+         success:function(data) {
+        	  	console.log(data);
+        	  	var incomeData = JSON.parse(data);
+				
+//				if (incomeData.length < 8) {
+//					btnMoreVideos.style.display = "none";	
+//				}else {
+//					btnMoreVideos.style.display = "inline-block";
+//				}
+				
+				for (var int = 0; int < incomeData.length; int++) {
+					drawRightAside(incomeData[int].video_id, incomeData[int].duration , 
+					incomeData[int].poster_path , incomeData[int].title, incomeData[int].views,  incomeData[int].percent);
+					
+					addAjaxVideoOptions();
+				}			
+          }
+	 });
+}
+if (document.getElementById('next-video')){
+	getVideoByCategory ()
 }

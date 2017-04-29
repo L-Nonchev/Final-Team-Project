@@ -22,7 +22,7 @@ function uploadedFile(){
 			
 			//-=-=-=-=-=-=-=-=-= check video name=-=-=-=-=-=-=--=-=--\\
 			if (!preg_match("/^[- _ a-zA-Z0-9 . \ () ]*$/",$fileOriginName)){
-				return $responce = array("error"=> "File name ERROR: Only letters ,numbers , - , _ , ( ) and white space allowed.") ;
+				return array("error"=> "File name ERROR: Only letters ,numbers , - , _ , ( ) and white space allowed.") ;
 			}
 			
 			//-=-=-=-=-= check mime/type=-=-=-==--==--\\
@@ -54,7 +54,7 @@ function uploadedFile(){
 					$printDuration = strstr($timeVideo, '.' ,true);
 					
 					if (move_uploaded_file($fileOnServerName,'videos/' . $filePath)) {
-						return $responce = array(
+						return array(
 								"videoName" => "$fileName",
 								"videoSize" => "$printFileSize",
 								"videoPath" => "$filePath",
@@ -62,11 +62,11 @@ function uploadedFile(){
 								"duration" => "$printDuration",
 								"originName" => "$fileType"
 						);
-					}else return $responce = array("error" => "Problems with $fileOriginName");
-				}else return $responce = array("error" => "Please select a file smaller than 1GB");
-			}else return $responce = array("error" => "Please, enter corect video type (Allowed mime/type: video/ogg, video/mp4, video/quicktime)!"); 
-		}else return $responce = array("error" => "Problem with file!");
-	}else return $responce = array("error" => "Please, enter file!");
+					}else return array("error" => "Problems with $fileOriginName");
+				}else return  array("error" => "Please select a file smaller than 1GB");
+			}else return array("error" => "Please, enter corect video type (Allowed mime/type: video/ogg, video/mp4, video/quicktime)!"); 
+		}else return array("error" => "Problem with file!");
+	}else return array("error" => "Please, enter file!");
 }
 
 //-=-=-=-=-= check user login=-=-=-==--==--\\

@@ -65,5 +65,5 @@ if (isset($_SESSION['user'])){
 		$userId = $user->userId;
 		echo json_encode(watchVideoLater($userId, $videoId));
 	}
-}
+}else echo '{"notLogin":true }';
 ?>

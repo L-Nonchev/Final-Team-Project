@@ -4,29 +4,67 @@ function __autoload($className) {
 }
 session_start();
 
-function drawVideoContent($sortBy, $limit){
-	try {
-		$video = new VideoDAO();
-		return $video->getSortedVideos($sortBy, $limit);
-	}catch (Exception $e){
-		echo $e->getMessage();
-		header('Location: 404.php', true, 302);
-	}	
+function getNewestVideos($limit){
+	$video = new VideoDAO();
+	$newVideos = $video->getNewestVideos($limit);
+	for ($index=0; $index<count($newVideos);$index++){
+		$newVideos[$index]['views'] =  $video->countVideoViews($newVideos[$index]['video_id']);
+		$dislikes = $video->countVideoDislikes($newVideos[$index]['video_id']);
+		$likes = $video->countVideoLikes($newVideos[$index]['video_id']);
+		if ($likes != 0){
+			$percent =( $dislikes/$likes )*100;
+			$percent = floor(100 - $percent);
+		}else $percent = 0;
+		$newVideos[$index]['percent'] = $percent;
+	}
+	return $newVideos;
+}
+
+function getViewestVideos($limit){
+	$video = new VideoDAO();
+	$newVideos = $video->getViewestVideo($limit);
+	for ($index=0; $index<count($newVideos);$index++){
+		$newVideos[$index]['views'] =  $video->countVideoViews($newVideos[$index]['video_id']);
+		$dislikes = $video->countVideoDislikes($newVideos[$index]['video_id']);
+		$likes = $video->countVideoLikes($newVideos[$index]['video_id']);
+		if ($likes != 0){
+			$percent =( $dislikes/$likes )*100;
+			$percent = floor(100 - $percent);
+		}else $percent = 0;
+		$newVideos[$index]['percent'] = $percent;
+	}
+	return $newVideos;
+}
+
+function getMostPopularVideos($limit){
+	$video = new VideoDAO();
+	$newVideos = $video->getMostPopularVideo($limit);
+	for ($index=0; $index<count($newVideos);$index++){
+		$newVideos[$index]['views'] =  $video->countVideoViews($newVideos[$index]['video_id']);
+		$dislikes = $video->countVideoDislikes($newVideos[$index]['video_id']);
+		$likes = $video->countVideoLikes($newVideos[$index]['video_id']);
+		if ($likes != 0){
+			$percent =( $dislikes/$likes )*100;
+			$percent = floor(100 - $percent);
+		}else $percent = 0;
+		$newVideos[$index]['percent'] = $percent;
+	}
+	return $newVideos;
 }
 
 function drowUserContent($sortBy, $limit){
-	try {
-		$user = new UserDAO();
-		return $user->getSortedUsers($sortBy, $limit);
-	}catch (Exception $e){
-		echo $e->getMessage();
- 		header('Location: 404.php', true, 302);
-	}
+	$user = new UserDAO();
+	return $user->getSortedUsers($sortBy, $limit);
 }
-$newVideos = drawVideoContent('video_id', 12);
-$mostViewed = drawVideoContent('views', 12); 
-$popularVideo = drawVideoContent('likes', 12);
-$popularChannels = drowUserContent('subscribers', 6);
+try {
+	$newVideos = getNewestVideos(12);
+ 	$mostViewed = getViewestVideos(12); 
+ 	$popularVideo = getMostPopularVideos(12);
+	$popularChannels = drowUserContent('subscribers', 6);
+}catch (Exception $e){
+ 		header('Location: 404.php', true, 302);
+ 		die();
+	}
 
 if (isset($_SESSION['user'])){
 

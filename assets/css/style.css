@@ -4347,3 +4347,8 @@ i.cv:hover {
 	cursor: pointer;
 	display: none;
 }
+
+.deleteComent{
+	float:right;
+	margin-top: 1.3em;
+}
