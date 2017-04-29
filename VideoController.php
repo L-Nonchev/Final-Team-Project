@@ -38,17 +38,12 @@ if ($_GET['físeán%'] > 0){
 }else {
 	header('Location: 404.php', true, 302);
 	die();
-}
-		
+}		
 if (isset($_SESSION['user'])){
 	$user = json_decode($_SESSION['user']);
 	$userId = $user->userId;
 	$getVideo->whachedVideo($videoId, $userId);
 	$getVideo->updateHistory($userId, $videoId);
-	include 'view/logInHeader.php';
-
-}else {
-	include 'view/header.php';
 }
 include 'view/Video.php';
 ?>

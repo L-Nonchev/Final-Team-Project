@@ -1,5 +1,4 @@
 <?php
-
 class User implements JsonSerializable {
 	private $userId ;
 	private $username;
@@ -11,6 +10,7 @@ class User implements JsonSerializable {
 	private $profilPicName;
 	private $profilBanner;
 	private $description;
+	private $views;
 	
 	
 	// auto get fields
@@ -54,7 +54,7 @@ class User implements JsonSerializable {
 		if (!empty($email)) {
 			if (strlen($email) <= 40){
 				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-					throw new Exception ( 'Email ERROR: Invalid emailaddress format!');
+					throw new Exception ( 'Email ERROR: Invalid email address format!');
 				}else {
 					$this->email = htmlentities($email);
 				}
@@ -137,6 +137,16 @@ class User implements JsonSerializable {
 		}
 	}
 	
+	//set views
+	public function setViews($views){
+		if (isset($views))
+			if (is_numeric($views) &&  $views >= 0) {
+				$this->views = htmlentities($views);
+			}else{
+				throw new Exception ( ' Problem with view validation');
+			}
+	}
+	
 	//set join date
 	public function setJoinDate($joinDate){
 		if (isset($joinDate))
@@ -155,16 +165,20 @@ class User implements JsonSerializable {
 		return $result;
 	}
 	
+	
 	//constructor
 	public function __construct($email = null, $password = null , $username = null,  $country = null, $joinDate = null,
-			$subscribers = 0, $profilPicName = null, $profilBanner = null, $description = null, $userId = 0 ){
-		
+			$subscribers = 0, $profilPicName = null, $profilBanner = null, $description = null, $userId = 0 , $views = 0){
+					
+					
+					
 				 $this->setUserName($username);
 				 $this->setEmail($email);
 				 $this->setPassword($password);
 				 $this->setCountry($country);
 				 $this->setJoinDate($joinDate);
 				 $this->setSubscribers($subscribers);
+				 $this->setViews($views);
 				 $this->setProfilPicName($profilPicName);
 				 $this->setProfilBanner($profilBanner);
 				 $this->setDescription($description);

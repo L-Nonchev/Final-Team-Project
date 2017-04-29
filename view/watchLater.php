@@ -1,15 +1,6 @@
-<?php
-session_start();
-if (isset($_SESSION['user'])){
-
-	include 'logInHeader.php';
-
-
-}else {
-	header('Location : index.php', true, 302);
-}
+<?php 
+	include 'header.php';
 ?>
-
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
@@ -404,7 +395,6 @@ if (isset($_SESSION['user'])){
         </div>
     </div>
 </div>
-
 <?php 
 	require 'footer.php';
 ?>

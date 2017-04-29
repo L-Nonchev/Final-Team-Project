@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 		case "1234": $orderBy = 'video_id DESC' ; break;
 		case "2345": $orderBy = 'video_id' ; break;
 		case "3456": $orderBy = 'views DESC' ; break;
-		case "4567": $orderBy = 'likes DESC' ; break;
+		case "4567": $orderBy = 'liked DESC' ; break;
 		case "5678": $orderBy = 'duration' ; break;
 			
 		default: $order = 'video_id DESC' ; break;
@@ -28,19 +28,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 			
 		case "6789": $privacy = '0' ; break;
 		case "7890": $privacy = '1' ; break;
-
-			
+		
 		default: $privacy = '0' ; break;
 	}
-	
 	$videos = $videoDATA->getChannelVideos($useId, $ofset, $orderBy , $privacy);
 	
-	
+	http_response_code ( 200 );
 	echo json_encode($videos);
 	
 	}catch (PDOException $e){
-	
-		
+		http_response_code ( 500 );
+		echo json_encode(array(
+				"error" =>  "Something went wrong, try again"
+		));
 	}catch (Exception $e){
 			
 		

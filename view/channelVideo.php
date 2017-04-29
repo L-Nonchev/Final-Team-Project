@@ -1,4 +1,6 @@
-
+<?php 
+	include 'header.php';
+?>
 <!-- channel -->
 <div class="chanal">
     <div class="row2">
@@ -31,7 +33,7 @@
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Playlist">Playlist</a></li>
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=LikedChannels">Channels</a></li>
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Discusion">Discussion</a></li>
-                                        <li><a href="#">About</a></li>
+                                        <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=About">About</a></li>
                                     </ul>
                                 </div>
                                 <div class="c-sub pull-right">
@@ -95,7 +97,7 @@
 				<!-- Show More Videos -->
              	<div class="loadmore">
                     <form action="#" method="post" onsubmit="event.preventDefault();" >
-                        <button class="btn btn-default h-btn" id="bnt-more-videos">Load more Videos</button>
+                        <button class="btn btn-default h-btn" id="bnt-more-videos" style="display: none;">Load more Videos</button>
                         <input type="hidden" id="132Ascasd@gadsa"  value="0" />
                         <input type="hidden" id="53453Asd!sdgad"  value="1234" />
                         <input type="hidden" id="fsd^3S2fsafas"  value="6789" />
@@ -108,4 +110,5 @@
 </div>
 
 <?php 
-	require 'view/footer.php';?>
+	require 'view/footer.php';
+?>

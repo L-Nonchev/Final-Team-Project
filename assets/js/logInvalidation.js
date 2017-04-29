@@ -11,15 +11,12 @@ if (email) {
 		var currier = new XMLHttpRequest();
 		currier.onreadystatechange = function(){
 			if (this.readyState === 4 && this.status === 200) {
-				console.log(this.responseText);
 				var incomeData = JSON.parse(this.responseText);
-				
 				// exist email
 				if(incomeData['email'] === false){
 					email.style.borderColor = "red";
 					emailLabel.style.color = "red";
 					emailLabel.innerHTML  = "The email is not found. Please enter a valid email.";
-					
 					logInButton.onclick = function(event){
 					    event.preventDefault()
 					};
@@ -29,7 +26,6 @@ if (email) {
 					email.style.borderColor = "red";
 					emailLabel.style.color = "red";
 					emailLabel.innerHTML  = incomeData['errorMesageEmail'];
-		
 					logInButton.onclick = function(event){
 					    event.preventDefault()
 					};
@@ -38,56 +34,44 @@ if (email) {
 					email.style.borderColor = "#e0e1e2";
 					emailLabel.innerHTML  = "Email";
 					emailLabel.style.color = "black";
-					
 					logInButton.onclick = function(event){
 					    
 					};
 				}
-				
 			}
 		}
 		var dataSend = 'data=' + JSON.stringify({
 			email : email.value
 		});
 		currier.open('POST', 
-				'http://localhost/Final-Team-Project/ajax/logInValidation.php', 
+				'ajax/logInValidation.php', 
 				true);
 		currier.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		currier.send(dataSend);
 	}
 }
-
 //-=-=-=-=-=-=--=---=-= Chech for exist email END=-=-=-=-=-=-=--=-=-==-=-=\\
 
 //-=-=-=-=-=-=--=---=-= Chech for password corect=-=-=-=-=-=-=--=-=-==-=-=\\
-
 //chek for same passord 1 and 2 
 function check_password() {
 	if (((password.value.length) > 0 )){
 
 		if ((password.value.length) < 8){
 			passwordLabel.innerHTML  = "You must enter at last 8 characters for your password!";
-			
 			password.style.borderColor = "red";
-			
 			logInButton.onclick = function(event){
 				 event.preventDefault()
 			};
-	
 		}else {
 			passwordLabel.innerHTML  = "Password";
-			
 			password.style.borderColor = "#e0e1e2";
-			
 			logInButton.onclick = function(event){
 			};
 		}	
-
 	} else {
 		passwordLabel.innerHTML  = "Password";
-		
 		password.style.borderColor = "#e0e1e2";
-		
 		logInButton.onclick = function(event){
 		};
 	}
@@ -95,6 +79,4 @@ function check_password() {
 if (password) {
 	password.onblur =  check_password;
 }
-
 //-=-=-=-=-=-=--=---=-= password end =-=-=-=-=-=-=--=-=-==-=-=\\
-

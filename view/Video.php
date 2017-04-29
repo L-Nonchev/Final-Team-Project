@@ -1,4 +1,6 @@
-
+<?php 
+	include 'header.php';
+?>
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
@@ -237,10 +239,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        <div class="comments-list" id ='commentsDiv'>
-
-
-                            
+                        <div class="comments-list" id ='commentsDiv'>                            
                         </div>
                         	<div class="row">
                                 <div class="col-lg-12">
@@ -280,7 +279,6 @@
         </div>
     </div>
 </div>
-
 <?php 
 	include 'footer.php';
 ?>

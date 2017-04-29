@@ -96,6 +96,7 @@ $userName = $user->username;
 											aria-haspopup="true" aria-expanded="true"><?= $userName ?><span class="caret"></span></button>
 										<ul class="dropdown-menu">
 											<li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $sessuionUserId ?>&page=Video">My Channel</a></li>
+											<li><a href="./options.php">Options</a></li>
 											<li><a href="./logOUT.php">Log Out</a></li>
 										</ul>
 									</div>

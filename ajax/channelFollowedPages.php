@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 	try {
 		$userData = new UserDAO();
 		
-		$usersID = $userData->àllFollowedPages($userId, $offset);
+		$usersID = $userData->allFollowedPages($userId, $offset);
 		
 		$usersArray = array();
 		
@@ -28,7 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 				'subscribers' => $user->subscribers,
 				'profilPic' => $user->profilPicName,
 				'profilBanner' => $user->profilBanner,
-				'cntVideos' => $cntVideos
+				'cntVideos' => $cntVideos,
+				'views' => $user->views
 			);
 		}
 		

@@ -15,10 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$user = new User($data['email']);
 			$result = $userData->selectEmailFromDB($user);
 			if ($result){
+				http_response_code ( 200 );
 				echo json_encode(array(
 						'email' => $result
 				));
 			}else {
+				http_response_code ( 200 );
 				echo json_encode(array(
 						'email' => $result
 				));

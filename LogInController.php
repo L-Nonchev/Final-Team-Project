@@ -13,7 +13,6 @@
 		header('Location: ./HomePageController.php ' , true , 302);
 		die();
 	}
-	
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (isset($_POST['log-in-button'])){
 			if (isset($_POST['email']) && isset($_POST['password'])){
@@ -32,19 +31,17 @@
 					$ifCreatet = $userData->loginUser($user);
 						
 					if ($ifCreatet){
-						echo json_encode($user);
+// 						echo json_encode($user);
 							
 						//-=-=-=-=-=-=---==-=-=-= CREATE  SESSION =-=-=-==-=-==-=-==--\\
 							
 						$_SESSION['user'] = json_encode($user);
 							
 						header('Location: ./HomePageController.php', true ,302);
+						die();
 					}
-				
-				
 				}catch (PDOException $e){
-					$errorMessage = $e->getMessage();;
-					include logInPage;
+					include '503.php';
 				} catch (Exception $e){
 					$errorMessage = $e->getMessage();
 					include logInPage;
@@ -53,13 +50,10 @@
 				$errorMessage = "There are blank fields!";
 				include singUpPage;
 			}
-			
 		}else{
 			include logInPage;
 		}
 	}else{
 		include logInPage;
 	}
-	
 ?>
-	

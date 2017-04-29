@@ -38,26 +38,27 @@ function addAjaxVideoOptions() {
     		if(data==true){
         		$plusDetails = $( '<div class="plus-details">\
                         <ul >\
-                            <li><a href="#"><i class="cvicon-cv-watch-later" aria-hidden="true" onclick ="watchLater()"></i> Watch Later</a></li>\
+                            <li><a href="#"><i class="cvicon-cv-watch-later" aria-hidden="true" onclick ="watchLater(); event.preventDefault();"></i> Watch Later</a></li>\
                             <li><a href="#"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Add to Playlist</a></li>\
                         </ul>\
                     </div>' );
     		}
     	});
-            $(this).append($plus);
-            $(".plus").hover( function() {
-            	
-                $(this).parent().append($plusDetails);                
-                } , function(){
+        $(this).append($plus);
+        $(".plus").hover( function() {
+        	
+            $(this).parent().append($plusDetails);    
+            $('div.plus-details>ul>li:first-of-type').on('click', watchLater);
+            } , function(){
 
-                }
-            );
+            }
+        );
 
-        } , function(){
-            $(this).find(".plus").remove();
-            $(this).find(".plus-details").remove();
-        }
-    );
+    } , function(){
+        $(this).find(".plus").remove();
+        $(this).find(".plus-details").remove();
+    }
+);
 }
 
 $( document ).ready(function() {

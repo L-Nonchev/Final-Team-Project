@@ -1,16 +1,6 @@
-<!-- =-=-=-=-=-=-= HEADER  =-=-=-=-=-=-= -->
 <?php 
-// 	session_start();	
-// 	if (isset($_SESSION['user'])){
-		
-// 		include 'logInHeader.php';
-		
-// 	}else {
-// 		include 'header.php';
-// 	}
+	include 'header.php';
 ?>
-<!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
-
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
@@ -876,7 +866,6 @@
         </div>
     </div>
 </div>
-
 <!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
 <?php 
 	require 'view/footer.php';

@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 		try {
 			$user = new User("example@gmail.com", "test1234" , $data['username']);
 			$result = $userData->selectUsernameFromDB($user);
-			if ($result !== "Username not found!"){
+			if ($result){
 			echo json_encode(array(
 					'check' => true,
 					'username' => $result));
 			}else {
-				echo json_encode(array($result));
+				echo json_encode(array("Username not found!"));
 			}
 		}catch (Exception $e){
 			echo json_encode(array(

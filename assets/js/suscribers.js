@@ -42,7 +42,7 @@ if (loogedUserId){
 				
 			});
 			currier.open('GET', 
-					'http://localhost/Final-Team-Project/ajax/sucribers.php?CH=' + userId.value + '&UID=' + loogedUserId.value, 
+					'ajax/sucribers.php?CH=' + userId.value + '&UID=' + loogedUserId.value, 
 					true);
 			currier.send(null);
 		}
@@ -102,7 +102,7 @@ if (loogedUserId){
 					
 				});
 				currier.open('POST', 
-						'http://localhost/Final-Team-Project/ajax/sucribers.php', 
+						'ajax/sucribers.php', 
 						true);
 				currier.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				currier.send(dataSend);	

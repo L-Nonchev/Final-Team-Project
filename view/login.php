@@ -96,11 +96,11 @@
                 <div class="l-form">
                     <form action="./LogInController.php" method="post">
                         <div class="form-group">
-                            <label for="exampleInputEmail1" id="emailLabel">Email</label>
+                            <label for="email" id="emailLabel">Email</label>
                             <input name="email" type="email" class="form-control" id="InputEmail-LogIN" placeholder="sample@gmail.com" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1" id="passwordLabel" >Password</label>
+                            <label for="password" id="passwordLabel" >Password</label>
                             <input name="password" type="password" class="form-control" id="InputPassword" placeholder="**********" required>
                         </div>
                         <div class="checkbox">

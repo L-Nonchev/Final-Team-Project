@@ -1,4 +1,6 @@
-
+<?php 
+	include 'header.php';
+?>
 <!-- channel -->
 <div class="chanal">
     <div class="row2">
@@ -31,7 +33,7 @@
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Playlist" id="p-list">Playlist</a></li>
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=LikedChannels">Channels</a></li>
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Discusion">Discussion</a></li>
-                                        <li><a href="#">About</a></li>
+                                        <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=About">About</a></li>
                                     </ul>
                                 </div>
                                 <div class="c-sub pull-right">
@@ -399,6 +401,6 @@
         </div>
     </div>
 </div>
-
 <?php 
-	require 'view/footer.php';?>
+	require 'view/footer.php';
+?>

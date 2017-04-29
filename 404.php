@@ -1,16 +1,6 @@
-<!-- =-=-=-=-=-=-= HEADER  =-=-=-=-=-=-= -->
-<?php
-session_start();
-if (isset($_SESSION['user'])){
-
-	include 'view/logInHeader.php';
-
-}else {
-	include 'view/header.php';
-}
+<?php 
+	include 'header.php';
 ?>
-<!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
-
 <div class="content-wrapper">
     <div class="container">
         <div class="row">

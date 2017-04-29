@@ -66,13 +66,5 @@ try {
  		die();
 	}
 
-if (isset($_SESSION['user'])){
-
-	include 'view/logInHeader.php';
-
-}else {
-	include 'view/header.php';
-}
 include 'view/index.php';
-
 ?>

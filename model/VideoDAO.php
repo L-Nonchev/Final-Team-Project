@@ -202,12 +202,21 @@ class VideoDAO implements IVideoDAO{
 	public function getChannelVideos ($userId, $ofset, $order, $privacy){
 				
 		$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
-		$pstmt = $this->db->prepare("SELECT video_id, title , poster_path , duration
-				FROM videos WHERE user_id = ? && is_privacy = ? ORDER BY $order  LIMIT 8 OFFSET ?;");
-		$pstmt->execute(array($userId , $privacy , $ofset));
-		$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-	
-		return $result;
+		$pstmt = $this->db->prepare("SELECT v.video_id, v.title  , v.path , v.poster_path , v.duration, COUNT(l.user_id) AS 'liked',COUNT(d.user_id) AS 'dliked',COUNT(w.user_id) AS 'views'
+									FROM videos v
+									LEFT JOIN liked_videos l ON (v.video_id = l.video_id)
+									LEFT JOIN disliked_videos d ON (v.video_id = d.video_id)
+									LEFT JOIN video_views w ON (v.video_id = w.video_id)
+									WHERE v.user_id = ? && v.is_privacy = ?
+									GROUP BY v.video_id, v.title  , v.path , v.poster_path , v.duration
+									ORDER BY $order
+									LIMIT 8 OFFSET ?;");
+		if ($pstmt->execute(array($userId , $privacy , $ofset))){
+			$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			return $result;
+		}
+		
 	}
 	//-=-=-=-=-=-= get video comments=-=-=-==-=-==--\\
 	public function getVideoComents ($videoId){

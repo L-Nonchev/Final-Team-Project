@@ -2587,6 +2587,7 @@ ul.menu {
   border: none;
   box-shadow: none;
   padding: 15px;
+  
 }
 .single-video .cl-header {
   padding-bottom: 25px;
@@ -2729,6 +2730,11 @@ ul.menu {
   top: 0;
   right: 0;
   font-size: 20px;
+}
+#qwe {
+	border-radius: 20%;
+	height: 100px;
+	width: 100px;
 }
 .single-video .loadmore-comments {
   margin-bottom: 45px;
@@ -3449,6 +3455,7 @@ ul.menu {
   border: none;
   box-shadow: none;
   padding: 15px;
+  outline: none;
 }
 .single-video .cl-header {
   padding-bottom: 25px;
@@ -3597,6 +3604,7 @@ ul.menu {
   text-align: center;
 }
 .single-video .loadmore-comments .h-btn {
+outline: none;
   background-color: #eceff0;
   color: #2e2e2e;
   padding: 15px 65px;
@@ -3604,6 +3612,7 @@ ul.menu {
   height: 48px;
   border-radius: 24px;
   font-weight: normal;
+  outline: none;
 }
 .single-video .loadmore-comments .h-btn:hover {
   color: #ea2c5a;

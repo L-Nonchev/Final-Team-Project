@@ -7,9 +7,11 @@
 		const INSERT_NEW_USER_SQL ="INSERT INTO users VALUES (
 								null, ?, sha1(?), sha1(?), ?, ?, ?, ?, ?, ?);";
 		
-		const SELECT_USER_NAME_SQL = "SELECT username FROM users WHERE username = ?;";
+		const SELECT_USER_ID_BY_USERNAME_SQL = "SELECT user_id FROM users WHERE username = ?;";
 		
-		const SELECT_EMAIL_SQL = "SELECT email FROM users WHERE email = sha1(?);";
+		const SELECT_USER_ID_BY_EMAIL_SQL = "SELECT user_id FROM users WHERE email = sha1(?);";
+		
+		const SELECT_PASSWORD_BY_ID_SQL = "SELECT password FROM users WHERE user_id = ?;";
 		
 		const SELECT_COUNTRY_NAME_SQL = "SELECT country_name FROM countries WHERE country_id = ?;";
 		
@@ -17,9 +19,11 @@
 									  FROM users u JOIN countries c ON ( u.country_id = c.country_id)
 									  WHERE email = sha1(?) AND password = sha1(?);";
 		
-		const SELECT_ALL_USER_DATA_BY_ID_SQL = "SELECT u.user_id, u.username, c.country_name, u.join_date, u.subscribers, u.description, u.picture , u.banner
-									  FROM users u JOIN countries c ON ( u.country_id = c.country_id)
-									  WHERE user_id = ?;";
+		const SELECT_ALL_USER_DATA_BY_ID_SQL = "SELECT u.user_id, u.username, c.country_name, u.join_date, u.subscribers, u.description, u.picture , u.banner , COUNT(ch.user_id) AS 'views'
+												FROM users u 
+												LEFT JOIN channel_views ch ON (u.user_id = ch.channel_id)
+												LEFT JOIN countries c ON ( u.country_id = c.country_id)
+												WHERE u.user_id = ? ;";
 		
 		const UPDATE_USER_SUSCRIBERS_SQL = "UPDATE users SET subscribers = ?  WHERE user_id = ?;";
 		
@@ -29,12 +33,23 @@
 		
 		const CHECK_FOR_EXIST_CHANNEL_SQL = "SELECT channel_id FROM channel_subscribers WHERE channel_id = ? && user_id  = ?;";
 		
-		const SELECT_ALL_ID_SUBSCRIBERS_WHER_USER_IS_FOLLOWED_SQL = "SELECT channel_id FROM channel_subscribers WHERE user_id = ? LIMIT 2 OFFSET ?;";
+		const SELECT_ALL_ID_SUBSCRIBERS_WHER_USER_IS_FOLLOWED_SQL = "SELECT channel_id FROM channel_subscribers WHERE user_id = ? LIMIT 8 OFFSET ?;";
 		
 		const SELECT_USER_COUNT_VIDEOS_SQL = "SELECT COUNT(video_id) FROM videos WHERE user_id  = ?;";
 		
+		const INSERT_DISCUSSION_COMENT_SQL = "INSERT INTO discussions (`channel_id`, `text`, `date`, `user_discussant_id`) VALUES (?, ?, ?, ?);";
 		
-		
+		const SELECT_DISCUSSION_SQL ="SELECT d.discussion_id, d.user_discussant_id, d.text , d.date, d.user_discussant_id, u.username, u.picture
+											FROM discussions d
+											JOIN users u ON ( d.user_discussant_id = u.user_id)
+											WHERE channel_id = ?
+											ORDER BY d.discussion_id DESC
+											LIMIT 2 OFFSET ?;";
+		const UPDATE_USERNAME_SQL = "UPDATE users SET username = ? WHERE user_id = ?;";
+		const UPDATE_EMAIL_SQL = "UPDATE users SET email = sha1(?) WHERE user_id = ?;";
+		const UPDATE_PASSWORD_SQL = "UPDATE users SET password = sha1(?) WHERE user_id = ?;";
+		const UPDATE_PICTURE_SQL = "UPDATE users SET picture = ? WHERE user_id = ?;";
+		const UPDATE_BANNER_SQL = "UPDATE users SET banner = ? WHERE user_id = ?;";
 		
 // 		const SELECT_CHANNE:S
 		
@@ -109,16 +124,14 @@
 		 * @return mixed|string
 		 */
 		public function selectUsernameFromDB (User $user){
-			$pstmt = $this->db->prepare(self::SELECT_USER_NAME_SQL);
+			$pstmt = $this->db->prepare(self::SELECT_USER_ID_BY_USERNAME_SQL);
 			if ($pstmt->execute(array($user->username))){
 				if ($resutl = $pstmt->fetchColumn()){
 					return $resutl;
 				}else {
-					return "Username not found!";
+					return false;
 				}
-				
-			}
-			
+			}	
 		}
 		
 		//<!-- =-=-=-=-=-=-=  Check for exist email  Ajax valid=-=-=-=-=-=-= -->\\
@@ -128,17 +141,101 @@
 		 * @return boolean
 		 */
 		public function selectEmailFromDB (User $user){
-			$pstmt = $this->db->prepare(self::SELECT_EMAIL_SQL);
+			$pstmt = $this->db->prepare(self::SELECT_USER_ID_BY_EMAIL_SQL);
 			if ($pstmt->execute(array($user->email))){
 				if ($resutl = $pstmt->fetchColumn()){
-					return true;
+					return $resutl;
 				}else {
 					return false;
 				}
-		
-			}
-				
+			}		
 		}
+		//<!-- =-=-=-=-=-=-=  Check for exist password  Ajax valid=-=-=-=-=-=-= -->\\
+		/**
+		 *
+		 * @param User $user
+		 * @return boolean
+		 */
+		public function selectPasswordFromDB ($userId){
+			$pstmt = $this->db->prepare(self::SELECT_PASSWORD_BY_ID_SQL);
+			if ($pstmt->execute(array($userId))){
+				if ($resutl = $pstmt->fetchColumn()){
+					return $resutl;
+				}else {
+					return false;
+				}
+			}
+		}
+	
+		
+		//<!-- =-=-=-=-=-=-=  Update user data=-=-=-=-=-=-= -->\\
+		
+		public function updateUsername ($userId, $new){
+			if (is_numeric($userId) && (strlen(trim($new)) > 0 && 20 >= strlen(trim($new)))){
+				$newUsername = htmlentities($new);
+			
+				$pstmt = $this->db->prepare(self::UPDATE_USERNAME_SQL);
+				if ($pstmt->execute(array($newUsername, $userId))){
+					return true;
+				}else{
+					throw new Exception("Updating username failed ");
+				}
+			}else {
+				throw new Exception("Incorenct input data!");
+			}
+		}
+		
+		public function updateEmail ($userId, $new){
+			if (is_numeric($userId) && (strlen(trim($new)) > 0 && 40 >= strlen(trim($new)))){
+				$newEmail = htmlentities($new);
+				
+				$pstmt = $this->db->prepare(self::UPDATE_EMAIL_SQL);
+				if ($pstmt->execute(array($newEmail, $userId))){
+					return true;
+				}else{
+					throw new Exception("Updating e-mail failed ");
+				}
+			}else {
+				throw new Exception("Incorenct input data!");
+			}
+		}
+		
+		public function updatePassword ($userId, $new){
+			if (is_numeric($userId) && (strlen(trim($new)) > 0 && 40 >= strlen(trim($new)))){
+				$newPassword = htmlentities($new);
+	
+				$pstmt = $this->db->prepare(self::UPDATE_PASSWORD_SQL);
+				if ($pstmt->execute(array($newPassword, $userId))){
+					return true;
+				}else{
+					throw new Exception("Updating e-mail failed ");
+				}
+			}else {
+				throw new Exception("Incorenct input data!");
+			}
+		}
+		public function updatePicture ($userId, $pictureName){
+			if (is_numeric($userId) && (strlen(trim($pictureName)) > 0 && 150 >= strlen(trim($pictureName)))){
+				$pictureName = htmlentities($pictureName);
+				
+				$pstmt = $this->db->prepare(self::UPDATE_PICTURE_SQL);
+				if ($pstmt->execute(array($pictureName, $userId))){
+					return true;
+				}
+			}
+		}
+		
+		public function updateBanner ($userId, $banner){
+			if (is_numeric($userId) && (strlen(trim($banner)) > 0 && 150 >= strlen(trim($banner)))){
+				$banner = htmlentities($banner);
+		
+				$pstmt = $this->db->prepare(self::UPDATE_BANNER_SQL);
+				if ($pstmt->execute(array($banner,$userId))){
+					return true;
+				}
+			}
+		}
+		
 		
 		//<!-- =-=-=-=-=-=-=  Get All data for user by ID =-=-=-=-=-=-= -->\\
 		/**
@@ -159,8 +256,7 @@
 					$result = $result[0];
 					
 					$user = new User(null, null, $result['username'], $result['country_name'], $result['join_date'], $result['subscribers'],
-							 $result['picture'], $result['banner'] ,$result['description'], $result['user_id']);
-					
+							 $result['picture'], $result['banner'] ,$result['description'], $result['user_id'], $result['views']);
 					return $user;
 				}
 			}
@@ -192,7 +288,6 @@
 		 * @return boolean
 		 */
 		
-
 		public function updateUserSuscribers ($userId ,$suscribers){
 			$pstmt = $this->db->prepare(self::UPDATE_USER_SUSCRIBERS_SQL);
 			if ($pstmt->execute(array($suscribers, $userId))){
@@ -209,17 +304,19 @@
 		 * @param unknown $channelId - ide for used channel
 		 * @return boolean
 		 */
-		function cheangeChannelFollowed ($userId, $channelId){
+		public function cheangeChannelFollowed ($userId, $channelId){
 			$pstmt = $this->db->prepare(self::CHECK_FOR_EXIST_CHANNEL_SQL);
-			$pstmt->execute(array($channelId, $userId));
-			
-			$result = $pstmt->fetchColumn();
-	
-			if ($result > 0){
-				return true;
+			if ($pstmt->execute(array($channelId, $userId))){
+				$result = $pstmt->fetchColumn();
+				
+				if ($result > 0){
+					return true;
+				}else {
+					return false;
+				}
 			}else {
-				return false;
-			}	
+				throw new Exception("Incorect data");
+			}
 		}
 		/**
 		 * Delete user following channel
@@ -228,7 +325,7 @@
 		 * @param unknown $channelId
 		 * @return boolean
 		 */
-		function deleteChannelSybscriber ($userId, $channelId){
+		public function deleteChannelSybscriber ($userId, $channelId){
 			$pstmt = $this->db->prepare(self::DELETE_CHANEL_SUSCRIBER_SQL);
 		
 			if ($pstmt->execute(array($channelId, $userId))){
@@ -245,7 +342,7 @@
 		 * @param unknown $channelId
 		 * @return boolean
 		 */
-		function addChannelSybscriber ($userId, $channelId){
+		public function addChannelSybscriber ($userId, $channelId){
 			$pstmt = $this->db->prepare(self::INSERT_CHANNEL_SUSCRIBER_SQL);
 			
 			if ($pstmt->execute(array($channelId, $userId))){
@@ -264,11 +361,10 @@
 		 * @param unknown $suscribers
 		 * @return boolean
 		 */
-		function channelSuscribers ($userId, $channelId, $suscribers){
+		public function channelSuscribers ($userId, $channelId, $suscribers){
 			try {
 				$this->db->beginTransaction();
 				if ($this->cheangeChannelFollowed($userId, $channelId)){
-					// 				$this->db->beginTransaction();
 					$suscribers--;
 					if ($this->deleteChannelSybscriber($userId, $channelId));
 					if ($this->updateUserSuscribers($channelId, $suscribers));
@@ -301,18 +397,16 @@
 		//-=-=-=-=-=-= /Channel suscribers functions =-=-=-==-=-==--\\
 		
 		//-=-=-=-=-=-= USER Channels functions =-=-=-==-=-==--\\
-		function getVideosCount($userId){
+		public function getVideosCount($userId){
 			$pstmt = $this->db->prepare(self::SELECT_USER_COUNT_VIDEOS_SQL);
 			
 			if ($pstmt->execute(array($userId))){
-				 $result = $pstmt->fetchColumn();
-				 
+				 $result = $pstmt->fetchColumn();		 
 				 return $result;
 			}
-			
 		}
 		
-		function �llFollowedPages($user_id , $offset){
+		public function allFollowedPages($user_id , $offset){
 			$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 			$pstmt = $this->db->prepare(self::SELECT_ALL_ID_SUBSCRIBERS_WHER_USER_IS_FOLLOWED_SQL);
 			
@@ -324,10 +418,34 @@
 		}
 		
 		
+		//-=-=-=-=-=-= /USER Channels functions =-=-=-==-=-==--\\
 		
+		//-=-=-=-=-=-= USER DISCUSSIONS functions =-=-=-==-=-==--\\
 		
-		function getInfAboutChannelsFollwed($user_id , $offset){
+		public function insertDiscussionComent ($channelId, $text, $date, $discussant_id){
+			if (strlen(trim($text)) > 500 || strlen(trim($text) < 1)){
+				throw new Exception("Text too long or empty. Max 500 characters");
+			}else{ 
+				$text = htmlentities($text);
+				$pstmt = $this->db->prepare(self::INSERT_DISCUSSION_COMENT_SQL);
 				
+				if ($pstmt->execute(array($channelId, $text, $date, $discussant_id))){
+					return true;
+				}else{
+					 return false;
+				}
+			}
+		}
+		
+		public function selectChannelDisussion ($channelId , $offset){
+			$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
+			$pstmt = $this->db->prepare(self::SELECT_DISCUSSION_SQL);
+			if ($pstmt->execute(array($channelId, $offset))){
+				$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+				return $result;
+			}else{
+				throw new Exception("Coments is missing");
+			}
 		}
 		
 		

@@ -5,6 +5,11 @@ define ( 'DB_NAME', 'circle_tube' );
 define ( 'DB_USER', 'root' );
 define ( 'DB_PASS', '' );
 
+// define ( 'DB_HOST', 'localhost' );
+// define ( 'DB_NAME', 'j7cheers_circle_video' );
+// define ( 'DB_USER', 'j7cheers_root' );
+// define ( 'DB_PASS', 'aK%3W[vJ7)ox' );
+
 class DBConnection {
 	private static $db = null;
 
@@ -15,12 +20,10 @@ class DBConnection {
 				self::$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 			}
 			catch (PDOException $e) {
-				throw new Exception("DataBase dosn't work!");
+				throw new PDOException("DataBase dosn't work!");
 			}
 		}
-
 		return self::$db;
 	}
 }
-
 ?>
