@@ -26,12 +26,5 @@ if (isset($_GET['físeán%'])){
 	
 
 }
-if (isset($_SESSION['user'])){
-
-	include 'view/logInHeader.php';
-
-}else {
-	include 'view/header.php';
-}
 include 'view/Video.php';
 ?>

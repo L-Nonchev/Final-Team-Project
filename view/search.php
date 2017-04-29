@@ -1,15 +1,6 @@
-<!-- =-=-=-=-=-=-= HEADER  =-=-=-=-=-=-= -->
-<?php
-session_start();
-if (isset($_SESSION['user'])){
-
-	include 'logInHeader.php';
-
-}else {
+<?php 
 	include 'header.php';
-}
 ?>
-<!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
 <!-- search -->
 <div class="container-fluid">
     <div class="row">
@@ -451,7 +442,6 @@ if (isset($_SESSION['user'])){
         </div>
     </div>
 </div>
-
 <?php 
-	require 'footer.php';
+	require 'view/footer.php';
 ?>

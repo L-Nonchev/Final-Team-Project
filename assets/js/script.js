@@ -70,9 +70,11 @@ $('#UploadForm').on('click', function() {
                 processData: false,
                 data: form_data,                         
                 type: 'post',
+                
                 success: function(data){
-                	var response = JSON.parse(data);
                 	console.log(data);
+                	var response = JSON.parse(data);
+                	
                     if(response['error']){
                     	document.getElementById('videoDetails').style.display = 'none';
                     	document.getElementById('type-error').style.display = 'block';

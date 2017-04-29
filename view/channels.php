@@ -5,7 +5,7 @@ if (isset($_SESSION['user'])){
 	include 'logInHeader.php';
 
 }else {
-	include 'header.php';
+	include 'notLoginheader.php';
 }
 ?>
 

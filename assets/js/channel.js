@@ -5,8 +5,8 @@ var palyListPage = document.getElementById('Playlist');
 var discusPage = document.getElementById('discussion');
 var aboutPage = document.getElementById('about');
 // user data
-var userId = document.getElementById('@gdsfdY42$');
-var loogedUserId = document.getElementById('EfdsJs@4');
+var channelId = document.getElementById('@gdsfdY42$');
+var logedchannelId = document.getElementById('EfdsJs@4');
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,8 +23,8 @@ var praivacyDiv = document.getElementById('privacy');
 
 
 if (videoPage) {
-	// create video
-	function createVideo(id, duration , poster, title, views) {
+	//  video HTML
+	function createVideo(id, duration , poster, title, views ,videoProcent) {
 		
 		//video div
 		var div1 = document.createElement("div");
@@ -37,9 +37,9 @@ if (videoPage) {
 				//image div
 				var div3  = document.createElement("div");
 				div3.className = "v-img";
-					
+				div3.id = id;	
 					var href1 = document.createElement("a");
-					href1.href ="singleVideo.php?videoId"+ id;
+					href1.href ="VideoController.php?físeán%="+ id;
 					
 					var divTime = document.createElement("div");
 					divTime.className = "time";
@@ -63,6 +63,7 @@ if (videoPage) {
 				//views div
 				var div5 = document.createElement("div");
 				div5.className = "v-views";
+				div5.innerHTML =   views + " views ";
 				
 					var span1 = document.createElement("span");
 					span1.className = "v-percent";
@@ -71,12 +72,12 @@ if (videoPage) {
 						span2.className = "v-circle";
 						
 						
-						span1.innerHTML =  views + " views";
+						span1.innerHTML = videoProcent + "%";
 						span1.appendChild(span2);
 						
 						
 					div5.appendChild(span1);
-					
+						
 			div2.appendChild(div3);
 			div2.appendChild(div4);
 			div2.appendChild(div5);
@@ -88,38 +89,47 @@ if (videoPage) {
 	// End create video
 	
 	// send JSON GET request for video
-	function getVideos(userId, offset , orderBy, privacy) {
+	function getVideos(channelId, offset , orderBy, privacy) {
 		var currier = new XMLHttpRequest();
-		
 		currier.onreadystatechange = function(){
+			if (this.readyState === 4 && this.status === 500) {
+				location.href='./503.php';
+			}
 			if (this.readyState === 4 && this.status === 200) {
-				console.log(this.responseText);
 				var incomeData = JSON.parse(this.responseText);
-					
 				if (incomeData.length < 8) {
 					btnMoreVideos.style.display = "none";	
 				}else {
 					btnMoreVideos.style.display = "inline-block";
 				}
-				
+			
 				for (var int = 0; int < incomeData.length; int++) {
+					if (Number(incomeData[int].dliked) === 0){
+						incomeData[int].dliked = 1;
+					}
+					if(Number(incomeData[int].liked) === 0) {
+						incomeData[int].liked = 1;
+					}	
+					var videoProcent = (Math.round(100 - ((incomeData[int].dliked / incomeData[int].liked) * 100)));
+					if(videoProcent < 0){
+						videoProcent = 0;
+					}
 					createVideo(incomeData[int].video_id, incomeData[int].duration , 
-					incomeData[int].poster_path , incomeData[int].title, incomeData[int].views );
+					incomeData[int].poster_path , incomeData[int].title, incomeData[int].views, videoProcent );
 					
 					addAjaxVideoOptions();
 				}			
 			}
 		}
-		
 		currier.open('GET', 
-				'http://localhost/Final-Team-Project/ajax/getChannelVideos.php?@$^^%@@^@^$^@='+userId+'&limit='+offset+'&orderBy='+orderBy+'&privacy='+privacy, 
+				'ajax/channelVideos.php?@$^^%@@^@^$^@='+channelId+'&limit='+offset+'&orderBy='+orderBy+'&privacy='+privacy, 
 				true);
 		currier.send(null);
 	}
 
 	//auto load first 8 user videos
-	if (userId && videoOffset && orderBy) {
-		getVideos(userId.value, videoOffset.value, orderBy.value, privacy.value)	
+	if (channelId && videoOffset && orderBy) {
+		getVideos(channelId.value, videoOffset.value, orderBy.value, privacy.value)	
 	}
 
 	// get more video
@@ -130,7 +140,7 @@ if (videoPage) {
 			videoOffset.value = Number(videoOffset.value) + Number(8);
 			
 			// get more videos
-			getVideos(userId.value, videoOffset.value, orderBy.value, privacy.value)	
+			getVideos(channelId.value, videoOffset.value, orderBy.value, privacy.value)	
 		};
 	}
 
@@ -138,29 +148,27 @@ if (videoPage) {
 	// change video ordered
 	function orderedBy(order) {
 		videoContainer.innerHTML  = " ";
-		
 		// change SQL orderBy
 		orderBy.value  = order;	
 		// reset offset
 		videoOffset.value = Number(0);
 		// get new SQL video ordered BY
-		getVideos(userId.value, videoOffset.value, orderBy.value, privacy.value)
+		getVideos(channelId.value, videoOffset.value, orderBy.value, privacy.value)
 	}
-
+	
 	// change video privacy
 	if (praivacyDiv){
-		if(userId.value === loogedUserId.value){
+		if(channelId.value === channelId.value){
 			praivacyDiv.style.opacity = "1";
 			
 			function showVideo(privacyId) {
 				videoContainer.innerHTML  = " ";
-				
 				// change SQL privacy
 				privacy.value  = privacyId;	
 				// reset offset
 				videoOffset.value = Number(0);
 				// get new SQL video ordered BY
-				getVideos(userId.value, videoOffset.value, orderBy.value, privacy.value)
+				getVideos(channelId.value, videoOffset.value, orderBy.value, privacy.value)
 			}
 		}
 	}
@@ -176,11 +184,10 @@ var channelOffset = document.getElementById('assaeac2');
 
 var btnMoreChannels = document.getElementById('bnt-more-channels');
 
-
 if (channelPage) {
 
-	// create channel
-	function createChannel(userId, banner , pircture, username, suscribers, cntVideos, country) {
+	//  channel HTML
+	function createChannel(channelId, banner , pircture, username, suscribers, cntVideos, country, views, videoProcent) {
 		
 		//channel div
 		var div1 = document.createElement("div");
@@ -193,7 +200,7 @@ if (channelPage) {
 				//channel banner
 				var href1 = document.createElement("a");
 				href1.className = "cns-image";
-				href1.href ="ChannelController.php?@$^^%@@^@^$^@="+ userId +"&page=Video";
+				href1.href ="ChannelController.php?@$^^%@@^@^$^@="+ channelId +"&page=Video";
 				href1.innerHTML =  '<img src="assets/images/user-banners/'+ banner +'" alt="" >';
 				
 				//user picture
@@ -202,7 +209,7 @@ if (channelPage) {
 						
 					var href2  = document.createElement("a");
 					href2.className = "cns-small-wrapp";
-					href2.href ="ChannelController.php?@$^^%@@^@^$^@="+ userId +"&page=Video";
+					href2.href ="ChannelController.php?@$^^%@@^@^$^@="+ channelId +"&page=Video";
 					href2.innerHTML =  '<img src="assets/images/user-pictures/'+ pircture +'" alt="small">';
 					
 				div3.appendChild(href2);	
@@ -213,9 +220,12 @@ if (channelPage) {
 					
 					var href3  = document.createElement("a");
 					href3.className = "cns-small-wrapp";
-					href3.href ="ChannelController.php?@$^^%@@^@^$^@="+ userId +"&page=Video";					
+					href3.href ="ChannelController.php?@$^^%@@^@^$^@="+ channelId +"&page=Video";					
 					href3.innerHTML =  "<h5>" + username + "<h5>";
-						
+					
+					var span0 = document.createElement("span");
+					span0.innerHTML = suscribers + " Subscribers";
+					
 					var span1 = document.createElement("span");
 					span1.innerHTML = country;
 					
@@ -223,7 +233,7 @@ if (channelPage) {
 					span2.innerHTML = cntVideos + " Videos";
 					
 					var span3 = document.createElement("span");
-//					span3.innerHTML = country + " Views";
+					span3.innerHTML = views + " Views";
 					
 					var span4 = document.createElement("span");
 					span4.className = "cv-percent";
@@ -231,10 +241,10 @@ if (channelPage) {
 						var span5 = document.createElement("span");
 						span5.className = "cv-circle";
 						
-					span4.innerHTML = suscribers + " Subscribers";
-					
+					span4.innerHTML = '<span class="cv-circle"></span>' + videoProcent  + ' % <span class="cv-circle"></span> ';
 					
 				div5.appendChild(href3);
+				div5.appendChild(span0);
 				div5.appendChild(span1);
 				div5.appendChild(span2);
 				div5.appendChild(span3);		
@@ -251,52 +261,253 @@ if (channelPage) {
 	// end create channel
 	
 	// send JSON GET request for channel
-	function getChannels(userId, channelOffset) {
+	function getChannels(channelId, channelOffset) {
 		var currier = new XMLHttpRequest();
-		
 		currier.onreadystatechange = function(){
 			if (this.readyState === 4 && this.status === 200) {
-				
-				
 				var incomeData = JSON.parse(this.responseText);
-		
-				if (incomeData.length < 2) {
+				if (incomeData.length < 8) {
 					btnMoreChannels.style.display = "none";	
 				}else {
 					btnMoreChannels.style.display = "inline-block";
 				}
-				
 				for (var int = 0; int < incomeData.length; int++) {
-					
+					if (Number(incomeData[int].subscribers) === 0 ){
+						incomeData[int].subscribers = 1;
+					}
+					if (Number(incomeData[int].views) === 0) {
+						incomeData[int].views = 1;
+					}
+					var videoProcent = (Math.round(100 - ((Number(incomeData[int].subscribers) / Number(incomeData[int].views)) * 100)))
 					createChannel(incomeData[int].userId, incomeData[int].profilBanner , incomeData[int].profilPic, incomeData[int].username, 
-							incomeData[int].subscribers, incomeData[int].cntVideos, incomeData[int].country);
-					
+							incomeData[int].subscribers, incomeData[int].cntVideos, incomeData[int].country, incomeData[int].views, videoProcent);
 				}			
 			}
 		}
-		
 		currier.open('GET', 
-				'http://localhost/Final-Team-Project/ajax/getChannels.php?@$^^%@@^@^$^@='+userId+'&offset='+channelOffset,
+				'ajax/channelFollowedPages.php?@$^^%@@^@^$^@='+channelId+'&offset='+channelOffset,
 				true);
 		currier.send(null);
 	}
+	
+	// auto load channels
+	if (channelId && channelOffset) {
+		getChannels(channelId.value, channelOffset.value)	
+	};
 
-};
-// auto load channels
-if (userId && channelOffset) {
-
-	getChannels(userId.value, channelOffset.value)	
-};
-
-
-//get more channels
-if (btnMoreChannels) {
-	btnMoreChannels.onclick= function() {
-		
-		// up offset
-		channelOffset.value = Number(channelOffset.value) + Number(2);
-		
-		// get more videos
-		getChannels(userId.value, channelOffset.value)	
+	//get more channels
+	if (btnMoreChannels) {
+		btnMoreChannels.onclick= function() {
+			// up offset
+			channelOffset.value = Number(channelOffset.value) + Number(8);
+			// get more videos
+			getChannels(channelId.value, channelOffset.value)	
+		};
 	};
 };
+////////END LIKED CHANNELS PAGE CHANNEL :
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////DISCUSION PAGE CHANNEL :
+var comentList = document.getElementById('comments-list');
+var discusionOffset = document.getElementById('o23fdsdf$54et');
+var bntAddComent = document.getElementById('btnAddCometn');
+var btnMoreComents = document.getElementById('load-more-coments');
+var textArea = document.getElementById('textAreaComent');
+var comentDiv = document.getElementById('comments-list')
+
+if (discusPage) {
+// coment HTML
+function createDiscusion (channelId ,userpic, username, text , date , discusionId){
+
+	var div1 = document.createElement("div");
+	div1.className = "cl-comment"
+	div1.id = "discusionId"
+		
+		var div2 = document.createElement("div");
+		div2.className = "cl-avatar"
+		div2.innerHTML  = '<a href="./ChannelController.php?@$^^%@@^@^$^@='+ channelId +'&page=Video"><img src="./assets/images/user-pictures/'+ userpic +'" alt="" style="width: 70px"></a>';
+		
+		var div3 = document.createElement("div");
+		
+			var div4 = document.createElement("div");
+			div4.className = "cl-name-date";
+			div4.innerHTML = "<a href=\"#\">" + username + "</a>" + " " +date;
+			
+			var div5 = document.createElement("div");
+			div5.className = "cl-text";
+			div5.innerHTML = text;
+			
+			var div6 = document.createElement("div");
+			div6.className = "cl-meta";
+			
+			div3.appendChild(div4);
+			div3.appendChild(div5);
+			div3.appendChild(div6);
+		
+		var div7 = document.createElement("div");
+		div7.className = "clearfix";
+		
+		
+	div1.appendChild(div2);
+	div1.appendChild(div3);
+	div1.appendChild(div7);	
+	
+	comentDiv.appendChild(div1);
+	
+	}
+
+	function createNewComent (channelId ,userpic, username, text , date , discusionId){
+
+		var div1 = document.createElement("div");
+		div1.className = "cl-comment"
+		div1.id = "discusionId"
+			
+			var div2 = document.createElement("div");
+			div2.className = "cl-avatar"
+			div2.innerHTML  = '<a href="./ChannelController.php?@$^^%@@^@^$^@='+ channelId +'&page=Video"><img src="./assets/images/user-pictures/'+ userpic +'" alt="" style="width: 70px"></a>';
+			
+			var div3 = document.createElement("div");
+			
+				var div4 = document.createElement("div");
+				div4.className = "cl-name-date";
+				div4.innerHTML = "<a href=\"#\">" + username + "</a>" + " " +date;
+				
+				var div5 = document.createElement("div");
+				div5.className = "cl-text";
+				div5.innerHTML = text;
+				
+				var div6 = document.createElement("div");
+				div6.className = "cl-meta";
+				
+				div3.appendChild(div4);
+				div3.appendChild(div5);
+				div3.appendChild(div6);
+			
+			var div7 = document.createElement("div");
+			div7.className = "clearfix";
+			
+			
+		div1.appendChild(div2);
+		div1.appendChild(div3);
+		div1.appendChild(div7);	
+		comentDiv.insertBefore(div1, comentDiv.childNodes[3]);
+	}
+
+	if (btnMoreComents) {
+	bntAddComent.onclick = function(){
+		var currier = new XMLHttpRequest();
+		currier.onreadystatechange = function(){
+			if (this.readyState === 4 && this.status === 400) {
+				var incomeData = JSON.parse(this.responseText);
+				if (confirm(incomeData.error) == true) {
+					location.href='./LogInController.php';
+				}
+			}
+			if (this.readyState === 4 && this.status === 401) {
+				var incomeData = JSON.parse(this.responseText);
+				alert(incomeData.error);
+			}
+			if (this.readyState === 4 && this.status === 500) {
+				location.href='./503.php';
+			}
+			
+			if (this.readyState === 4 && this.status === 200) {
+				var incomeData = JSON.parse(this.responseText);
+				createNewComent (channelId.value, incomeData.userpic, incomeData.username, incomeData.text , " Now", incomeData.usrtId);
+			}
+		}
+		var dataSend = 'data=' + JSON.stringify({
+			text : textArea.value,
+			channelId : channelId.value
+		});
+			currier.open('POST', 
+					'ajax/channelDiscussion.php', 
+					true);
+			currier.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			currier.send(dataSend);	
+		}		
+	}
+
+	// auto lodat last 8 comen
+	if (bntAddComent && btnMoreComents) {
+		
+	function getComents (channelId, discusionOffset){
+		var currier = new XMLHttpRequest();
+		currier.onreadystatechange = function(){
+			if (this.readyState === 4 && this.status === 400) {
+				var incomeData = JSON.parse(this.responseText);
+				if (confirm(incomeData.error) == true) {
+					location.href='./LogInController.php';
+				}
+			}
+			if (this.readyState === 4 && this.status === 200) {
+				var incomeData = JSON.parse(this.responseText);
+				if (incomeData.length < 2) {
+					btnMoreComents.style.display = "none";	
+				}else {
+					btnMoreComents.style.display = "inline-block";
+				}
+				for (var int = 0; int < incomeData.length; int++) {
+					createDiscusion (incomeData[int].user_discussant_id ,incomeData[int].picture, incomeData[int].username, 
+							incomeData[int].text , incomeData[int].date , incomeData[int].discussion_id);
+				}			
+			}
+		}
+		currier.open('GET', 
+				'ajax/channelDiscussion.php?@$^^%@@^@^$^@='+channelId+'&offset='+discusionOffset, 
+				true);
+		currier.send(null);
+		
+		}	
+	}
+
+	// auto load coments
+	if (channelId && comentList) {
+	getComents (channelId.value, discusionOffset.value);
+	};
+	
+	//get more coments
+	if (btnMoreComents) {
+		btnMoreComents.onclick= function() {
+			// up offset
+			discusionOffset.value = Number(discusionOffset.value) + Number(2);
+			// get more videos
+			getComents (channelId.value, discusionOffset.value);
+		};
+	};
+
+
+};
+////////END DISCUSION PAGE CHANNEL :
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////ABOUT PAGE CHANNEL :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

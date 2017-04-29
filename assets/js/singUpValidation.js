@@ -17,15 +17,13 @@ if (username) {
 		var currier = new XMLHttpRequest();
 		currier.onreadystatechange = function(){
 			if (this.readyState === 4 && this.status === 200) {
-				console.log(this.responseText);	
 				var incomeData = JSON.parse(this.responseText);
-				
 				// exist username
 				if(incomeData['check']){
 					
 					username.style.borderColor = "red";
 					usernameLabel.style.color = "red";
-					usernameLabel.innerHTML  = "Username "+ incomeData['username'] + " alredy exist!"
+					usernameLabel.innerHTML  = "Username "+  username.value + " alredy exist!"
 					
 					SingUpButton.onclick = function(event){
 					    event.preventDefault()
@@ -50,21 +48,18 @@ if (username) {
 					   
 					};
 				}
-				
 			}
 		}
 		var dataSend = 'data=' + JSON.stringify({
 			username : username.value
 		});
 		currier.open('POST', 
-				'http://localhost/Final-Team-Project/ajax/singUpValidation.php', 
+				'ajax/singUpValidation.php', 
 				true);
 		currier.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		currier.send(dataSend);
 	}
 }
-
-
 //-=-=-=-=-=-=--=---=-= Chech for exist username END=-=-=-=-=-=-=--=-=-==-=-=\\
 
 //-=-=-=-=-=-=--=---=-= Chech for exist email =-=-=-=-=-=-=--=-=-==-=-=\\
@@ -106,20 +101,18 @@ if (emailSinGup) {
 					    
 					};
 				}
-				
 			}
 		}
 		var dataSend = 'data=' + JSON.stringify({
 			email : emailSinGup.value
 		});
 		currier.open('POST', 
-				'http://localhost/Final-Team-Project/ajax/singUpValidation.php', 
+				'ajax/singUpValidation.php', 
 				true);
 		currier.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		currier.send(dataSend);
 	}
 }
-
 //-=-=-=-=-=-=--=---=-= Chech for exist email END=-=-=-=-=-=-=--=-=-==-=-=\\
 
 //-=-=-=-=-=-=--=---=-= Chech for password corect=-=-=-=-=-=-=--=-=-==-=-=\\
@@ -161,8 +154,6 @@ function check_password() {
 					SingUpButton.onclick = function(event){
 					};
 				}
-
-			
 		}
 	} else {
 		password1Label.innerHTML  = "Password";
@@ -181,7 +172,4 @@ if (password1) {
 if (password2) {
 	password2.onkeyup =  check_password;
 }
-
-
 //-=-=-=-=-=-=--=---=-= password end =-=-=-=-=-=-=--=-=-==-=-=\\
-

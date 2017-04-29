@@ -97,7 +97,7 @@
                 <div class="l-form">
                     <form action="./SingUpController.php" method="post">
                     	 <div class="form-group">
-                            <label for="exampleInputUsername" id ="usernameLabel">Username</label>
+                            <label for="username" id ="usernameLabel">Username</label>
                             <input name="username" type="text" class="form-control" id="InputUsername" placeholder="Username" required maxlength="20">
                         </div>
                          <div class="form-group">
@@ -106,15 +106,15 @@
                         	</select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" id ="emailLabel">Email</label>
+                            <label for="email" id ="emailLabel">Email</label>
                             <input name="email" type="email" class="form-control" id="InputEmail" placeholder="sample@gmail.com" required maxlength="40">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1" id ="password1Label">Password</label>
+                            <label for="password" id ="password1Label">Password</label>
                             <input name="password" type="password" class="form-control" id="InputPassword1" placeholder="**********" required maxlength="40">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword2" id ="password2Label">Re-type Password</label>
+                            <label for="re-password" id ="password2Label">Re-type Password</label>
                             <input name="re-password" type="password" class="form-control" id="InputPassword2" placeholder="**********" required maxlength="40">
                         </div>
                         <div class="row">

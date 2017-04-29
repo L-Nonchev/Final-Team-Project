@@ -11,6 +11,7 @@ function drawVideoContent($sortBy, $limit){
 	}catch (Exception $e){
 		echo $e->getMessage();
 		header('Location: 404.php', true, 302);
+		die();
 	}	
 }
 
@@ -21,6 +22,7 @@ function drowUserContent($sortBy, $limit){
 	}catch (Exception $e){
 		echo $e->getMessage();
  		header('Location: 404.php', true, 302);
+ 		die();
 	}
 }
 $newVideos = drawVideoContent('video_id', 12);
@@ -28,13 +30,5 @@ $mostViewed = drawVideoContent('views', 12);
 $popularVideo = drawVideoContent('likes', 12);
 $popularChannels = drowUserContent('subscribers', 6);
 
-if (isset($_SESSION['user'])){
-
-	include 'view/logInHeader.php';
-
-}else {
-	include 'view/header.php';
-}
 include 'view/index.php';
-
 ?>

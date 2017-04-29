@@ -8,12 +8,11 @@
 		require_once './model/'. $className .'.php';
 	}
 	
-	// chech for exist sesion ande redirec to index.php
+	// chech for exist sesion and redirec to index.php
 	if (isset($_SESSION['user'])){
 		header('Location: ./HomePageController.php ' , true , 302);
 		die();
 	}
-		
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (isset($_POST['sing-up-button'])){
 			if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['country']) && isset($_POST['password']) && 
@@ -31,7 +30,6 @@
 						$errorMessage = "The password you entered does NOT match! <br /> TRY AGAIN.";
 						include singUpPage;
 					} else {
-							
 						// create user
 						//-=-=-=-=-=-=---==-=-=-= Create User=-=-=-==-=-==-=-==--\\
 						$user = new User($email, $password, $userName, $country);
@@ -48,19 +46,16 @@
 						$ifCreatet = $userData->singInUser($user);
 							
 						if ($ifCreatet){
-				
-				
 							//-=-=-=-=-=-=---==-=-=-= CREATE  SESSION =-=-=-==-=-==-=-==--\\
 				
 							$_SESSION['user'] = json_encode($user);
 				
 							header('Location: ./HomePageController.php', true ,302);
+							die();
 						}
 					}
 				}catch (PDOException $e){
-					$errorMessage = "Username or Email already exists!";
-					include singUpPage;
-				
+					include '503.php';
 				} catch (Exception $e){
 					$errorMessage = $e->getMessage();
 					include singUpPage;
@@ -69,12 +64,10 @@
 				$errorMessage = "There are blank fields!";
 				include singUpPage;
 			}
-		
 		}else {
 			include singUpPage;
 		}
 	}else {
 		include singUpPage;
 	}
-
 ?>

@@ -1,4 +1,6 @@
-
+<?php 
+	include 'header.php';
+?>
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
@@ -215,7 +217,7 @@
                     <div class="comments">
                         <div class="reply-comment">
                             <div class="rc-header"><i class="cv cvicon-cv-comment"></i> <span class="semibold">236</span> Comments</div>
-                            <div class="rc-ava"><a href="#"><img src="assets/images/ava5.png" alt=""></a></div>
+                            <div class="rc-ava"><a href="#"><img src="assets/images/ava5.png" alt="" class="comment-pictures"></a></div>
                             <div class="rc-comment">
                                 <form action="#" method="post">
                                     <textarea rows="3" id = 'videoComent'>Share what you think?</textarea >
@@ -240,7 +242,7 @@
 
                             <!-- comment -->
                             <div class="cl-comment">
-                                <div class="cl-avatar"><a href="#"><img src="assets/images/ava8.png" alt=""></a></div>
+                                <div class="cl-avatar"><a href="#"><img src="assets/images/ava8.png" alt="" class="comment-pictures"></a></div>
                                 <div class="cl-comment-text">
                                     <div class="cl-name-date"><a href="#">BOWTZ pros</a> . 1 week ago</div>
                                     <div class="cl-text">Really great story. You're doing a great job. Keep it up pal.</div>
@@ -651,7 +653,6 @@
         </div>
     </div>
 </div>
-
 <?php 
 	include 'footer.php';
 ?>

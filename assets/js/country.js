@@ -10,7 +10,6 @@
 	currier.onreadystatechange = function(){
 		if (this.readyState === 4 && this.status === 200) {
 			var data = JSON.parse(this.responseText);
-			console.log(data);
 			for (var int = 0; int < data.length; int++) {
 				 var option = document.createElement("OPTION");
 				 	option.setAttribute("value", data[int]['id']);
@@ -22,7 +21,7 @@
 		}
 	}
 	currier.open('GET', 
-			'http://localhost/Final-Team-Project/ajax/selectCountryes.php', 
+			'ajax/selectCountryes.php', 
 			true);
 	currier.send(null);
 }

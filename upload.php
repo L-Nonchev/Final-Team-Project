@@ -310,7 +310,7 @@
             	</div>
             	 
 	            <div class="u-area" id='uploadVideo' >
-	            	<a class="btn btn-primary u-btn" href='HomePageController'>Go to home page</a>
+	            	<a class="btn btn-primary u-btn" href='HomePageController.php'>Go to home page</a>
 	            </div>
 	        </div>
 	        <div class="u-area" id ='back'>
