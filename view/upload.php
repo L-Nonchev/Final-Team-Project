@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 	include 'view/logInHeader.php';
 ?>
 <body class="light">
@@ -41,7 +41,7 @@
                                 <div class="col-lg-2"><img id='videoPoster' alt="" src="assets/images/loading.gif"></div>
                                 <div class="col-lg-10">
                                 	<div class="u-area" id = 'delete'>
-	            						<a class="btn btn-primary u-btn" href="upload.php" id='deleteVideo'>Delete</a>	            						
+	            						<a class="btn btn-primary u-btn" href="UploadController.php" id='deleteVideo'>Delete</a>	            						
 	            					</div>
                                 	<div class="u-title" id='print-title'></div>
                                     <div class="u-title" id = 'print-duration'></div>
@@ -314,7 +314,7 @@
 	            </div>
 	        </div>
 	        <div class="u-area" id ='back'>
-	            	<a class="btn btn-primary u-btn" href='Upload.php'>Back</a>
+	            	<a class="btn btn-primary u-btn" href='UploadController.php'>Back</a>
 	        </div>
         </div>
     </div>

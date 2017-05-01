@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$addVideo->addVideo($newVideo);
 			echo '{"success" : true}';			
 		}catch (Exception $e){
+			http_response_code(400);
 			echo json_encode(array(
 					'error' => $e->getMessage ())
 			);

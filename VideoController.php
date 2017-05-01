@@ -4,11 +4,12 @@ function __autoload($className) {
 }
 session_start();
 
-if ($_GET['físeán%'] > 0){
+if (is_numeric($_GET['físeán%'] ) && $_GET['físeán%'] > 0){
 	try {
 		$videoId = $_GET['físeán%'];
 		$getVideo = new VideoDAO();
 		$video = $getVideo->getVideo($videoId);
+		
 		$countOfVideo = $getVideo->countUserVideo($video[0]['user_id']);
 		
 		$now = date_create(date("Y-m-d"));
@@ -29,7 +30,7 @@ if ($_GET['físeán%'] > 0){
 		if ($countOfLikes != 0){
 			$percent =( $countOfDislikes/$countOfLikes )*100;
 			$percent = floor(100 - $percent);
-		}
+		};
 	}catch (Exception $e){
 		header('Location: 404.php', true, 302);
 		die();
@@ -40,10 +41,15 @@ if ($_GET['físeán%'] > 0){
 	die();
 }		
 if (isset($_SESSION['user'])){
-	$user = json_decode($_SESSION['user']);
-	$userId = $user->userId;
-	$getVideo->whachedVideo($videoId, $userId);
-	$getVideo->updateHistory($userId, $videoId);
+	try {
+		$user = json_decode($_SESSION['user']);
+		$userId = $user->userId;
+		$getVideo->whachedVideo($videoId, $userId);
+		$getVideo->updateHistory($userId, $videoId);
+	}catch (Exception $e){
+		header('Location: 404.php', true, 302);
+		die();
+	}
 }
 include 'view/Video.php';
 ?>

@@ -60,14 +60,14 @@
 							</div>
 							<div class="visible-xs visible-sm clearfix"></div>
 							<div class="col-lg-5 col-sm-8 col-xs-12">
-								<form action="search.php" method="post">
+								<form action="SearchController.php" method="post" id='search-form'>
 									<div class="topsearch">
 										<div class="input-group">
 											<span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span> 
-											<input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
-											
+											<input type="text" id='searchField'  name='searchField' class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
+											<input id='search-page' type="hidden" value = "<?=((isset($search)?$search:''))?>" />
 											<div class="input-group-btn">
-												<button type="button"	class="btn btn-default dropdown-toggle"	data-toggle="dropdown" aria-haspopup="true"
+												<button type="button" id='searchButton' name='searchButton' class="btn btn-default dropdown-toggle"	data-toggle="dropdown" aria-haspopup="true"
 													aria-expanded="false">
 													<i class="cv cvicon-cv-video-file"></i>&nbsp;&nbsp;&nbsp;
 												</button>

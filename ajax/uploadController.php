@@ -17,12 +17,14 @@ function uploadedFile(){
 			
 			//-=-=-=-=-=-=-=-=-= check video type=-=-=-=-=-=-=--=-=--\\
 			if (!in_array($videoType, $allowedType)) {
-				return $responce = array ("error" => "Please, enter corect video type (Allowed type: ogg, mp4, mov)!");
+				http_response_code(400);
+				return array ("error" => "Please, enter corect video type (Allowed type: ogg, mp4, mov)!");
 			}
 			
 			//-=-=-=-=-=-=-=-=-= check video name=-=-=-=-=-=-=--=-=--\\
 			if (!preg_match("/^[- _ a-zA-Z0-9 . \ () ]*$/",$fileOriginName)){
-				return array("error"=> "File name ERROR: Only letters ,numbers , - , _ , ( ) and white space allowed.") ;
+				http_response_code(400);
+				return array ("error" => "File name ERROR: Only letters ,numbers , - , _ , ( ) and white space allowed.");
 			}
 			
 			//-=-=-=-=-= check mime/type=-=-=-==--==--\\
@@ -49,11 +51,11 @@ function uploadedFile(){
 					
 					$videoPosterPath = preg_replace('/\s+/', '', $fileName) . "$milliseconds.jpg";
 					exec("ffmpeg.exe");
-					exec("ffmpeg -ss 00:00:02 -i $fileOnServerName -vf scale=800:-1 -vframes 1 assets/images/video-poster/$videoPosterPath");
+					exec("ffmpeg -ss 00:00:02 -i $fileOnServerName -vf scale=800:-1 -vframes 1 ../assets/images/video-poster/$videoPosterPath");
 					$timeVideo = exec("ffprobe -i $fileOnServerName -sexagesimal -show_entries format=duration -v quiet -of csv=\"p=0\"");
 					$printDuration = strstr($timeVideo, '.' ,true);
 					
-					if (move_uploaded_file($fileOnServerName,'videos/' . $filePath)) {
+					if (move_uploaded_file($fileOnServerName,'../videos/' . $filePath)) {
 						return array(
 								"videoName" => "$fileName",
 								"videoSize" => "$printFileSize",
@@ -62,11 +64,26 @@ function uploadedFile(){
 								"duration" => "$printDuration",
 								"originName" => "$fileType"
 						);
-					}else return array("error" => "Problems with $fileOriginName");
-				}else return  array("error" => "Please select a file smaller than 1GB");
-			}else return array("error" => "Please, enter corect video type (Allowed mime/type: video/ogg, video/mp4, video/quicktime)!"); 
-		}else return array("error" => "Problem with file!");
-	}else return array("error" => "Please, enter file!");
+					}else {
+						http_response_code(400);
+						return array ("error" => "Problems with $fileOriginName");
+					}
+				}else { 
+					http_response_code(400);
+					return array ("error" => "Please select a file smaller than 1GB");
+				}
+			}else {
+				http_response_code(400);
+				return array ("error" => "Please, enter corect video type (Allowed mime/type: video/ogg, video/mp4, video/quicktime)!");
+			}
+		}else {
+			http_response_code(400);
+			return array ("error" => "Problem with file!");
+		}
+	}else {
+		http_response_code(400);
+		return array ("error" => "Please, enter file!");
+	}		
 }
 
 //-=-=-=-=-= check user login=-=-=-==--==--\\

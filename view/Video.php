@@ -17,6 +17,7 @@
                     <div class="sv-name">
                         <div><a href="ChannelController.php?@$^^%@@^@^$^@=<?=(empty($video[0]['user_id'])?'':$video[0]['user_id'])?>&page=Video"><?=(empty($video[0]['username'])?'':$video[0]['username'])?></a> . <?=(empty($countOfVideo)?'':$countOfVideo)?></div>
                         <div class="c-sub">
+                        <input id = 'asd' type="hidden" value = "<?=(empty($video[0]['user_id'])?'':$video[0]['user_id'])?>" />
                         <a href=""></a>
                         	 <button class="c-f">
                                Subscribe
@@ -218,7 +219,7 @@
                     <!-- comments -->
                     <div class="comments" >
                         <div class="reply-comment">
-                            <div class="rc-header"><i class="cv cvicon-cv-comment"></i> <span class="semibold"><?=(empty($countOfComments)?'':$countOfComments)?></span> Comments</div>
+                            <div class="rc-header"><i class="cv cvicon-cv-comment"></i> <span class="semibold" id='countOfComments'><?=(empty($countOfComments)?'':$countOfComments)?></span> Comments</div>
                             
                             <div class="rc-comment">
                             <p></p>

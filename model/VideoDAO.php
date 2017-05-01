@@ -16,7 +16,7 @@ class VideoDAO implements IVideoDAO{
 	
 	const COUNT_USER_VIDEO = 'SELECT count(video_id) FROM videos WHERE user_id= ?;';
 	
-	const GET_VIDEO_COMENTS = 'SELECT c.comment_id, c.video_id, c.user_id, c.text, c.date, u.username, u.picture
+	const GET_VIDEO_COMMENTS = 'SELECT c.comment_id, c.video_id, c.user_id, c.text, c.date, u.username, u.picture
 							FROM comments c
 							LEFT OUTER JOIN users u
 							ON (c.user_id = u.user_id)
@@ -60,6 +60,8 @@ class VideoDAO implements IVideoDAO{
 	
 	const UPDATE_VIDEO_DATE_IN_HISTORY = 'UPDATE history SET date=now() WHERE user_id = ? AND video_id= ?;';
 	
+	const DELETE_COMMENT = 'DELETE FROM comments WHERE comment_id = ?;';
+	
 	
 	public function __construct(){
 		try {
@@ -88,16 +90,14 @@ class VideoDAO implements IVideoDAO{
 	}
 	
 	public function getVideo($videoId){
-		try {
 			$pstmt = $this->db->prepare(self::GET_VIDEO_SQL);
 			$pstmt->execute(array($videoId));
 			$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			if (count($result) === 0){
+				throw new Exception('Bad video ID!');
+			}
 			return $result;
-		}catch (PDOException $e){
-			throw new Exception('Bad video ID!');
 		}
-		
-	}
 	
 	public function countUserVideo ($userId){
 		try{
@@ -219,9 +219,9 @@ class VideoDAO implements IVideoDAO{
 		
 	}
 	//-=-=-=-=-=-= get video comments=-=-=-==-=-==--\\
-	public function getVideoComents ($videoId){
+	public function getVideoComments ($videoId){
 		try {
-			$pstmt = $this->db->prepare(self::GET_VIDEO_COMENTS);
+			$pstmt = $this->db->prepare(self::GET_VIDEO_COMMENTS);
 			$pstmt->execute(array($videoId));
 			$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			return $result;
@@ -246,7 +246,8 @@ class VideoDAO implements IVideoDAO{
 		try{
 			$date = date("Y-m-d");
 			$pstmt = $this->db->prepare(self::ADD_VIDEO_COMMENT);
-			return $pstmt->execute(array($videoId, $userId, $comment, $date));
+			$pstmt->execute(array($videoId, $userId, $comment, $date));
+			return $this->db->lastInsertId();
 		}catch (PDOException $e){
 			throw new Exception($e);
 		}
@@ -259,6 +260,15 @@ class VideoDAO implements IVideoDAO{
 			return $pstmt->fetchColumn();
 		}catch (PDOException $e){
 			throw new Exception('Bad video ID!');
+		}
+	}
+	
+	public function deleteVideoComment($commentId){
+		try{
+			$pstmt = $this->db->prepare(self::DELETE_COMMENT);
+			return $pstmt->execute(array($commentId));
+		}catch (PDOException $e){
+			throw new Exception('Incorect comment id!');
 		}
 	}
 	
@@ -407,6 +417,35 @@ class VideoDAO implements IVideoDAO{
 		}catch (PDOException $e){
 			throw new Exception('Bad user ID or video ID!');
 		}
+	}
+	
+	public function searchVideoByTitle($searchBy, $sortBy){
+		$pstmt = $this->db->prepare("SELECT v.video_id, v.title, v.path, v.poster_path, v.duration, v.category_id, v.user_id, v.duration, count(w.user_id) as views
+									FROM videos v
+                                    JOIN video_views w
+                                    ON (v.video_id = w.video_id)
+									WHERE title LIKE CONCAT('%', ?, '%')
+                                    GROUP BY video_id
+									ORDER BY $sortBy DESC;");									
+		
+		$pstmt->execute(array($searchBy));
+		$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+		return $result;
+	}
+	
+	public function getFilterVideos($searchBy, $dataUpload, $timeFilter, $sortBy){
+		$pstmt = $this->db->prepare("SELECT v.video_id, v.title, v.path, v.date,  v.poster_path, v.duration, v.category_id, v.user_id, v.duration, count(w.user_id) as views
+									FROM videos v
+                                    JOIN video_views w
+                                    ON (v.video_id = w.video_id)
+									WHERE title LIKE CONCAT('%', ?, '%') AND ( v.date > (DATE_SUB(CURDATE(), INTERVAL ? DAY)) ) 
+										AND v.duration < ?
+                                    GROUP BY video_id
+									ORDER BY $sortBy DESC;");
+		
+		$pstmt->execute(array($searchBy, $dataUpload, $timeFilter));
+		$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+		return $result;
 	}
 	
 }

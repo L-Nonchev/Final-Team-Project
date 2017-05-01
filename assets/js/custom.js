@@ -14,7 +14,9 @@
 			if(response['success']){
 				alert('The video successful add to whatch later!');
 			}else {
-				alert('Please, login to watched video later!')
+				if (confirm('Please, login to watched video later!')) {
+					 location.href = './LoginController.php';
+				}
 			}
 		});
 	}
@@ -92,7 +94,7 @@ $( document ).ready(function() {
     var $plus = $( '<div class="plus"><i class="cvicon-cv-plus" aria-hidden="true"></i></div>' );
     var $plusDetails = $( '<div class="plus-details">\
                                         <ul >\
-                                            <li><a href="LoginController.php"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Login to watch video later</a></li>\
+                                            <li><a href="#"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Login to watch video later</a></li>\
                                         </ul>\
                                     </div>' );
 

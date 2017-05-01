@@ -4280,7 +4280,7 @@ i.cv:hover {
 .c-social i.fa {
   color: white !important;
 }
-#type-error{
+#type-error, #not-found{
 	color:red;
 	margin-top: 1em;
 	font-size: 1.5em;
@@ -4303,22 +4303,22 @@ i.cv:hover {
 	display: none;
 }
 
-.radio-genre{
+.radio-genre, .searchFilter{
 	width: 100%;
 	text-align: left;
 	line-height: 1.5em;
 }
 
-.genre{
+.genre, .updateDate, .timeFilter, .sorted:HOVER{
 	cursor: pointer;
 	font-size: 1em;
 	width: 100%;
 	font-weight: bold;
 }
-.genre:HOVER{
+.genre:HOVER, .updateDate:HOVER, .timeFilter:HOVER, .sorted:HOVER{
 	color:#ea2c5a;
 }
-.radio-genre input[type=radio]{
+.radio-genre input[type=radio], .searchFilter input[type=radio]{
 	cursor: pointer;
 	height:18px;
 	width: 18px;
@@ -4359,5 +4359,10 @@ i.cv:hover {
 
 .deleteComent{
 	float:right;
+}
+.filter{
 	margin-top: 1.3em;
+}
+#filter-search{
+	font-size: 1.2em;
 }
