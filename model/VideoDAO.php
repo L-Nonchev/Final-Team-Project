@@ -10,7 +10,7 @@ class VideoDAO implements IVideoDAO{
 							LEFT OUTER JOIN category c
 							ON (v.category_id = c.category_id)
 							WHERE v.video_id=?;";
-	const ADD_VIDEO_WHATCH_LATER = 'INSERT INTO watches_later VALUES(?,?);';
+	const ADD_VIDEO_WHATCH_LATER = 'INSERT INTO watches_later VALUES(null,?,?);';
 	
 	const CHECK_VIDEO_EXIST_WHATCH_LATER = 'SELECT * FROM watches_later WHERE user_id= ? AND video_id = ?;';
 	
@@ -32,7 +32,7 @@ class VideoDAO implements IVideoDAO{
 	
 	const CHECK_USER_LIKED_VIDEO = 'SELECT * FROM liked_videos WHERE user_id= ? AND video_id = ?;';
 	
-	const INCREASE_VIDEO_LIKE = 'INSERT INTO liked_videos VALUES(?,?);';
+	const INCREASE_VIDEO_LIKE = 'INSERT INTO liked_videos VALUES(null,?,?);';
 	
 	const CHECK_USER_DISLIKED_VIDEO = 'SELECT * FROM disliked_videos WHERE user_id= ? AND video_id = ?;';
 	
@@ -62,6 +62,11 @@ class VideoDAO implements IVideoDAO{
 	
 	const DELETE_COMMENT = 'DELETE FROM comments WHERE comment_id = ?;';
 	
+	const GET_ALL_CATEGORIES = 'SELECT c.category_id, c.category_name, count(v.category_id) AS videoos_count
+								FROM category c 
+								LEFT OUTER JOIN videos v
+								ON (c.category_id = v.category_id)
+								GROUP BY category_id;';
 	
 	public function __construct(){
 		try {
@@ -448,5 +453,29 @@ class VideoDAO implements IVideoDAO{
 		return $result;
 	}
 	
+	public function getAllCategories(){
+		$allCategories = $this->db->query('SELECT c.category_id, c.category_name, count(v.category_id) AS videos_count
+											FROM category c 
+											LEFT OUTER JOIN videos v
+											ON (c.category_id = v.category_id)
+											GROUP BY category_id;')->fetchAll(PDO::FETCH_ASSOC);
+		if ($allCategories){
+			return $allCategories;
+		}else throw new Exception('Incorect category name!');
+	}
+	
+	public function getAllVideosByCategory($categoryId, $sortBy){
+		$pstmt = $this->db->prepare("SELECT v.video_id, v.title, v.path, v.poster_path, v.duration, v.category_id, v.user_id, v.duration, count(w.user_id) as views
+									FROM videos v
+									JOIN video_views w
+									ON (v.video_id = w.video_id)
+									WHERE v.category_id = ?
+									GROUP BY video_id
+									ORDER BY $sortBy DESC;");
+	
+		$pstmt->execute(array($categoryId));
+		$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+		return $result;
+	}
 }
 ?>

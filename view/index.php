@@ -22,7 +22,7 @@
                                     <ul class="dropdown-menu">
                                     	<li><a href="#new-videos"><i class="cv cvicon-cv-calender"></i> New Videos</a></li>
                                         <li><a href="#most-viewed"><i class="cv cvicon-cv-view-stats"></i> Most Viewed</a></li>
-                                        <li><a href="#popular-video"><i class="cv cvicon-cv-watch-later"></i> Popular videos</a></li>                                        
+                                        <li><a href="#popular-video"><i class="cv cvicon-cv-watch-later"></i> Most Liked</a></li>                                        
 <!--                                         <li><a href="#popular-playlists"><i class="cv cvicon-cv-star"></i> Popular Playlists</a></li> -->
                                         <li><a href="#popular-channels"><i class="cv cvicon-cv-relevant"></i> Popular Channels</a></li>
                                     </ul>
@@ -247,7 +247,7 @@
                                     <ul class="dropdown-menu">
                                     	<li><a href="#new-videos"><i class="cv cvicon-cv-calender"></i> New Videos</a></li>
                                         <li><a href="#most-viewed"><i class="cv cvicon-cv-view-stats"></i> Most Viewed</a></li>
-                                        <li><a href="#popular-video"><i class="cv cvicon-cv-watch-later"></i> Popular videos</a></li>                                        
+                                        <li><a href="#popular-video"><i class="cv cvicon-cv-watch-later"></i> Most Liked</a></li>                                        
 <!--                                         <li><a href="#popular-playlists"><i class="cv cvicon-cv-star"></i> Popular Playlists</a></li> -->
                                         <li><a href="#popular-channels"><i class="cv cvicon-cv-relevant"></i> Popular Channels</a></li>
                                     </ul>
@@ -461,7 +461,7 @@
                         <div class="row">
                             <div class="col-lg-10 col-sm-10 col-xs-8">
                                 <ul class="list-inline">
-                                    <li><a href="popular-video" id='popular-video' class="color-active">Popular videos</a></li>
+                                    <li><a href="popular-video" id='popular-video' class="color-active">Most Liked</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-2 col-sm-2 col-xs-4">
@@ -798,7 +798,7 @@
                                     <ul class="dropdown-menu">
                                     	<li><a href="#new-videos"><i class="cv cvicon-cv-calender"></i> New Videos</a></li>
                                         <li><a href="#most-viewed"><i class="cv cvicon-cv-view-stats"></i> Most Viewed</a></li>
-                                        <li><a href="#popular-video"><i class="cv cvicon-cv-watch-later"></i> Popular videos</a></li>                                        
+                                        <li><a href="#popular-video"><i class="cv cvicon-cv-watch-later"></i> Most Liked</a></li>                                        
 <!--                                         <li><a href="#popular-playlists"><i class="cv cvicon-cv-star"></i> Popular Playlists</a></li> -->
                                         <li><a href="#popular-channels"><i class="cv cvicon-cv-relevant"></i> Popular Channels</a></li>
                                     </ul>

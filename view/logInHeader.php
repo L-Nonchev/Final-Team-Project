@@ -61,7 +61,7 @@ $userName = $user->username;
 											<li><a href="singleVideoPlaylist.php">Single Videos Page With Playlist</a></li>
 											<li><a href="subscription.php">Subscription Page</a></li>
 										</ul></li>
-									<li><a href="./categories.php">Categories</a></li>
+									<li><a href="./AllCategoriesController.php">Categories</a></li>
 									<li><a href="./channels.php">Channels</a></li>
 								</ul>
 							</div>
@@ -74,6 +74,7 @@ $userName = $user->username;
 											<input type="text" id='searchField' name='searchField'  class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
 											<input id='search-page' type="hidden" value = "<?=((isset($search)?$search:''))?>" />
 											<div class="input-group-btn">
+											
 												<button id='searchButton' name='searchButton' type="button"	class="btn btn-default dropdown-toggle"	data-toggle="dropdown" aria-haspopup="true"
 													aria-expanded="false">
 													<i class="cv cvicon-cv-video-file"></i>&nbsp;&nbsp;&nbsp;
@@ -83,6 +84,7 @@ $userName = $user->username;
 										</div>
 									</div>
 								</form>
+								<input id='category-id' type="hidden" value = "<?=((isset($categoryId)?$categoryId:''))?>" />
 							</div>
 							<div class="visible-xs clearfix"></div>
 							<div class="col-lg-3 col-sm-8  col-xs-8">
