@@ -1,5 +1,4 @@
 <?php 
-
 $user = json_decode($_SESSION['user']);
 $sessuionUserId = $user->userId;
 $userPic = $user->profilPicName;
@@ -53,16 +52,9 @@ $userName = $user->username;
 							</div>
 							<div class="col-lg-3 col-sm-10 col-xs-10">
 								<ul class="list-inline menu">
-									<li class="pages color-active">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-										<ul class="dropdown-menu">
-											<li><a href="./HomePageController.php">Home Page</a></li>
-											<li><a href="search.php">Searched Videos Page</a></li>
-											<li><a href="singleVideoPlaylist.php">Single Videos Page With Playlist</a></li>
-											<li><a href="subscription.php">Subscription Page</a></li>
-										</ul></li>
+									<li><a href="./HomePageController.php">Home Page</a></li>
 									<li><a href="./AllCategoriesController.php">Categories</a></li>
-									<li><a href="./channels.php">Channels</a></li>
+									<li><a href="./AllChannelsController.php?page=channels">Channels</a></li>
 								</ul>
 							</div>
 							<div class="visible-xs visible-sm clearfix"></div>
@@ -98,7 +90,7 @@ $userName = $user->username;
 											aria-haspopup="true" aria-expanded="true"><?= $userName ?><span class="caret"></span></button>
 										<ul class="dropdown-menu">
 											<li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $sessuionUserId ?>&page=Video">My Channel</a></li>
-											<li><a href="./options.php">Options</a></li>
+											<li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $sessuionUserId ?>&page=Settings">Settings</a></li>
 											<li><a href="./logOUT.php">Log Out</a></li>
 										</ul>
 									</div>
@@ -129,10 +121,10 @@ $userName = $user->username;
 							</div>
 							<div class="col-lg-3  col-sm-10 col-xs-12">
 								<div class="h-icons">
-									<a href="likedVideos.php"><i class="cv cvicon-cv-liked" data-toggle="tooltip" data-placement="top" title="Liked Videos"></i></a> 
-									<a href="watchLater.php"><i class="cv cvicon-cv-watch-later" data-toggle="tooltip" data-placement="top" title="Watch Later"></i></a> 
-									<a href="savedPlaylist.php"><i class="cv cvicon-cv-play-circle" data-toggle="tooltip" data-placement="top" title="Saved Playlist"></i></a> 
-									<a href="history.php"><i class="cv cvicon-cv-history" data-toggle="tooltip" data-placement="top" title="History"></i></a>
+									<a href="GoToPagesController.php?page=likedVideos"><i class="cv cvicon-cv-liked" data-toggle="tooltip" data-placement="top" title="Liked Videos"></i></a> 
+									<a href="GoToPagesController.php?page=watchLater"><i class="cv cvicon-cv-watch-later" data-toggle="tooltip" data-placement="top" title="Watch Later"></i></a> 
+<!-- 									<a href="savedPlaylist.php"><i class="cv cvicon-cv-play-circle" data-toggle="tooltip" data-placement="top" title="Saved Playlist"></i></a>  -->
+									<a href="GoToPagesController.php?page=history"><i class="cv cvicon-cv-history" data-toggle="tooltip" data-placement="top" title="History"></i></a>
 								</div>
 							</div>
 						</div>

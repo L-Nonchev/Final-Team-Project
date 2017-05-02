@@ -207,13 +207,11 @@
                             
                             <div class="rc-comment">
                             <p></p>
-                                <form method="post">
                                     <textarea rows="3" id = 'videoComent'>Share what you think?</textarea >
                                     <button type="submit" id='addVideoComent' >
                                         <i class="cv cvicon-cv-add-comment" onclick = 'event.preventDefault()'></i>
                                     </button>
                                     <input type='hidden' id='qsf' value ="<?=(empty($video[0]['video_id'])?'':$video[0]['video_id'])?>">
-                                </form>
                             </div>
                             <div class="clearfix"></div>
                         </div>

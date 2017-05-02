@@ -45,17 +45,9 @@
 							</div>
 							<div class="col-lg-3 col-sm-10 col-xs-10">
 								<ul class="list-inline menu">
-									<li class="pages color-active">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-										<ul class="dropdown-menu">
-											<li><a href="./HomePageController.php">Home Page</a></li>
-<!-- 											<li><a href="upload.html">Upload Video Page</a></li> -->
-<!-- 											<li><a href="upload-edit.html">Upload Video Edit Page</a></li> -->
-											<li><a href="search.php">Searched Videos Page</a></li>
-											<li><a href="subscription.php">Subscription Page</a></li>
-										</ul></li>
+									<li><a href="./HomePageController.php">Home Page</a></li>
 									<li><a href="./AllCategoriesController.php">Categories</a></li>
-									<li><a href="./channels.php">Channels</a></li>
+									<li><a href="./AllChannelsController.php?page=channels">Channels</a></li>
 								</ul>
 							</div>
 							<div class="visible-xs visible-sm clearfix"></div>

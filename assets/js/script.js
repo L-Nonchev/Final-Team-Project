@@ -306,6 +306,7 @@ function drawRightAside(id, duration , poster, title, views, percent){
 		//video div
 		var div1 = document.createElement("div");
 		div1.className = "h-video row";
+		div1.id = id;
 		
 			// inner video div
 			var div2 = document.createElement("div");

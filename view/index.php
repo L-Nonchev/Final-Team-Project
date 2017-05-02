@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="col-lg-10 col-sm-10 col-xs-8">
                                 <ul class="list-inline">
-                                    <li><a href="new-videos" id='new-videos' class="color-active">New Videos</a></li>
+                                    <li><a href="#" id='new-videos' class="color-active">New Videos</a></li>
                                 </ul>
                             </div>
 							<div class="col-lg-2 col-sm-2 col-xs-4">
@@ -236,7 +236,7 @@
                         <div class="row">
                             <div class="col-lg-10 col-sm-10 col-xs-8">
                                 <ul class="list-inline">
-                                    <li><a href="most-viewed" id='most-viewed' class="color-active">Most Viewed</a></li>
+                                    <li><a href="#" id='most-viewed' class="color-active">Most Viewed</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-2 col-sm-2 col-xs-4">
@@ -461,7 +461,7 @@
                         <div class="row">
                             <div class="col-lg-10 col-sm-10 col-xs-8">
                                 <ul class="list-inline">
-                                    <li><a href="popular-video" id='popular-video' class="color-active">Popular videos</a></li>
+                                    <li><a href="#" id='popular-video' class="color-active">Popular videos</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-2 col-sm-2 col-xs-4">
