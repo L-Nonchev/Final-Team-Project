@@ -16,7 +16,6 @@ if(isset($_SESSION['user'])){
 			try {
 				$userData = new  UserDAO();
 				$result = $userData->insertDiscussionComent($data->channelId, $data->text, $date, $user->userId);
-					
 				if ($result) {
 					http_response_code ( 200 );
 					echo json_encode(array(
@@ -24,6 +23,7 @@ if(isset($_SESSION['user'])){
 							'username' => $user->username,
 							'userpic' => $user->profilPicName,
 							'text' =>$data->text,
+							'discussion_id' => $result
 					));
 				}
 			} catch (PDOException $e){
@@ -31,19 +31,21 @@ if(isset($_SESSION['user'])){
 				echo json_encode(array(
 						"error" =>  "Something went wrong, try again"
 				));
+				die();
 			}catch (Exception $e){
 				$error = $e->getMessage();
 				http_response_code ( 401 );
 				echo json_encode(array(
 						"error" => $error
 				));
-					
+				die();
 			}
 		}else{
 			http_response_code ( 401 );
 			echo json_encode(array(
 					"error" => "Not Found!"
 			));
+			die();
 		}
 	}
 	
@@ -55,7 +57,7 @@ if(isset($_SESSION['user'])){
 		try {
 			$userData = new  UserDAO();
 			$result = $userData->selectChannelDisussion($channelId, $offset);
-			
+			$cntDisscussions = $userData->countDiscussion($channelId);
 			for ($index = 0 ; $index < count($result); $index++){
 				$now = date_create(date("Y-m-d"));
 				$uploadetDate = date_create($result[$index]['date']);
@@ -69,13 +71,38 @@ if(isset($_SESSION['user'])){
 				}else{
 					$printDate = " Today";
 				}
+				$result[$index]['cntDiscussions'] = $cntDisscussions;
 				$result[$index]['date'] = $printDate;
 			}
-			
+			http_response_code ( 200 );
 			echo json_encode($result);
+			die();
 		}catch (Exception $e){
 			$a = $e->getMessage();
 			echo $a;
+		}
+	}
+	
+	if ($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+		$data = array();
+		parse_str(file_get_contents("php://input"), $data);
+		$delComent = json_decode($data['data']);		
+		try {
+			$userData = new  UserDAO();
+			$result = $userData->deleteDiscussionComent($delComent->commentId, $delComent->userId);
+
+			if ($result){
+					http_response_code ( 200 );
+					echo json_encode(array(
+							'delete' => $result
+					));
+					die();
+			}	
+		}catch (Exception $e){
+			http_response_code ( 500 );
+			echo json_encode(array(
+					"error" =>  "Something went wrong, try again"
+			));
 		}
 	}
 }else {

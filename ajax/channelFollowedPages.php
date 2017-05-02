@@ -7,8 +7,6 @@ function __autoload($className){
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 	$offset = $_GET['offset'];
 	$userId = $_GET['@$^^%@@^@^$^@'];
-
-	
 	try {
 		$userData = new UserDAO();
 		
@@ -32,29 +30,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 				'views' => $user->views
 			);
 		}
-		
+		http_response_code ( 200 );
 		echo json_encode($usersArray);
+		die();
 	} catch (Exception $e){
-		echo $e->getMessage();
-		
-	}
-	
-	
-	
-// 	$user = $userData->getAllUserData(1);
-	
-// 	print_r($user);
-	
-// 	$cntVideos = $userData->getVideosCount($user->userId);
-	
-// 	print_r($cntVideos);
-	
-	
-	
-	
-	
-	
-	
+		http_response_code ( 500 );
+		echo json_encode(array(
+				"error" =>  "Something went wrong, try again"
+		));
+		die();
+	}	
 }
 
 ?>

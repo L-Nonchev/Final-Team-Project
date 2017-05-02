@@ -2405,13 +2405,14 @@ ul.menu {
 }
 .single-video .author .sv-name .c-sub .c-f {
   float: left;
-  width: 86px;
+  width: 95px;
   padding: 5px 10px 0px 10px;
   border: solid 1px #ea2c5a;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   background-color: #ea2c5a;
   color: #ffffff;
+  outline: none;
 }
 .single-video .author .sv-name .c-sub .c-s {
   float: left;
@@ -3107,13 +3108,14 @@ ul.menu {
 }
 .single-video .author .sv-name .c-sub .c-f {
   float: left;
-  width: 86px;
+  width: 95px;
   padding: 5px 10px 0px 10px;
   border: solid 1px #ea2c5a;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   background-color: #ea2c5a;
   color: #ffffff;
+  outline: none;
 }
 .single-video .author .sv-name .c-sub .c-s {
   float: left;
@@ -4366,19 +4368,3 @@ i.cv:hover {
 #filter-search{
 	font-size: 1.2em;
 }
-
-.b-category img{
-	border-radius: 10%;
-}
-#aboutUser{
-	font-family: Helvetica, Arial, sans-serif;
-	width: 100%;
-	border-collapse:collapse; 
-	border-spacing: 10;
-	font-size:1.5em;
-	color: gray;
-}
-#aboutUser tr:nth-child(odd) {
-	
-	background-color: #f2f2f2;
-	}

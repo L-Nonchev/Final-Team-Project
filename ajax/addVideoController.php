@@ -2,9 +2,9 @@
 function __autoload($className) {
 	require_once "../model/" . $className . '.php';
 }
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-	session_start();
-	
 	//-=-=-=-=-= check user login=-=-=-==--==--\\
 	if (isset($_SESSION['user'])){
 		$user = json_decode($_SESSION['user']);

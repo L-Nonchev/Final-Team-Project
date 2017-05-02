@@ -31,8 +31,7 @@
 					$ifCreatet = $userData->loginUser($user);
 						
 					if ($ifCreatet){
-// 						echo json_encode($user);
-							
+	
 						//-=-=-=-=-=-=---==-=-=-= CREATE  SESSION =-=-=-==-=-==-=-==--\\
 							
 						$_SESSION['user'] = json_encode($user);
@@ -42,18 +41,23 @@
 					}
 				}catch (PDOException $e){
 					include '503.php';
+					die();
 				} catch (Exception $e){
 					$errorMessage = $e->getMessage();
 					include logInPage;
+					die();
 				}
 			}else {
 				$errorMessage = "There are blank fields!";
 				include singUpPage;
+				die();
 			}
 		}else{
 			include logInPage;
+			die();
 		}
 	}else{
 		include logInPage;
+		die();
 	}
 ?>

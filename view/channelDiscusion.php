@@ -53,7 +53,7 @@
                     <!-- comments -->
                     <div class="comments">
                         <div class="reply-comment">
-                            <div class="rc-header"><i class="cv cvicon-cv-comment"></i> <span class="semibold">236</span> Comments</div>
+                            <div class="rc-header"><i class="cv cvicon-cv-comment"></i> <span class="semibold"  id = "rc-header" > </span> Comments</div>
                             <div class="rc-ava"><a href="#"><img id="qwe" src="./assets/images/user-pictures/<?= $userPic?>" alt="avatar" style="width: 70px; height: 70px;" /></a></div>
                             <div class="rc-comment">
                                 <form action="#" method="post" onsubmit="event.preventDefault();">

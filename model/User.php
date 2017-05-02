@@ -169,9 +169,7 @@ class User implements JsonSerializable {
 	//constructor
 	public function __construct($email = null, $password = null , $username = null,  $country = null, $joinDate = null,
 			$subscribers = 0, $profilPicName = null, $profilBanner = null, $description = null, $userId = 0 , $views = 0){
-					
-					
-					
+						
 				 $this->setUserName($username);
 				 $this->setEmail($email);
 				 $this->setPassword($password);
@@ -182,10 +180,7 @@ class User implements JsonSerializable {
 				 $this->setProfilPicName($profilPicName);
 				 $this->setProfilBanner($profilBanner);
 				 $this->setDescription($description);
-				 $this->setUserId($userId);			 
-		
-	}
-	
+				 $this->setUserId($userId);			 	
+	}	
 }
-
 ?>

@@ -1,15 +1,11 @@
-/**
- * Created by Alex on 12.08.2016.
- */
-
-	function watchLater(){
+function watchLater(){
 		var videoId = ($(this).parent().parent().parent().attr('id'));
 		if (!videoId){
 			var videoId = $('#qsf').val();
 		}
 		$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ videoId: videoId }, 
 				function(data){
-			console.log(data);
+			console.log(videoId);
 			var response = JSON.parse(data);
 			if(response['success']){
 				alert('The video successful add to whatch later!');
@@ -41,10 +37,11 @@ function addAjaxVideoOptions() {
         		$plusDetails = $( '<div class="plus-details">\
                         <ul >\
                             <li><a href="#"><i class="cvicon-cv-watch-later" aria-hidden="true" onclick ="watchLater(); event.preventDefault();"></i> Watch Later</a></li>\
-                            <li><a href="#"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Add to Playlist</a></li>\
+                            \
                         </ul>\
                     </div>' );
     		}
+//    		<li><a href="#"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Add to Playlist</a></li>
     	});
         $(this).append($plus);
         $(".plus").hover( function() {
@@ -105,10 +102,11 @@ $( document ).ready(function() {
         		$plusDetails = $( '<div class="plus-details">\
                         <ul>\
                             <li ><a href="#"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Watch Later</a></li>\
-                            <li><a href="#"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Add to Playlist</a></li>\
+                          \
                         </ul>\
                     </div>' );
     		}
+//    		  <li><a href="#"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Add to Playlist</a></li>
     	});
             $(this).append($plus);
             $(".plus").hover( function() {

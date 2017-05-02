@@ -62,7 +62,7 @@ try {
  	$popularVideo = getMostPopularVideos(12);
 	$popularChannels = drowUserContent('subscribers', 6);
 }catch (Exception $e){
- 		header('Location: 503.php', true, 302);
+ 		header('Location: 404.php', true, 302);
  		die();
 	}
 

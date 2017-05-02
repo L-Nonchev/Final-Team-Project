@@ -54,8 +54,8 @@
 											<li><a href="search.php">Searched Videos Page</a></li>
 											<li><a href="subscription.php">Subscription Page</a></li>
 										</ul></li>
-									<li><a href="./AllCategoriesController.php">Categories</a></li>
-									<li><a href="./channels.php">Channels</a></li>
+									<li><a href="./categories.php">Categories</a></li>
+									<li><a href="./AllChannelsController.php?page=channels">Channels</a></li>
 								</ul>
 							</div>
 							<div class="visible-xs visible-sm clearfix"></div>
@@ -76,7 +76,6 @@
 										</div>
 									</div>
 								</form>
-								<input id='category-id' type="hidden" value = "<?=((isset($categoryId)?$categoryId:''))?>" />
 							</div>
 							<div class="visible-xs clearfix"></div>
 							<div class="col-lg-2 col-sm-4  col-xs-8">

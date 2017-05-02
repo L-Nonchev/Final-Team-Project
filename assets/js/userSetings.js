@@ -32,11 +32,10 @@ if (newUsername) {
 				btnUsername.style.visibility = "visible";			
 			}
 			if (this.readyState === 4 && this.status === 200) {
-				console.log(this.responseText);
 				var incomeData = JSON.parse(this.responseText);
 				newUsername.style.borderColor = "red";
 				labelNewUsername.style.color = "red";
-				labelNewUsername.innerHTML  ="Usename " + newUsername.value + " alredy exist!"
+				labelNewUsername.innerHTML  ="Usename " + newUsername.value + " already exists!"
 				btnUsername.style.visibility = "hidden";
 			}
 		}
@@ -72,6 +71,7 @@ if(btnUsername){
 				btnUsername.innerHTML = "Changed"; 
 				btnUsername.style.backgroundColor ="#2cce8f";
 				oldUsername.style.borderColor = "#e0e1e2";
+				document.getElementById('dropdownMenu1').innerHTML = newUsername.value;
 			}
 		}
 		var dataSend = 'update=' + JSON.stringify({
@@ -107,7 +107,6 @@ if (newEmail) {
 		var currier = new XMLHttpRequest();
 		currier.onreadystatechange = function(){
 			if (this.readyState === 4 && this.status === 400) {
-				console.log(this.responseText);
 				var incomeData = JSON.parse(this.responseText);
 				newEmail.style.borderColor = "red";
 				labelNewEmail.style.color = "red";
@@ -115,7 +114,6 @@ if (newEmail) {
 				btnEmail.style.visibility = "hidden";
 			}
 			if (this.readyState === 4 && this.status === 404) {
-				console.log(this.responseText);
 				var incomeData = JSON.parse(this.responseText);
 				newEmail.style.borderColor = "#e0e1e2";
 				labelNewEmail.innerHTML  = "New Email";
@@ -123,11 +121,10 @@ if (newEmail) {
 				btnEmail.style.visibility = "visible";
 			}
 			if (this.readyState === 4 && this.status === 200) {
-				console.log(this.responseText);
 				var incomeData = JSON.parse(this.responseText);
 				newEmail.style.borderColor = "red";
 				labelNewEmail.style.color = "red";
-				labelNewEmail.innerHTML  ="Email " + newEmail.value + " alredy exist!"
+				labelNewEmail.innerHTML  ="Email " + newEmail.value + " already exists!"
 				btnEmail.style.visibility = "hidden";
 			}
 		}
@@ -153,13 +150,11 @@ if(btnEmail){
 		var currier = new XMLHttpRequest();
 		currier.onreadystatechange = function(){
 			if (this.readyState === 4 && this.status === 400) {
-				console.log(this.responseText);
 				var incomeData = JSON.parse(this.responseText);
 				oldEmail.style.borderColor = "red";
 				alert(incomeData.update);	
 			}
 			if (this.readyState === 4 && this.status === 200) {
-				console.log(this.responseText);
 				oldEmail.style.borderColor = "#e0e1e2";
 				var incomeData = JSON.parse(this.responseText);
 				btnEmail.innerHTML = "Changed"; 
@@ -250,7 +245,6 @@ if (btnPassword) {
 			var currier = new XMLHttpRequest();
 			currier.onreadystatechange = function(){
 				if (this.readyState === 4 && this.status === 400) {
-					console.log(this.responseText);
 					var incomeData = JSON.parse(this.responseText);
 					oldPassword.style.borderColor = "red";
 					oldPassword.style.borderColor = "red";
@@ -282,6 +276,7 @@ if (btnPassword) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////Picture update:
+var btnPic = document.getElementById('picture-button');
 
 $(document).ready(function (e) {
     $('#imageUploadForm').on('submit',(function(e) {
@@ -294,23 +289,51 @@ $(document).ready(function (e) {
             data:formData,
             cache:false,
             contentType: false,
+            statusCode: {
+            	 400: function (response) {
+                    alert(response.responseText);     
+                  },
+                  200 :function(response) {
+                  	btnPic.innerHTML = "Changed"; 
+                  	btnPic.style.backgroundColor ="#2cce8f";      
+                  },
+              },
             processData: false,
-            success:function(data){
-                console.log("success");
-                console.log(data);
-            },
-            error: function(data){
-                console.log("error");
-                console.log(data);
-            }
         });
     }));
 
-    $("#ImageBrowse").on("change", function() {
-        $("#imageUploadForm").submit();
-    });
 });
+////////END Pictureupdate
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////Baner update:
+var btnBanner = document.getElementById('banner-button');
 
+$(document).ready(function (e) {
+    $('#bannerUploadForm').on('submit',(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            type:'POST',
+            url: 'ajax/changeSettings.php',
+            data:formData,
+            cache:false,
+            contentType: false,
+            statusCode: {
+            	 400: function (response) {
+                    alert(response.responseText);     
+                  },
+                  200 :function(response) {
+                	  btnBanner.innerHTML = "Changed"; 
+                	  btnBanner.style.backgroundColor ="#2cce8f";      
+                  },
+              },
+            processData: false,
+        });
+    }));
+
+});
 
 

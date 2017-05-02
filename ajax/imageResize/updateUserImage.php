@@ -1,13 +1,15 @@
 <?php
-function updateProfilImage ($user_id, $fileOnServer, $fileRealName){
+function updateProfilImage ($fileOnServer, $fileRealName){
 	//get email form user
-	require_once './db_connection.php';
-	require_once './php/resizeImage.php';
 	
+	require 'resizeImage.php';
 	
-	$mail = getEmail($user_id);
-
-	$path = 'assets/users/'.$mail.'/image//'.$fileRealName;
+	$userData = new UserDAO();
+	$user = json_decode( $_SESSION['user']);
+	
+	$milliseconds = round(microtime(true) * 1000);
+	$fileRealName = $milliseconds.$fileRealName;
+	$path = '../assets/images/user-pictures/'.$fileRealName;
 
 	//MIME validation
 	$mime =  mime_content_type($fileOnServer);
@@ -21,30 +23,30 @@ function updateProfilImage ($user_id, $fileOnServer, $fileRealName){
 
 				// resize img
 
-				//indicate which file to resize (can be any type jpg/png/gif/etc...)
+				//indicate which file to resize (can be any type jpg)
 				$file = $path;
 
 				//indicate the path and name for the new resized file
 				$resizedFile = $path;
 
 				//call the function (when passing path to pic)
-				smart_resize_image($file , null, 100 , 100 , false , $resizedFile , false , false ,100 );
+				smart_resize_image($file , null, 150 , 150 , false , $resizedFile , false , false ,100 );
 
-
-				if (updateImage($user_id,$path)){
-						
-					return "File has been changed successfully ";
+				$result = $userData->updatePicture($user->userId, $fileRealName);
+				
+				if($result){
+					$user->profilPicName = $fileRealName;
+					$_SESSION['user'] = json_encode($user);		
+					return true;
 				}
 			}else {
-				return "The file is not successfully uploaded, please try again.";
-
+				throw new Exception("The file is not successfully uploaded, please try again.");
 			}
 		}else {
-			return "The file is not successfully uploaded, please try again.";
+			throw new Exception("The file is not successfully uploaded, please try again.");
 		}
 	}else {
-		return  "Please upload  image/jpeg format !";
+		throw new Exception("Please upload  image/jpeg format !");
 	}
 }
-
 ?>

@@ -19,11 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 				echo json_encode(array(
 						'email' => $result
 				));
+				die();
 			}else {
 				http_response_code ( 200 );
 				echo json_encode(array(
 						'email' => $result
 				));
+				die();
 			}
 				
 		}catch (Exception $e){
@@ -33,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 					'errorMesageEmail' => $e->getMessage()
 			));
 		}
-
 	};
 }
 ?>

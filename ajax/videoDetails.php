@@ -3,6 +3,7 @@ function __autoload($className) {
 	require_once "../model/" . $className . '.php';
 }
 session_start();
+
 function deleteVideoComment(){
 	if ($_POST['commentId']>0){
 		$commentId = $_POST['commentId'];

@@ -20,7 +20,7 @@ if(isset($_SESSION['user'])){
 					$user2 = new User("example@gmail.com", "test1234" , $newUsername->username);
 				
 					$result = $userData->selectUsernameFromDB($user2);
-					if ($result !== $user->userId){
+					if ($result == 0){
 						http_response_code ( 404 );
 						echo json_encode(array(
 								'check' => false));
@@ -39,6 +39,8 @@ if(isset($_SESSION['user'])){
 				if ($result === $user->userId){
 					$result2 = $userData->updateUsername($user->userId, $updateUsername->newUsername);
 					if ($result2){
+						$user->username = $updateUsername->newUsername;
+						$_SESSION['user'] = json_encode($user);
 						http_response_code ( 200 );
 						echo json_encode(array(
 								"check" => $result2
@@ -64,7 +66,7 @@ if(isset($_SESSION['user'])){
 				if ($newEmail->email){
 					$user2 = new User($newEmail->email);
 					$result = $userData->selectEmailFromDB($user2);
-					if ($result !== $user->userId){
+					if ($result == 0){
 						http_response_code ( 404 );
 						echo json_encode(array(
 								'check' => false));
@@ -126,40 +128,79 @@ if(isset($_SESSION['user'])){
 					));
 				}
 			}
+			
+			// update picture
+			if (isset($_FILES['picture'])){
+			
+				// user pic
+				$fileOnServer = $_FILES['picture']['tmp_name'];
+				$fileRealName = $_FILES['picture']['name'];
+				$mimeType =   mime_content_type($fileOnServer);
+				$fileSize = filesize($fileOnServer);
+				$size  = "10000000";
+				if ($mimeType === "image/jpeg"){
+					list($width, $height) = getimagesize($fileOnServer);
+					if ($fileSize <= $size){
+						if (($width > 149 && $height > 149) && ($width < 1200 &&  $height < 800)){
+							include 'imageResize/updateUserImage.php';
+							$result = updateProfilImage($fileOnServer, $fileRealName);
+							if ($result){
+								http_response_code ( 200 );
+								echo "haha";
+							}
+						}else{
+							http_response_code ( 400 );
+							echo json_encode("The photo should be in a resolution: min 149x149x max 1200x800");
+						}
+					}else{
+						http_response_code ( 400 );
+						echo json_encode(	"Image size is too large. Maximum sixe is 10Mb");
+					}
+				}else {
+					http_response_code ( 400 );
+					echo json_encode("Image format is incorect. Allowed format jpeg");
+				}
+			}
+			
+			
+			// update banner 
+			if (isset($_FILES['banner'])){
+					
+				// user pic
+				$fileOnServer = $_FILES['banner']['tmp_name'];
+				$fileRealName = $_FILES['banner']['name'];
+				$mimeType =   mime_content_type($fileOnServer);
+				$fileSize = filesize($fileOnServer);
+				$size  = "20000000";
+				if ($mimeType === "image/jpeg"){
+					list($width, $height) = getimagesize($fileOnServer);
+					if ($fileSize <= $size){
+						if (($width >= 1500 && $height >= 340) && ($width <= 2500 &&  $height <= 800)){
+							include 'imageResize/updateUserBanner.php';
+							$result = updateProfilBanner($fileOnServer, $fileRealName);
+							if ($result){
+								http_response_code ( 200 );
+							}
+						}else{
+							http_response_code ( 400 );
+							echo json_encode("The photo should be in a resolution: min 1500x350 max 2500x800");
+						}
+					}else{
+						http_response_code ( 400 );
+						echo json_encode(	"Image size is too large. Maximum sixe is 20Mb");
+					}
+				}else {
+					http_response_code ( 400 );
+					echo json_encode("Image format is incorect. Allowed format jpeg");
+				}
+			}
 		}catch (Exception $e){
 			http_response_code ( 400 );
 			$error = $e->getMessage();
-			echo json_encode(array(
-					'check' => $error));
+			echo json_encode(
+					 $error);
 		}
-	}
-	
-	// update picture
-	if (isset($_FILES['picture'])){
 		
-		// user pic
-		$fileOnServer = $_FILES['picture']['tmp_name'];
-		$fileRealName = $_FILES['picture']['name'];
-		$mimeType =   mime_content_type($fileOnServer);
-		$fileSize = filesize($fileOnServer);
-		$size  = "10000000";
-		if ($mimeType === "image/jpeg"){
-			if ($fileSize <= $size){
-				
-			}
-			echo "qkooo";
-		}else {
-			echo " ebaisi !";
-		}
 
-		if ($fileSize < $size){
-			if (!empty($fileOnServer)){
-				$error = updateProfilImage($user_id, $fileOnServer, $fileRealName);
-			}
-		}else{
-			$error = "Please upload the image to 1MB!";
-		}
 	}
-	
-
 }

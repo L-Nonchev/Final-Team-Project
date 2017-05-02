@@ -38,8 +38,8 @@
                                 </div>
                                 <div class="c-sub pull-right">
                                     <div class="c-sub-wrap">
-                                     	<button class="c-f" id="subscribers"> Subscribe </button>
-                                        <div class="c-s" id="suscribers"><?= $subscribers ?></div>
+                                     	<button class="c-f" id="subscribers" style="visibility: hidden;"> Subscribe </button>
+                                        <div class="c-s" id="suscribers"  style="visibility: hidden;"><?= $subscribers ?></div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
 									
                             </div>
                             <div class="col-lg-3 col-xs-15col-sm-6" >
-								<div class="btn-group pull-right bg-clean" style="opacity: 0.0" id="privacy">
+								<div class="btn-group pull-right bg-clean" style="visibility: hidden;" id="privacy" >
                                     <button type="button" class="btn btn-default dropdown-toggle" id="bnt-order2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Videos <span class="caret"></span>
                                     </button>
@@ -76,7 +76,7 @@
                                         <li><a href="#" onclick="event.preventDefault(); orderedBy('2345');"><i class="cv cvicon-cv-relevant"></i> Date Added</a></li>
                                         <li><a href="#" onclick="event.preventDefault(); orderedBy('1234'); " ><i class="cv cvicon-cv-calender"></i> Recent</a></li>
                                         <li><a href="#" onclick="event.preventDefault(); orderedBy('3456');" ><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
-                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('4567');"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
+                                        <li><a href="#" onclick="event.preventDefault(); orderedBy('4567');"><i class="cv cvicon-cv-playlist"></i>Lexicographic</a></li>
                                         <li><a href="#" onclick="event.preventDefault(); orderedBy('5678');"><i class="cv cvicon-cv-watch-later"></i> Logestc</a></li>
                                     </ul>
                                 </div>

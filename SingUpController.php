@@ -29,6 +29,7 @@
 					if ($password !== $reRassword){
 						$errorMessage = "The password you entered does NOT match! <br /> TRY AGAIN.";
 						include singUpPage;
+						die();
 					} else {
 						// create user
 						//-=-=-=-=-=-=---==-=-=-= Create User=-=-=-==-=-==-=-==--\\
@@ -59,15 +60,19 @@
 				} catch (Exception $e){
 					$errorMessage = $e->getMessage();
 					include singUpPage;
+					die();
 				}
 			}else {
 				$errorMessage = "There are blank fields!";
 				include singUpPage;
+				die();
 			}
 		}else {
 			include singUpPage;
+			die();
 		}
 	}else {
 		include singUpPage;
+		die();
 	}
 ?>
