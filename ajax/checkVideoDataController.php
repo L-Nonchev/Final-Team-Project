@@ -37,12 +37,12 @@ function deleteVideo (){
 }
 //-=-=-=-=-= add video in table watches_later=-=-=-==--==--\\
 function watchVideoLater($userId, $videoId){
-	try {
+// 	try {
 		( new VideoDAO())->watchLater($userId, $videoId);
 		return $responce = array ("success" => true);
-	}catch (Exception $e){
-		return $responce = array ("error" => $e->getMessage ());
-	}
+// 	}catch (Exception $e){
+// 		return $responce = array ("error" => $e->getMessage ());
+// 	}
 }
 
 	//-=-=-=-=-= check user login=-=-=-==--==--\\

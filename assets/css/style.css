@@ -4368,3 +4368,18 @@ i.cv:hover {
 #filter-search{
 	font-size: 1.2em;
 }
+.b-category img{
+	border-radius: 10%;
+}
+#aboutUser{
+	font-family: Helvetica, Arial, sans-serif;
+	width: 100%;
+	border-collapse:collapse; 
+	border-spacing: 10;
+	font-size:1.5em;
+	color: gray;
+}
+#aboutUser tr:nth-child(odd) {
+	
+	background-color: #f2f2f2;
+	}

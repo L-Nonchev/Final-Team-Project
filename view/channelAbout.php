@@ -29,13 +29,11 @@ include 'header.php';
                                 <input type="hidden" id="EfdsJs@4" value="<?= $sessuionUserId ?>"  />
                                 <div class="c-nav">
                                     <ul class="list-inline">
-                                           <ul class="list-inline">
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Video">Videos</a></li>
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Playlist">Playlist</a></li>
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=LikedChannels">Channels</a></li>
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=Discusion">Discussion</a></li>
                                         <li><a href="./ChannelController.php?@$^^%@@^@^$^@=<?= $userId ?>&page=About" id="about">About</a></li>
-                                    </ul>
                                     </ul>
                                 </div>
                                 <div class="c-sub pull-right">
@@ -76,8 +74,8 @@ include 'header.php';
                             </div>
                         </div>
                     </div>
-                    <div class="cb-content videolist">
-                        <div class="row">
+                    <div class="cb-content videolist" >
+                        <div class="row" id='about-user'>
  						
  						<h1>hahg</h1>
  						

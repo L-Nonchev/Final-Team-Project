@@ -514,3 +514,44 @@ function createDiscusion (user_discussant_id ,userpic, username, text , date , d
 };
 ////////END DISCUSION PAGE CHANNEL :
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//---------------------------------------------------------------About user---------------------------------------------------------------//
+var userAbout = document.getElementById("about-user");
+if(userAbout){
+	
+	var xhr = new XMLHttpRequest();
+	
+	xhr.open('GET', 'ajax/channelAbout.php?userId='+channelId.value, true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	
+	xhr.send();
+	xhr.onload = function() {
+		if (this.status === 500){
+			location.href = './503.php';
+		}
+		if (this.status === 200) {
+			
+			var about = JSON.parse(xhr.responseText);
+			var output = "<table id = 'aboutUser'>";
+			for (var index = 0; index < about.length; index++ ) {
+				output += "<tr><th>Channel</th>"
+				output += "<td>" + about[index].username + "</td></tr>";
+				output += "<tr><th>About me</th>";
+				output += "<td>" + about[index].description +"</td></tr>";
+				output += "<tr><th>Country</th>";
+				output += "<td>" + about[index].country_name + "</td></tr>";
+				output += "<tr><th>Join date</th>";
+				output += "<td>" + about[index].join_date + "</td></tr>";
+				output += "<tr><th>Count of subscribers</th>";
+				output += "<td>" + about[index].subscribers + "</td></tr>";
+			}
+
+			output += "</table>";
+			userAbout.innerHTML = output;
+		}
+		
+	}	
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////ABOUT PAGE CHANNEL :
+

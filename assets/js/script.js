@@ -155,7 +155,7 @@ if (document.getElementById('commentsDiv')){
 	getComments();
 }
 
-//-=-=-=-=-=-=--=---=-= Chech for dublicate video name=-=-=-=-=-=-=--=-=-==-=-=\\
+//-=-=-=-=-=-=--=---=-= Check for dublicate video name=-=-=-=-=-=-=--=-=-==-=-=\\
 var title = document.getElementById('title')
 if(title){
 	title.onblur = function() {
@@ -306,7 +306,7 @@ function drawRightAside(id, duration , poster, title, views, percent){
 		//video div
 		var div1 = document.createElement("div");
 		div1.className = "h-video row";
-		div1.id = id;
+		
 			// inner video div
 			var div2 = document.createElement("div");
 			div2.className = "col-lg-6 col-sm-6";
@@ -378,13 +378,7 @@ function getVideoByCategory (){
           },
          success:function(data) {
         	  	var incomeData = JSON.parse(data);
-				
-//				if (incomeData.length < 8) {
-//					btnMoreVideos.style.display = "none";	
-//				}else {
-//					btnMoreVideos.style.display = "inline-block";
-//				}
-				
+								
 				for (var int = 0; int < incomeData.length; int++) {
 					drawRightAside(incomeData[int].video_id, incomeData[int].duration , 
 					incomeData[int].poster_path , incomeData[int].title, incomeData[int].views,  incomeData[int].percent);
@@ -410,7 +404,7 @@ var searchVideoContainer = document.getElementById('row-search-container');
 
 
 	//  video HTML
-	function drawSearchVideo(id, duration , poster, title, views ,videoProcent) {
+	function drawSearchVideo(container, id, duration , poster, title, views ,videoProcent) {
 		
 		//video div
 		var div1 = document.createElement("div");
@@ -470,7 +464,7 @@ var searchVideoContainer = document.getElementById('row-search-container');
 		
 		div1.appendChild(div2);
 				
-		searchVideoContainer.appendChild(div1);
+		container.appendChild(div1);
 	}
 	// End create video
 	
@@ -492,8 +486,10 @@ document.getElementById("searchButton").addEventListener('click',function ()
 		        statusCode: {
 		            400:function(data) { 
 		        	   var response = JSON.parse(data.responseText);
-		        	   alert(response['error']); 
-		        	   location.href = './HomePageController.php';},
+		        	   document.getElementById('searchField').value = response['error'];
+		        	   document.getElementById('searchField').style.color = '#DC143C';
+		        	   document.getElementById('search-filter').style.display = 'none';
+		            },
 			 		500:function(){location.href = './503.php'}
 		         },
 		        success:function(data) {		        	
@@ -505,7 +501,7 @@ document.getElementById("searchButton").addEventListener('click',function ()
 		        		document.getElementById('search-filter').style.display = 'none';
 		        	}else{
 			        	for (var int = 0; int < incomeData.length; int++) {
-			        		drawSearchVideo(incomeData[int].video_id, incomeData[int].duration , 
+			        		drawSearchVideo(searchVideoContainer, incomeData[int].video_id, incomeData[int].duration , 
 							incomeData[int].poster_path , incomeData[int].title, incomeData[int].views, incomeData[int].percent );
 							
 							addAjaxVideoOptions();
@@ -515,7 +511,7 @@ document.getElementById("searchButton").addEventListener('click',function ()
 			 });
 	}
 	
-	
+//=-=-=-=-=-=-=-=-=-=-=-=-===-=--=-=-=-=-=-= sort find result-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=//	
 function sortVideoBy(sortBy){
 	var sortBy = sortBy;
 	var searchField = $('#search-page').val();
@@ -529,14 +525,16 @@ function sortVideoBy(sortBy){
 	        statusCode: {
 	            400:function(data) { 
 	        	   var response = JSON.parse(data.responseText);
-	        	   alert(response['error']); 
-	        	   location.href = './HomePageController.php';},
+	        	   document.getElementById('searchField').value = response['error'];
+	        	   document.getElementById('searchField').style.color = '#DC143C';
+	        	   document.getElementById('searchField').style.display = 'none';
+	        	},
 	        	500:function(){location.href = './503.php'}
 	         },
 	        success:function(data) {
 	        	var incomeData = JSON.parse(data);
 		        	for (var int = 0; int < incomeData.length; int++) {
-		        		drawSearchVideo(incomeData[int].video_id, incomeData[int].duration , 
+		        		drawSearchVideo(searchVideoContainer, incomeData[int].video_id, incomeData[int].duration , 
 						incomeData[int].poster_path , incomeData[int].title, incomeData[int].views, incomeData[int].percent );
 						
 						addAjaxVideoOptions();
@@ -544,6 +542,8 @@ function sortVideoBy(sortBy){
 	        }
 	 });
 }
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-filter find results-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
 filterSearch = document.getElementById("filter-search");
 if (filterSearch){
 	filterSearch.addEventListener('click',function (){
@@ -585,15 +585,18 @@ if (filterSearch){
 		        statusCode: {
 		            400:function(data) { 
 		        	   var response = JSON.parse(data.responseText);
-		        	   alert(response['error']); 
-		        	   location.href = './HomePageController.php';},
+		        	   var response = JSON.parse(data.responseText);
+		        	   document.getElementById('searchField').value = response['error'];
+		        	   document.getElementById('searchField').style.color = '#DC143C';
+		        	   document.getElementById('search-filter').style.display = 'none';
+		        	},
 		        	500:function(){location.href = './503.php'}
 		         },
 		        success:function(data) {
 		        	var incomeData = JSON.parse(data);
 		        	document.getElementById('findResults').innerHTML = (incomeData.length)?(incomeData.length):"no ";
 		        	for (var int = 0; int < incomeData.length; int++) {
-		        		drawSearchVideo(incomeData[int].video_id, incomeData[int].duration , 
+		        		drawSearchVideo(searchVideoContainer, incomeData[int].video_id, incomeData[int].duration , 
 						incomeData[int].poster_path , incomeData[int].title, incomeData[int].views, incomeData[int].percent );
 						
 						addAjaxVideoOptions();
@@ -602,4 +605,41 @@ if (filterSearch){
 		 });
 	});
 }
+//-------------------------------------------------------------end search-------------------------------------------------------------//
+
+
+
+//--------------------------------------------------------------Category------------------------------------------------------------------//
+
+var categoryContainer = document.getElementById('all-video-category');
+var categoryPage = document.getElementById('category-page');
+if (categoryPage){
+		var categoryField = $('#category-id').val();
+		 $.ajax({
+			url: 'ajax/search.php?categoryId='+categoryField,
+	        type: 'GET',
+	        dataType: "text",
+	        contentType: "application/x-www-form-urlencoded",                      
+	        statusCode: {
+	            400:function(data) {location.href = './404.php'},
+		 		500:function(){location.href = './503.php'}
+	         },
+	        success:function(data) {
+	        	var incomeData = JSON.parse(data);
+	        	if(incomeData['notFount']){
+	        		document.getElementById('not-found').style.display = 'block';
+	        		document.getElementById('not-found').innerHTML = "No results found!";
+	        		document.getElementById('search-filter').style.display = 'none';
+	        	}else{
+		        	for (var int = 0; int < incomeData.length; int++) {
+		        		drawSearchVideo(categoryContainer, incomeData[int].video_id, incomeData[int].duration , 
+						incomeData[int].poster_path , incomeData[int].title, incomeData[int].views, incomeData[int].percent );
+						
+						addAjaxVideoOptions();
+					}
+	        	}
+   	        }
+		 });
+}
+
 

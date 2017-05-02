@@ -53,6 +53,11 @@
 		const UPDATE_PICTURE_SQL = "UPDATE users SET picture = ? WHERE user_id = ?;";
 		const UPDATE_BANNER_SQL = "UPDATE users SET banner = ? WHERE user_id = ?;";
 		
+		const GET_USER_INFO = 'SELECT u.username, u.subscribers, u.description, u.join_date, c.country_id, c.country_name
+								FROM users u JOIN countries c
+								ON (u.country_id = c.country_id)
+								WHERE user_id = ?;';
+		
 		//<!-- =-=-=-=-=-=-=  DB CONECTION CREATE  =-=-=-=-=-=-= -->\\
 		public function __construct(){
 			$this->db = DBConnection::getDb();
@@ -580,6 +585,16 @@
 			if ($pstmt->execute(array($like, $orderBy ))){
 				$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 				return $result;
+			}
+		}
+		
+		public function getUserInformation($userId){
+			$pstmt = $this->db->prepare(self::GET_USER_INFO);
+			if ($pstmt->execute(array($userId))){
+				$result = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+				return $result;
+			}else{
+				throw new Exception("Incorect user id");
 			}
 		}
 	//end class
