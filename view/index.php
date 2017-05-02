@@ -813,7 +813,7 @@
                                 <div class="b-chanel">
                                     <a href="ChannelController.php?@$^^%@@^@^$^@=<?=(empty($popularChannels[0]['user_id'])?'':$popularChannels[0]['user_id'])?>&page=Video">
                                         <img src="assets/images/user-pictures/<?=(empty($popularChannels[0]['picture'])?'':$popularChannels[0]['picture'])?>" alt="">
-                                        <div class="hover"><?=(empty($popularChannels[0]['username'])?'':$popularChannels[0]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[0]['subscribers'])?:$popularChannels[0]['subscribers'])?></div>
+                                        <div class="hover"><?=(empty($popularChannels[0]['username'])?'':$popularChannels[0]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[0]['subscribers'])?0:$popularChannels[0]['subscribers'])?></div>
                                     </a>
                                 </div>
                             </div>
@@ -821,7 +821,7 @@
                                 <div class="b-chanel">
                                     <a href="ChannelController.php?@$^^%@@^@^$^@=<?=(empty($popularChannels[1]['user_id'])?'':$popularChannels[1]['user_id'])?>&page=Video">
                                         <img src="assets/images/user-pictures/<?=(empty($popularChannels[1]['picture'])?'':$popularChannels[1]['picture'])?>" alt="">
-                                        <div class="hover"><?=(empty($popularChannels[1]['username'])?'':$popularChannels[1]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[1]['subscribers'])?:$popularChannels[1]['subscribers'])?></div>
+                                        <div class="hover"><?=(empty($popularChannels[1]['username'])?'':$popularChannels[1]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[1]['subscribers'])?0:$popularChannels[1]['subscribers'])?></div>
                                     </a>
                                 </div>
                             </div>
@@ -829,7 +829,7 @@
                                 <div class="b-chanel">
                                    <a href="ChannelController.php?@$^^%@@^@^$^@=<?=(empty($popularChannels[2]['user_id'])?'':$popularChannels[2]['user_id'])?>&page=Video">
                                         <img src="assets/images/user-pictures/<?=(empty($popularChannels[2]['picture'])?'':$popularChannels[2]['picture'])?>" alt="">
-                                        <div class="hover"><?=(empty($popularChannels[2]['username'])?'':$popularChannels[2]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[2]['subscribers'])?:$popularChannels[2]['subscribers'])?></div>
+                                        <div class="hover"><?=(empty($popularChannels[2]['username'])?'':$popularChannels[2]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[2]['subscribers'])?0:$popularChannels[2]['subscribers'])?></div>
                                     </a>
                                 </div>
                             </div>
@@ -837,7 +837,7 @@
                                 <div class="b-chanel">
                                     <a href="ChannelController.php?@$^^%@@^@^$^@=<?=(empty($popularChannels[3]['user_id'])?'':$popularChannels[3]['user_id'])?>&page=Video">
                                         <img src="assets/images/user-pictures/<?=(empty($popularChannels[3]['picture'])?'':$popularChannels[3]['picture'])?>" alt="">
-                                        <div class="hover"><?=(empty($popularChannels[3]['username'])?'':$popularChannels[3]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[3]['subscribers'])?:$popularChannels[3]['subscribers'])?></div>
+                                        <div class="hover"><?=(empty($popularChannels[3]['username'])?'':$popularChannels[3]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[3]['subscribers'])?0:$popularChannels[3]['subscribers'])?></div>
                                     </a>
                                 </div>
                             </div>
@@ -845,7 +845,7 @@
                                 <div class="b-chanel">
                                      <a href="ChannelController.php?@$^^%@@^@^$^@=<?=(empty($popularChannels[4]['user_id'])?'':$popularChannels[4]['user_id'])?>&page=Video">
                                         <img src="assets/images/user-pictures/<?=(empty($popularChannels[4]['picture'])?'':$popularChannels[4]['picture'])?>" alt="">
-                                        <div class="hover"><?=(empty($popularChannels[4]['username'])?'':$popularChannels[4]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[4]['subscribers'])?:$popularChannels[4]['subscribers'])?></div>
+                                        <div class="hover"><?=(empty($popularChannels[4]['username'])?'':$popularChannels[4]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[4]['subscribers'])?0:$popularChannels[4]['subscribers'])?></div>
                                     </a>
                                 </div>
                             </div>
@@ -853,7 +853,7 @@
                                 <div class="b-chanel">
                                     <a href="ChannelController.php?@$^^%@@^@^$^@=<?=(empty($popularChannels[5]['user_id'])?'':$popularChannels[5]['user_id'])?>&page=Video">
                                         <img src="assets/images/user-pictures/<?=(empty($popularChannels[5]['picture'])?'':$popularChannels[5]['picture'])?>" alt="">
-                                        <div class="hover"><?=(empty($popularChannels[5]['username'])?'':$popularChannels[5]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[5]['subscribers'])?:$popularChannels[5]['subscribers'])?></div>
+                                        <div class="hover"><?=(empty($popularChannels[5]['username'])?'':$popularChannels[5]['username'])?><br><i class="cv cvicon-cv-liked"></i> <?=(empty($popularChannels[5]['subscribers'])?0:$popularChannels[5]['subscribers'])?></div>
                                     </a>
                                 </div>
                             </div>

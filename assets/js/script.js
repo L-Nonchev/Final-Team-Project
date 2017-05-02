@@ -511,7 +511,7 @@ document.getElementById("searchButton").addEventListener('click',function ()
 			 });
 	}
 	
-	
+//=-=-=-=-=-=-=-=-=-=-=-=-===-=--=-=-=-=-=-= sort find result-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=//	
 function sortVideoBy(sortBy){
 	var sortBy = sortBy;
 	var searchField = $('#search-page').val();
@@ -542,6 +542,8 @@ function sortVideoBy(sortBy){
 	        }
 	 });
 }
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-filter find results-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
 filterSearch = document.getElementById("filter-search");
 if (filterSearch){
 	filterSearch.addEventListener('click',function (){

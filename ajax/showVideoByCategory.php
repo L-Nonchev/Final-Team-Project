@@ -4,7 +4,7 @@ function __autoload($className) {
 }
 session_start();
 
-function showVideoByCatecory(){
+function showVideosByCategory(){
 	if (isset($_GET['categoryId'])){
 		$videoCategoty = htmlentities(trim($_GET['categoryId']));
 		$video = new VideoDAO();
@@ -26,6 +26,6 @@ function showVideoByCatecory(){
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-	echo json_encode(showVideoByCatecory());
+	echo json_encode(showVideosByCategory());
 }
 ?>

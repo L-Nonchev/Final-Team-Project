@@ -81,7 +81,7 @@ function filter($dataUpload, $timeFilter, $sortBy, $searchBy){
 function getAllcategories($sortBy){
 	if (isset($_REQUEST['categoryId'])){
 		$searchField = htmlentities( trim($_REQUEST['categoryId']) );
-		if ($searchField > 0 && $searchField < 15){
+		if ($searchField > 0 && $searchField <= 15){
 			$video = new VideoDAO();
 			$findsVideos = $video->getVideoByCategory($searchField, $sortBy);
 			if ($findsVideos){

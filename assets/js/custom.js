@@ -9,7 +9,7 @@
 		}
 		$.post('http://localhost/Final-Team-Project/ajax/checkVideoDataController.php',{ videoId: videoId }, 
 				function(data){
-			console.log(videoId);
+			console.log(data);
 			var response = JSON.parse(data);
 			if(response['success']){
 				alert('The video successful add to whatch later!');
