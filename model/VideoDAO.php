@@ -658,7 +658,7 @@ class VideoDAO implements IVideoDAO{
 	public function searchVideoByTitle($searchBy, $sortBy){
 		$pstmt = $this->db->prepare("SELECT v.video_id, v.title, v.path, v.poster_path, v.duration, v.category_id, v.user_id, v.duration, count(w.user_id) as views
 									FROM videos v
-                                    JOIN video_views w
+                                    LEFT JOIN video_views w
                                     ON (v.video_id = w.video_id)
 									WHERE title LIKE CONCAT('%', ?, '%')
                                     GROUP BY video_id
@@ -683,7 +683,7 @@ class VideoDAO implements IVideoDAO{
 	public function getFilterVideos($searchBy, $dataUpload, $timeFilter, $sortBy){
 		$pstmt = $this->db->prepare("SELECT v.video_id, v.title, v.path, v.date,  v.poster_path, v.duration, v.category_id, v.user_id, v.duration, count(w.user_id) as views
 									FROM videos v
-                                    JOIN video_views w
+                                    LEFT JOIN video_views w
                                     ON (v.video_id = w.video_id)
 									WHERE title LIKE CONCAT('%', ?, '%') AND ( v.date > (DATE_SUB(CURDATE(), INTERVAL ? DAY)) ) 
 										AND v.duration < ?

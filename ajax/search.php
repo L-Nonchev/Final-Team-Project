@@ -24,6 +24,9 @@ function search($sortBy){
 						if ($likes != 0){
 							$percent =( $dislikes/$likes )*100;
 							$percent = floor(100 - $percent);
+							if ($percent < 0) {
+								$percent = 0;
+							}
 						}else $percent = 0;
 						$findsVideos[$index]['percent'] = $percent;
 					}
@@ -72,6 +75,9 @@ function filter($dataUpload, $timeFilter, $sortBy, $searchBy){
 		if ($likes != 0){
 			$percent =( $dislikes/$likes )*100;
 			$percent = floor(100 - $percent);
+			if ($percent < 0) {
+				$percent = 0;
+			}
 		}else $percent = 0;
 		$findsVideos[$index]['percent'] = $percent;
 	}
@@ -91,6 +97,9 @@ function getAllcategories($sortBy){
 					if ($likes != 0){
 						$percent =( $dislikes/$likes )*100;
 						$percent = floor(100 - $percent);
+						if ($percent < 0) {
+							$percent = 0;
+						}
 					}else $percent = 0;
 					$findsVideos[$index]['percent'] = $percent;
 				}

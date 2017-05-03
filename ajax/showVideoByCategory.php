@@ -16,6 +16,9 @@ function showVideosByCategory(){
 			if ($likes != 0){
 				$percent =( $dislikes/$likes )*100;
 				$percent = floor(100 - $percent);
+				if ($percent < 0) {
+					$percent = 0;
+				}
 			}else $percent = 0;
 			$responce[$index]['percent'] = $percent;
 		}		

@@ -96,13 +96,19 @@ if (allChannelsContainer) {
 				}
 				
 				for (var int = 0; int < incomeData.length; int++) {
-					if (Number(incomeData[int].subscribers) === 0 ){
+					if (Number(incomeData[int].subscribers) == 0 ){
 						incomeData[int].subscribers = 1;
 					}
-					if (Number(incomeData[int].views) === 0) {
+					if (Number(incomeData[int].views) == 0) {
 						incomeData[int].views = 1;
 					}
-					var videoProcent = (Math.round(100 - ((Number(incomeData[int].subscribers) / Number(incomeData[int].views)) * 100)))
+					console.log(incomeData[int].subscribers);
+					console.log(incomeData[int].views);
+					
+					var videoProcent = (Math.round((Number(incomeData[int].subscribers) / Number(incomeData[int].views)) * 10)*10);
+					if (videoProcent >100) {
+						videoProcent = 100;
+					}
 					createChannels(incomeData[int].user_id, incomeData[int].banner , incomeData[int].picture, incomeData[int].username, 
 							incomeData[int].subscribers, incomeData[int].videoCnt, incomeData[int].country_name, incomeData[int].views, videoProcent);
 				}			
@@ -158,12 +164,16 @@ if (allChannelsContainer) {
 				var incomeData = JSON.parse(this.responseText);
 					btnMoreChannels.style.display = "none";	
 				for (var int = 0; int < incomeData.length; int++) {
-					if (Number(incomeData[int].subscribers) === 0 ){
+					
+					if (Number(incomeData[int].subscribers) == 0 ){
 						incomeData[int].subscribers = 1;
 					}
-					if (Number(incomeData[int].views) === 0) {
+					if (Number(incomeData[int].views) == 0) {
 						incomeData[int].views = 1;
 					}
+					console.log(incomeData[int].subscribers);
+					console.log(incomeData[int].views);
+
 					var videoProcent = (Math.round(100 - ((Number(incomeData[int].subscribers) / Number(incomeData[int].views)) * 100)))
 					createChannels(incomeData[int].user_id, incomeData[int].banner , incomeData[int].picture, incomeData[int].username, 
 							incomeData[int].subscribers, incomeData[int].videoCnt, incomeData[int].country_name, incomeData[int].views, videoProcent);

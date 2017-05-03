@@ -16,9 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 		
 		for ($index = 0; $index < count($usersID); $index++) {
 			$user = $userData->getAllUserData($usersID[$index]['channel_id']);
-			
 			$cntVideos = $userData->getVideosCount($user->userId);
-			
 			$usersArray[] = array(
 				'userId' =>	$user->userId,
 				'username' => $user->username,

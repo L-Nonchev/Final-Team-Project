@@ -255,9 +255,9 @@
                     
 
                 <!-- load more -->
-                <div class="loadmore">
-                    <a href="#">Show more videos</a>
-                </div>
+<!--                 <div class="loadmore"> -->
+<!--                     <a href="#">Show more videos</a> -->
+<!--                 </div> -->
             </div>
         </div>
     </div>

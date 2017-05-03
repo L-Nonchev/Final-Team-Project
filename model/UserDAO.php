@@ -57,6 +57,11 @@
 								FROM users u JOIN countries c
 								ON (u.country_id = c.country_id)
 								WHERE user_id = ?;';
+		const CHECK_FOR_EXIST_VISIT_CHANNEL_USER_SQL = "SELECT user_id
+														FROM channel_views
+														WHERE channel_id =  ? AND user_id = ?;";
+		const ADDING_USER_VISIT_CHANNEL_SQL = "INSERT INTO channel_views (channel_id, user_id) VALUES (?, ?);";
+		const GET_COUNT_USER_VISITED_CHANNEL_SQL = "SELECT COUNT(user_id) FROM channel_views WHERE channel_id = ?;";
 		
 		//<!-- =-=-=-=-=-=-=  DB CONECTION CREATE  =-=-=-=-=-=-= -->\\
 		public function __construct(){
@@ -471,6 +476,7 @@
 				return $result;
 			}
 		}
+		
 		//-=-=-=-=-=-= /USER Channels functions =-=-=-==-=-==--\\
 		
 //-=-=-=-=-=-=-=-=-=-=-=-=  USER DISCUSSIONS functions =-=-=-==-=-==-=-=-=-==-=-==--\\
@@ -597,6 +603,54 @@
 				throw new Exception("Incorect user id");
 			}
 		}
+//-=-=-=-=-=-=-=-=-=-=-=-=  Visited channel functions =-=-=-==-=-==-=-=-=-==-=-==--\\
+		/**
+		 * function chek to db for user is folled this channel
+		 * 
+		 * @param unknown $channelId
+		 * @param unknown $userId
+		 * @return boolean
+		 */
+		public function checkUserVisitchannel ($channelId , $userId){
+			$pstmt = $this->db->prepare(self::CHECK_FOR_EXIST_VISIT_CHANNEL_USER_SQL);
+			if ($pstmt->execute(array($channelId, $userId))){
+				$result = $pstmt->fetchColumn();
+				if ($result){
+					return $result ;
+				}else{
+					return false; 
+				}
+			}
+		}
+		/**
+		 * function adding user who visit for first time channel page in db table
+		 * 
+		 * @param unknown $channelId
+		 * @param unknown $userId
+		 * @return boolean
+		 */
+		public function addUserToVisitedTabel ($channelId, $userId){
+			$pstmt = $this->db->prepare(self::ADDING_USER_VISIT_CHANNEL_SQL);
+			if ($pstmt->execute(array($channelId, $userId))){
+				return true;
+			}else{
+				return false;
+				}
+		}
+		
+		/**
+		 * function get count for user visited this channel
+		 * 
+		 * @param unknown $channelId
+		 * @return mixed
+		 */
+		public function countChannelVisitors($channelId){
+			$pstmt = $this->db->prepare(self::GET_COUNT_USER_VISITED_CHANNEL_SQL);
+			if ($pstmt->execute(array($channelId))){
+				$result = $pstmt->fetchColumn();
+				return $result;
+			}
+		}		
 	//end class
 	}	
 ?>
